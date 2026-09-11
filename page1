@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This page features various types of Noble tableware and their prices. I looked at and reviewed the prices of the items and entered them into a table. Here, you can also view the product categories and learn more about them.">
+    <meta name="author" content="Utembayeva Karakat">
+    <title>Product Catalog - Noble</title>
+</head>
+
+<body>
+    <!-- Author: Utembayeva Karakat -->
+    <header>
+    <h1>Product Catalog</h1>
+</header>
+   <nav>
+
+        <ul>
+            <li><a href= "index.html">Home</a></li>
+            <li><a href= "page1.html">Products</a></li>
+            <li><a href= "page2.html">Contact</a></li>
+            <li><a href= "colophon.html">About the project</a></li>
+        </ul>
+    </nav>
+    <main>
+
+    <section>
+        <h2>Featured Product</h2>
+
+        <article>
+            <!-- I use article because the product description is a separate piece of content -->
+            <h3> Mug</h3>
+
+            <p>
+                I really liked the standard-shaped white mug with a beautiful design depicting Paris—specifically, the Eiffel Tower in <span> shades of blue</span>. It costs <strong><abbr title="Kazakhstani Tenge">₸</abbr>120,000</strong> 
+        and has the original name <em>Tout Parts Bleu</em> by<a href="https://www.bernardaud.com" target="_blank" rel="noopener noreferrer">Bernardaud</a>. It looks expensive, elegant, and comfortable to use for tea and coffee. I liked its design and how uniquely the image is painted on the mug. It’s made of <abbr title="a hard, white ceramic material fired at high temperature">porcelain</abbr>, which is why it’s highly valued—and fragile.
+        <q>The consultants are friendly and helpful when choosing, and it’s clear they are professionals who know their stuff. </q>
+            </p>
+        </article>
+
+       <aside>
+    <h3>Advice from an Employee</h3>
+    <blockquote cite="">
+        <p>Noble is a stylish, luxury tableware brand.</p>
+        <footer>— <cite> Aigerim 09.09.2026 </cite></footer>
+    </blockquote>
+</aside>
+    </section>
+    <section>
+    <h2 id="price-table">Price Table</h2>
+<!-- I use a table because it makes the real product prices easy to compare -->
+    <table>
+        <caption>Prices of Noble products</caption>
+        <thead>
+    <tr>
+        <th scope="col">Product</th>
+        <th scope="col">Category</th>
+        <th scope="col">Price</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Mug</td>
+        <td>Cup</td>
+        <td>120,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Caviar cup</td>
+        <td>Cup</td>
+        <td>220,000 ₸<sup>*</sup></td> 
+    </tr>
+
+    <tr>
+        <td>Lithophane candle holder</td>
+        <td>Candle holder</td>
+        <td>78,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Teapot</td>
+        <td>Teapot</td>
+        <td>144,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Bowl</td>
+        <td>Bowl</td>
+        <td>100,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Jewelry box</td>
+        <td>Box</td>
+        <td>38,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Pitcher</td>
+        <td>Pitcher</td>
+        <td>80,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Saucer</td>
+        <td>Saucer</td>
+        <td>58,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Decanter</td>
+        <td>Decanter</td>
+        <td>85,000 ₸</td>
+    </tr>
+
+    <tr>
+        <td>Caviar dish</td>
+        <td>Dish</td>
+        <td>65,000 ₸</td>
+    </tr>
+</tbody>
+    </table>
+    <p><small><sup>*</sup>Limited stock available</small></p>
+</section>
+<section>
+    <h2 id="categories">Product Categories</h2>
+
+    <ul>
+        <li>Tableware
+            <ul>
+                <li>Cups</li>
+                <li>Bowls</li>
+                <li>Dishes</li>
+                <li>Saucers</li>
+            </ul>
+        </li>
+
+        <li>Serving Items
+            <ul>
+                <li>Teapots</li>
+                <li>Pitchers</li>
+                <li>Decanters</li>
+            </ul>
+        </li>
+
+        <li>Home Accessories
+            <ul>
+                <li>Candle Holders</li>
+                <li>Jewelry Boxes</li>
+            </ul>
+        </li>
+    </ul>
+</section>
+<section>
+    <h2>Top 3 Products</h2>
+
+    <ol start="1">
+        <li><b>Mug</b></li>
+        <li>Teapot</li>
+        <li>Caviar cup</li>
+    </ol>
+</section>
+<section>
+    <h2>Terms</h2>
+
+    <dl>
+        <dt>Tableware</dt>
+        <dd>Items used for serving and eating food.</dd>
+
+        <dt><i>Porcelain</i></dt>
+        <dd>A type of ceramic material used to make dishes and cups.</dd>
+
+        <dt>Decanter</dt>
+        <dd>A container used for serving drinks.</dd>
+    </dl>
+</section>
+<!-- div used here only as a wrapper for layout grouping, no semantic tag fits -->
+<div>
+    <a href="#price-table">Go to Price Table</a>
+    <br>
+    <a href="#categories">Go to Product Categories</a>
+</div>
+    </main>
+    <footer>
+    <p>Phone: <a href="tel:+77003933327">7-700-393-3327</a></p>
+    <p>Address: Mandilik El 42, Astana, Kazakhstan</p>
+    <p>&copy; 2026 Noble</p>
+</footer>
+    
+</body>
+</html>
