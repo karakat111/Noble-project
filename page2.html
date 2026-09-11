@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This page helps visitors contact Noble, ask questions, choose a contact method, and plan a visit.">
+    <meta name="author" content="Utembayeva Karakat">
+    <title>Contact - Noble</title>
+</head>
+<body>
+    <!-- Author: Utembayeva Karakat -->
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="page1.html">Products</a></li>
+            <li><a href="page2.html">Contact</a></li>
+            <li><a href="colophon.html">About the project</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Get in Touch</h2>
+         
+<!-- I placed the form on the contact page so visitors can send their questions in one place -->
+
+
+        <p>
+            I created this page for visitors who want to contact the “Noble” tableware store. Personally, I believe that a contact page is very important, since visitors may have questions about prices, selecting tableware, or even visiting the store itself.
+        </p>
+
+        <p>
+           I’ve added several fields to the form so we can gather the necessary information for each inquiry. Customers can provide their name, email address, and phone number; there are also fields to specify the number of items they’d like to purchase and their preferred visit date. I included these options so customers can use this information to plan their visit or request information about other products.
+        </p>
+
+        <p>
+            The form also allows customers to choose their preferred method of contact—by email or phone—and I added a checkbox so they can receive notifications about new collections. The menu offers visitors several options, such as a general question, a custom order, or a store visit.
+        </p>
+
+        <p>
+            I chose a simple layout for this page because I wanted the contact information and the form to be easy to understand. The page also includes the phone number and store address so that visitors can contact Noble directly.
+        </p>
+
+         <!-- This form does not send data to a server because no backend is implemented yet-->
+            <form method="get" action="#">
+                <!-- I use a fieldset to keep the related contact and visit options together -->
+                <fieldset>
+                    <legend>Ask a question or book a visit</legend>
+
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Your name">
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone">
+
+                    <label for="qty">Number of items:</label>
+                    <input type="number" id="qty" name="qty">
+
+                    <label for="date">Preferred visit date:</label>
+                    <input type="date" id="date" name="date">
+
+                    <p>Preferred contact method:</p>
+                    <input type="radio" id="contact-email" name="contact-method" value="email">
+                    <label for="contact-email">Email</label>
+                    <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                    <label for="contact-phone">Phone</label>
+
+                    <input type="checkbox" id="subscribe" name="subscribe">
+                    <label for="subscribe">Subscribe to new collection updates</label>
+
+                    <label for="topic">Topic:</label>
+                    <select id="topic" name="topic">
+                        <option value="question">General question</option>
+                        <option value="order">Custom order</option>
+                        <option value="visit">Book a visit</option>
+                    </select>
+
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message"></textarea>
+
+                    <button type="submit">Send</button>
+                    <button type="reset">Clear</button>
+                </fieldset>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Phone: <a href="tel:+77003933327">7-700-393-3327</a></p>
+        <p>Address: Mandilik El 42, Astana, Kazakhstan</p>
+        <p>&copy; 2026 Noble</p>
+    </footer>
+</body>
+</html>
