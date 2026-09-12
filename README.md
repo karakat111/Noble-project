@@ -17,8 +17,8 @@ noble-project/
 ├── page2.html           — contact page with a form
 ├── colophon.html         — how the site was made
 ├── images/               — photos of the store and products
-├── tag_checklist.md       — checklist of tags used
-├── AI_log.md              — AI usage log
+├── tag_checklist(2).md       — checklist of tags used
+├── AI_log(1).md              — AI usage log
 └── README.md
 ```
 
