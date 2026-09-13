@@ -2,24 +2,20 @@
 
 Format: tag — file — line number
 
-Line numbers below are exact for **page-1.html** (verified against the final 211-line
-file). For **indexx.html**, **page2.html**, and **colophon.html**, open each file in
-VS Code and confirm/adjust the line numbers against your own saved copy, since minor
-edits after this checklist was written could shift a line by a few positions.
 
 ## Structure (on every page)
 | Tag | File | Line |
 |---|---|---|
 | header | page-1 | 13 |
-| header | indexx, page2, colophon | (check in VS Code) |
+| header | indexx, page2, colophon | 
 | nav | page-1 | 16 |
-| nav | indexx, page2, colophon | (check in VS Code) |
+| nav | indexx, page2, colophon | 
 | main | page-1 | 25 |
-| main | indexx, page2, colophon | (check in VS Code) |
+| main | indexx, page2, colophon | 
 | footer | page-1 | 203 |
-| footer | indexx, page2, colophon | (check in VS Code) |
+| footer | indexx, page2, colophon | 
 | h1 | page-1 | 14 |
-| h1 | indexx, page2, colophon | (check in VS Code) |
+| h1 | indexx, page2, colophon | 
 
 ## Semantics
 | Tag | File | Line |
@@ -29,7 +25,7 @@ edits after this checklist was written could shift a line by a few positions.
 | aside | page-1 | 47 |
 | figure | page-1 | 41, 134, 139 |
 | figcaption | page-1 | 44, 136, 141 |
-| figure/figcaption | indexx | (check in VS Code — 3 instances) |
+| figure/figcaption | indexx | 
 
 ## Table
 | Tag | File | Line |
@@ -53,7 +49,7 @@ edits after this checklist was written could shift a line by a few positions.
 |---|---|---|
 | a href (external, target+rel) | page-1 | 36 |
 | a href="tel:" | page-1 | 204 |
-| a href="tel:" | indexx, page2 | (check in VS Code) |
+| a href="tel:" | indexx, page2 | 
 | a href="#id" (anchor ×2) | page-1 | 198, 200 |
 
 ## Text tags
@@ -65,7 +61,7 @@ edits after this checklist was written could shift a line by a few positions.
 | i | page-1 | 189 |
 | mark | page-1 | 205 |
 | small | page-1 | 129 |
-| small | indexx | (check in VS Code) |
+| small | indexx | 
 | sup | page-1 | 77, 129 |
 | abbr[title] ×2 | page-1 | 35, 36 |
 | blockquote | page-1 | 49 |
@@ -74,8 +70,8 @@ edits after this checklist was written could shift a line by a few positions.
 | hr | page-1 | 130 |
 | br | page-1 | 199 |
 | &copy; | page-1 | 207 |
-| &copy; | indexx | (check in VS Code) |
-| HTML entities (4+ total) | indexx, page-1 | (confirm exact count/lines in VS Code) |
+| &copy; | indexx |
+| HTML entities (4+ total) | indexx, page-1 | 
 
 ## div / span
 | Tag | File | Line |
@@ -86,35 +82,29 @@ edits after this checklist was written could shift a line by a few positions.
 ## Form (page2.html)
 | Element | File | Line |
 |---|---|---|
-| form + fieldset + legend | page2 | (check in VS Code) |
-| label + id (all fields) | page2 | (check in VS Code) |
-| input text/email/tel/number/date | page2 | (check in VS Code) |
-| radio group | page2 | (check in VS Code) |
-| checkbox | page2 | (check in VS Code) |
-| select + options | page2 | (check in VS Code) |
-| textarea | page2 | (check in VS Code) |
-| required + placeholder | page2 | (check in VS Code) |
-| submit/reset buttons | page2 | (check in VS Code) |
-| "no server" comment | page2 | (check in VS Code) |
+| form + fieldset + legend | page2 | 
+| label + id (all fields) | page2 | 
+| input text/email/tel/number/date | page2 | 
+| radio group | page2 | 
+| checkbox | page2 | 
+| select + options | page2 | 
+| textarea | page2 | 
+| required + placeholder | page2 | 
+| submit/reset buttons | page2 | 
+| "no server" comment | page2 | 
 
 ## code/pre/kbd/samp (colophon.html)
 | Tag | File | Line |
 |---|---|---|
-| code | colophon | (check in VS Code) |
-| pre | colophon | (check in VS Code) |
-| kbd ×2 | colophon | (check in VS Code) |
-| samp | colophon | (check in VS Code) |
+| code | colophon | 
+| pre | colophon | 
+| kbd ×2 | colophon | 
+| samp | colophon | 
 
 ## "Why" comments (at least 2 per file)
 | File | Line(s) |
 |---|---|
 | page-1 | 29, 57, 196 |
-| indexx, page2, colophon | (check in VS Code) |
+| indexx, page2, colophon | 
 
----
-**Important:** the rows marked "(check in VS Code)" are for indexx.html, page2.html,
-and colophon.html — I don't have the exact final saved version of those three files
-in front of me (only page-1.html was pasted in its complete, confirmed final form),
-so I can't respond to those line numbers accurately. Open each file, use the line
-numbers shown on the left of the editor, and fill them in — it only takes a few
-minutes per file.
+

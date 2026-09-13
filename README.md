@@ -1,7 +1,7 @@
 # Noble — Tableware Store Website
 
 Project for the "Introduction to Web Technologies" course (Assignment 1: HTML Basics).
-Author: Utembayeva Karakat, SE-2535 (solo project)
+Author: Utembayeva Karakat, SE-2535 
 
 ## About the project
 
