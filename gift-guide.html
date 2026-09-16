@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan a tableware gift using the items featured in the Noble catalogue and a practice gift enquiry form.">
+    <meta name="author" content="OpenAI ChatGPT — educational example">
+    <title>Gift Guide | Noble</title>
+</head>
+<body>
+    <!-- Author: Arsen Ibatullin -->
+    <header>
+        <p>Noble — Tableware Store</p>
+        <h1>Gift Guide</h1>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="indexx.html">Home</a></li>
+                <li><a href="page-1.html">Products</a></li>
+                <li><a href="collections.html">Collections</a></li>
+                <li><a href="gift-guide.html" aria-current="page">Gift Guide</a></li>
+                <li><a href="page2.html">Contact</a></li>
+                <li><a href="colophon.html">About the project</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <p>A useful gift starts with the person receiving it. Think about their
+            daily habits, the space they have, and the pieces they already enjoy.
+            This guide groups items documented in the Noble catalogue by possible
+            occasions. Confirm current stock, prices, and packaging with the store
+            before making a purchase.</p>
+        <p>Browse the ideas below or jump to the
+            <a href="#gift-enquiry">practice gift enquiry form</a>.</p>
+
+        <!-- Used sections to divide headers and used h2 for headers -->
+        <section id="housewarming">
+            <h2>For a New Home</h2>
+            <p>Start by finding out what the recipient still needs. A bowl or
+                pitcher from the catalogue could complement their existing tableware.
+                A single useful piece may be easier to accommodate than a large set,
+                especially when storage space is limited.</p>
+            <ul>
+                <li>Check the colours and shapes of their existing pieces.</li>
+                <li>Ask about the dimensions and intended use of the item.</li>
+                <li>Confirm which pieces are included if choosing a set.</li>
+            </ul>
+        </section>
+
+        <section id="tea-coffee-gifts">
+            <h2>For Someone Who Enjoys Tea or Coffee</h2>
+            <p>The catalogue features a patterned mug, saucers, and a teapot.
+                Consider whether the recipient usually drinks alone or serves
+                guests. Their preferred cup size and the comfort of the handle
+                can matter as much as the decoration.</p>
+            <figure>
+                <img src="images.jpg/noble-tarelka.jpg"
+                     alt="Mug and matching plate shown in the Noble project catalogue"
+                     width="600">
+                <figcaption>A mug and plate photographed for the existing catalogue.</figcaption>
+            </figure>
+            <p>Explore the <a href="collections.html#tea-coffee">tea and coffee section</a>
+                to compare the types of pieces featured in the project.</p>
+        </section>
+
+        <section id="celebration-gifts">
+            <h2>For a Wedding or Special Celebration</h2>
+            <p>Ask what the recipients would actually use before choosing a
+                serving piece. The catalogue includes dishes and decanters, while
+                candle holders and jewellery boxes offer decorative alternatives.
+                Choose around the recipients' preferences rather than assuming
+                that a larger or more expensive gift will suit them better.</p>
+            <p>Ask the store whether suitable gift packaging is available for the
+                selected item. This page does not confirm wrapping, delivery,
+                engraving, or any other additional service.</p>
+        </section>
+
+        <section aria-labelledby="planning-heading">
+            <h2 id="planning-heading">Plan Your Choice</h2>
+            <ol>
+                <li>Choose an occasion and note the recipient's preferences.</li>
+                <li>Set a budget and decide how many gifts you need.</li>
+                <li>Compare the <a href="page-1.html#price-table">recorded catalogue prices</a>.</li>
+                <li>Confirm availability, care instructions, and packaging with the store.</li>
+            </ol>
+        </section>
+
+        <section id="gift-enquiry">
+            <h2>Practice Gift Enquiry</h2>
+            <p id="demo-note"><strong>Demonstration only:</strong> this form does
+                not contact Noble, reserve products, or save a request. Use made-up
+                details when testing it. For an actual enquiry, use the
+                <a href="page2.html">store contact information</a>.</p>
+
+            <!-- Form to practice gift enquiry. There is no backend, so Form takes get method  -->
+            <form action="gift-guide.html" method="get">
+                <!-- Used fieldset to combine inputs and legend to show fieldset header-->
+                <fieldset>
+                    <legend>Contact details for the example</legend>
+                    <p>
+                        <label for="name">Name (required)</label>
+                        <input type="text" id="name" name="customer-name" required placeholder="Example name">
+                    </p>
+                    <p>
+                        <label for="email">Email (required)</label>
+                        <input type="email" id="email" name="email" required placeholder="example@example.com">
+                    </p>
+                    <p>
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Example phone number">
+                    </p>
+                    <fieldset>
+                        <legend>Preferred contact method</legend>
+                        <!-- A shared name makes these radio buttons a single-choice group. -->
+                        <p>
+                            <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                            <label for="contact-email">Email</label>
+                            <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                            <label for="contact-phone">Phone</label>
+                        </p>
+                    </fieldset>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Gift preferences</legend>
+                    <p>
+                        <label for="occasion">Occasion (required)</label>
+                        <select id="occasion" name="occasion" required>
+                            <option value="">Choose an occasion</option>
+                            <option value="housewarming">Housewarming</option>
+                            <option value="birthday">Birthday</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="other">Another occasion</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="quantity">Number of gifts (required)</label>
+                        <input type="number" id="quantity" name="quantity" min="1" step="1" required>
+                    </p>
+                    <p>
+                        <label for="budget">Total budget in KZT</label>
+                        <input type="number" id="budget" name="budget-kzt" min="0" step="1">
+                    </p>
+                    <p>
+                        <label for="date">Date of the occasion</label>
+                        <input type="date" id="date" name="occasion-date">
+                    </p>
+                    <p>
+                        <input type="checkbox" id="packaging" name="ask-about-packaging" value="yes">
+                        <label for="packaging">Include a question about available gift packaging</label>
+                    </p>
+                    <p>
+                        <label for="message">Recipient's preferences or questions</label>
+                        <textarea id="message" name="message"
+                                  placeholder="Describe preferred colours, items, or questions."></textarea>
+                    </p>
+                </fieldset>
+                <p>
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset form</button>
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <address>
+            Noble, Mandilik El 42, Astana, Kazakhstan<br>
+            Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
+        </address>
+        <p>Opening hours listed in the project: 10:00–20:00.</p>
+        <p><small>&copy; 2026 Noble educational project.</small></p>
+    </footer>
+</body>
+</html>
