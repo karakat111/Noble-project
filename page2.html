@@ -6,100 +6,158 @@
     <meta name="description" content="This page helps visitors contact Noble, ask questions, choose a contact method, and plan a visit.">
     <meta name="author" content="Utembayeva Karakat">
     <title>Contact - Noble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/page2.css">
 </head>
 <body>
     <!-- Author: Utembayeva Karakat -->
-    <header>
-        <h1>Contact Us</h1>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <h1>Contact Us</h1>
+            <nav class="site-nav" aria-label="Primary">
+                <ul>
+                    <li><a href="indexx.html">Home</a></li>
+                    <li><a href="page-1.html">Products</a></li>
+                    <li><a href="collections.html">Collections</a></li>
+                    <li><a href="gift-guide.html">Gift Guide</a></li>
+                    <li><a href="care.html">Care and Storage</a></li>
+                    <li><a href="visit.html">Visit the Store</a></li>
+                    <li><a href="page2.html" aria-current="page">Contact</a></li>
+                    <li><a href="colophon.html">About the project</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-
-    <nav>
-        <ul>
-          <li><a href="indexx.html">Home</a></li>
-            <li><a href="page-1.html">Products</a></li>
-            <li><a href="collections.html">Collections</a></li>
-            <li><a href="gift-guide.html">Gift Guide</a></li>
-            <li><a href="care.html">Care and Storage</a></li>
-            <li><a href="visit.html">Visit the Store</a></li>
-            <li><a href="page2.html">Contact</a></li>
-            <li><a href="colophon.html">About the project</a></li>
-        </ul>
-    </nav>
 
     <main>
         <section>
             <h2>Get in Touch</h2>
-         
-<!-- I placed the form on the contact page so visitors can send their questions in one place -->
 
+            <!-- I placed the form on the contact page so visitors can send their questions in one place -->
 
-        <p>
-            I created this page for visitors who want to contact the “Noble” tableware store. Personally, I believe that a contact page is very important, since visitors may have questions about prices, selecting tableware, or even visiting the store itself.
-        </p>
+            <div class="contact-intro">
+                <p>
+                    I created this page for visitors who want to contact the &ldquo;Noble&rdquo; tableware store.
+                    Personally, I believe that a contact page is very important, since visitors may have
+                    questions about prices, selecting tableware, or even visiting the store itself.
+                </p>
 
-        <p>
-           I’ve added several fields to the form so we can gather the necessary information for each inquiry. Customers can provide their name, email address, and phone number; there are also fields to specify the number of items they’d like to purchase and their preferred visit date. I included these options so customers can use this information to plan their visit or request information about other products.
-        </p>
+                <p>
+                    I&rsquo;ve added several fields to the form so we can gather the necessary information for
+                    each inquiry. Customers can provide their name, email address, and phone number; there
+                    are also fields to specify the number of items they&rsquo;d like to purchase and their
+                    preferred visit date. I included these options so customers can use this information to
+                    plan their visit or request information about other products.
+                </p>
 
-        <p>
-            The form also allows customers to choose their preferred method of contact—by email or phone—and I added a checkbox so they can receive notifications about new collections. The menu offers visitors several options, such as a general question, a custom order, or a store visit.
-        </p>
+                <p>
+                    The form also allows customers to choose their preferred method of contact&mdash;by email
+                    or phone&mdash;and I added a checkbox so they can receive notifications about new
+                    collections. The menu offers visitors several options, such as a general question, a
+                    custom order, or a store visit.
+                </p>
 
-        <p>
-            I chose a simple layout for this page because I wanted the contact information and the form to be easy to understand. The page also includes the phone number and store address so that visitors can contact Noble directly.
-        </p>
+                <p>
+                    I chose a simple layout for this page because I wanted the contact information and the
+                    form to be easy to understand. The page also includes the phone number and store address
+                    so that visitors can contact Noble directly.
+                </p>
+            </div>
 
-         <!-- This form does not send data to a server because no backend is implemented yet-->
-            <form method="get" action="#">
-                <!-- I use a fieldset to keep the related contact and visit options together -->
-                <fieldset>
-                    <legend>Ask a question or book a visit</legend>
+            <!-- This form does not send data to a server because no backend is implemented yet-->
+            <div class="contact-form-wrap">
+                <form method="get" action="#" class="contact-form">
 
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required placeholder="Your name">
+                    <div class="badge-mark" aria-hidden="true">&#10022;</div>
 
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+                    <!-- I use a fieldset to keep the related contact and visit options together -->
+                    <fieldset class="form-fieldset">
+                        <legend>Ask a question or book a visit</legend>
 
-                    <label for="phone">Phone:</label>
-                    <input type="tel" id="phone" name="phone">
+                        <div class="form-field">
+                            <label for="name">Name:</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name">
+                            <span class="required-badge">*required</span>
+                        </div>
 
-                    <label for="qty">Number of items:</label>
-                    <input type="number" id="qty" name="qty">
+                        <div class="form-field">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="required-badge">*required</span>
+                        </div>
 
-                    <label for="date">Preferred visit date:</label>
-                    <input type="date" id="date" name="date">
+                        <div class="form-field">
+                            <label for="phone">Phone:</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
 
-                    <p>Preferred contact method:</p>
-                    <input type="radio" id="contact-email" name="contact-method" value="email">
-                    <label for="contact-email">Email</label>
-                    <input type="radio" id="contact-phone" name="contact-method" value="phone">
-                    <label for="contact-phone">Phone</label>
+                        <div class="form-field">
+                            <label for="qty">Number of items:</label>
+                            <input type="number" id="qty" name="qty" min="0">
+                        </div>
 
-                    <input type="checkbox" id="subscribe" name="subscribe">
-                    <label for="subscribe">Subscribe to new collection updates</label>
+                        <div class="form-field">
+                            <!-- id instead of class: this is the one field on the page that gets its
+                                 own positioning logic (the star badge references it visually), so it's
+                                 unique rather than a reusable pattern -->
+                            <label for="visit-date">Preferred visit date:</label>
+                            <input type="date" id="visit-date" name="date">
+                        </div>
 
-                    <label for="topic">Topic:</label>
-                    <select id="topic" name="topic">
-                        <option value="question">General question</option>
-                        <option value="order">Custom order</option>
-                        <option value="visit">Book a visit</option>
-                    </select>
+                        <div class="form-field form-field--contact-choice">
+                            <span class="form-field__label-text">Preferred contact method:</span>
+                            <div class="contact-choice">
+                                <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                                <label for="contact-email">Email</label>
+                                <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                                <label for="contact-phone">Phone</label>
+                            </div>
+                        </div>
 
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message"></textarea>
+                        <div class="form-field form-field--checkbox">
+                            <input type="checkbox" id="subscribe" name="subscribe">
+                            <label for="subscribe">Subscribe to new collection updates</label>
+                        </div>
 
-                    <button type="submit">Send</button>
-                    <button type="reset">Clear</button>
-                </fieldset>
-            </form>
+                        <div class="form-field">
+                            <label for="topic">Topic:</label>
+                            <select id="topic" name="topic">
+                                <option value="question">General question</option>
+                                <option value="order">Custom order</option>
+                                <option value="visit">Book a visit</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <div class="form-field form-field--message">
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="4"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn--primary">Send</button>
+                        <button type="reset" class="btn btn--ghost">Clear</button>
+                    </div>
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <p>Phone: <a href="tel:+77003933327">7-700-393-3327</a></p>
-        <p>Address: Mandilik El 42, Astana, Kazakhstan</p>
-        <p>&copy; 2026 Noble</p>
+        <p id="store-address">Address: Mandilik El 42, Astana, Kazakhstan</p>
+        <p style="color: #cbbfa2; font-size: 0.85rem;">
+            <!-- inline style: overrides color and size only for this footer line, to demonstrate
+                 that inline styles win over any class or id rule (short of !important) -->
+            &copy; 2026 Noble
+        </p>
     </footer>
+
+    <div class="phone-strip" aria-label="Quick call">
+        <a href="tel:+77003933327">Call: +7 700 393 3327</a>
+    </div>
+
 </body>
 </html>
