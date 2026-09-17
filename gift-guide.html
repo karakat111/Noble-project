@@ -6,25 +6,30 @@
     <meta name="description" content="Plan a tableware gift using the items featured in the Noble catalogue and a practice gift enquiry form.">
     <meta name="author" content="OpenAI ChatGPT — educational example">
     <title>Gift Guide | Noble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/gift-guide.css">
 </head>
 <body>
     <!-- Author: Karakat Utembayeva -->
-    <header>
-        <p>Noble — Tableware Store</p>
-        <h1>Gift Guide</h1>
-        <nav aria-label="Main navigation">
-            <ul>
-                <li><a href="indexx.html">Home</a></li>
-                <li><a href="page-1.html">Products</a></li>
-                <li><a href="collections.html">Collections</a></li>
-                <li><a href="gift-guide.html" aria-current="page">Gift Guide</a></li>
-                <li><a href="care.html">Care and Storage</a></li>
-                <li><a href="visit.html">Visit the Store</a></li>
-                <li><a href="page2.html">Contact</a></li>
-                <li><a href="colophon.html">About the project</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+        <div class="site-header__inner">
+            <p class="site-tagline">Noble — Tableware Store</p>
+            <h1>Gift Guide</h1>
+            <nav class="site-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="indexx.html">Home</a></li>
+                    <li><a href="page-1.html">Products</a></li>
+                    <li><a href="collections.html">Collections</a></li>
+                    <li><a href="gift-guide.html" aria-current="page">Gift Guide</a></li>
+                    <li><a href="care.html">Care and Storage</a></li>
+                    <li><a href="visit.html">Visit the Store</a></li>
+                    <li><a href="page2.html">Contact</a></li>
+                    <li><a href="colophon.html">About the project</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -37,7 +42,7 @@
             <a href="#gift-enquiry">practice gift enquiry form</a>.</p>
 
         <!-- Used sections to divide headers and used h2 for headers -->
-        <section id="housewarming">
+        <section id="housewarming" class="content-section">
             <h2>For a New Home</h2>
             <p>Start by finding out what the recipient still needs. A bowl or
                 pitcher from the catalogue could complement their existing tableware.
@@ -50,7 +55,7 @@
             </ul>
         </section>
 
-        <section id="tea-coffee-gifts">
+        <section id="tea-coffee-gifts" class="content-section">
             <h2>For Someone Who Enjoys Tea or Coffee</h2>
             <p>The catalogue features a patterned mug, saucers, and a teapot.
                 Consider whether the recipient usually drinks alone or serves
@@ -66,7 +71,7 @@
                 to compare the types of pieces featured in the project.</p>
         </section>
 
-        <section id="celebration-gifts">
+        <section id="celebration-gifts" class="content-section">
             <h2>For a Wedding or Special Celebration</h2>
             <p>Ask what the recipients would actually use before choosing a
                 serving piece. The catalogue includes dishes and decanters, while
@@ -78,7 +83,7 @@
                 engraving, or any other additional service.</p>
         </section>
 
-        <section aria-labelledby="planning-heading">
+        <section aria-labelledby="planning-heading" class="content-section">
             <h2 id="planning-heading">Plan Your Choice</h2>
             <ol>
                 <li>Choose an occasion and note the recipient's preferences.</li>
@@ -88,86 +93,91 @@
             </ol>
         </section>
 
-        <section id="gift-enquiry">
+        <section id="gift-enquiry" class="content-section">
             <h2>Practice Gift Enquiry</h2>
-            <p id="demo-note"><strong>Demonstration only:</strong> this form does
+            <p id="demo-note" class="form-note"><strong>Demonstration only:</strong> this form does
                 not contact Noble, reserve products, or save a request. Use made-up
                 details when testing it. For an actual enquiry, use the
                 <a href="page2.html">store contact information</a>.</p>
 
             <!-- Form to practice gift enquiry. There is no backend, so Form takes get method  -->
-            <form action="gift-guide.html" method="get">
-                <!-- Used fieldset to combine inputs and legend to show fieldset header-->
-                <fieldset>
-                    <legend>Contact details for the example</legend>
-                    <p>
-                        <label for="name">Name (required)</label>
-                        <input type="text" id="name" name="customer-name" required placeholder="Example name">
-                    </p>
-                    <p>
-                        <label for="email">Email (required)</label>
-                        <input type="email" id="email" name="email" required placeholder="example@example.com">
-                    </p>
-                    <p>
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Example phone number">
-                    </p>
-                    <fieldset>
-                        <legend>Preferred contact method</legend>
-                        <!-- A shared name makes these radio buttons a single-choice group. -->
-                        <p>
-                            <input type="radio" id="contact-email" name="contact-method" value="email" checked>
-                            <label for="contact-email">Email</label>
-                            <input type="radio" id="contact-phone" name="contact-method" value="phone">
-                            <label for="contact-phone">Phone</label>
+            <div class="contact-form-wrap">
+                <form action="gift-guide.html" method="get" class="contact-form">
+
+                    <div class="badge-mark" aria-hidden="true">&#10022;</div>
+
+                    <!-- Used fieldset to combine inputs and legend to show fieldset header-->
+                    <fieldset class="form-fieldset">
+                        <legend>Contact details for the example</legend>
+                        <p class="form-field">
+                            <label for="name">Name (required)</label>
+                            <input type="text" id="name" name="customer-name" required placeholder="Example name">
+                        </p>
+                        <p class="form-field">
+                            <label for="email">Email (required)</label>
+                            <input type="email" id="email" name="email" required placeholder="example@example.com">
+                        </p>
+                        <p class="form-field">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Example phone number">
+                        </p>
+                        <fieldset class="form-fieldset--nested">
+                            <legend>Preferred contact method</legend>
+                            <!-- A shared name makes these radio buttons a single-choice group. -->
+                            <p class="contact-choice">
+                                <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                                <label for="contact-email">Email</label>
+                                <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                                <label for="contact-phone">Phone</label>
+                            </p>
+                        </fieldset>
+                    </fieldset>
+
+                    <fieldset class="form-fieldset">
+                        <legend>Gift preferences</legend>
+                        <p class="form-field">
+                            <label for="occasion">Occasion (required)</label>
+                            <select id="occasion" name="occasion" required>
+                                <option value="">Choose an occasion</option>
+                                <option value="housewarming">Housewarming</option>
+                                <option value="birthday">Birthday</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="other">Another occasion</option>
+                            </select>
+                        </p>
+                        <p class="form-field">
+                            <label for="quantity">Number of gifts (required)</label>
+                            <input type="number" id="quantity" name="quantity" min="1" step="1" required>
+                        </p>
+                        <p class="form-field">
+                            <label for="budget">Total budget in KZT</label>
+                            <input type="number" id="budget" name="budget-kzt" min="0" step="1">
+                        </p>
+                        <p class="form-field">
+                            <label for="date">Date of the occasion</label>
+                            <input type="date" id="date" name="occasion-date">
+                        </p>
+                        <p class="form-field form-field--checkbox">
+                            <input type="checkbox" id="packaging" name="ask-about-packaging" value="yes">
+                            <label for="packaging">Include a question about available gift packaging</label>
+                        </p>
+                        <p class="form-field form-field--message">
+                            <label for="message">Recipient's preferences or questions</label>
+                            <textarea id="message" name="message" rows="4"
+                                      placeholder="Describe preferred colours, items, or questions."></textarea>
                         </p>
                     </fieldset>
-                </fieldset>
-
-                <fieldset>
-                    <legend>Gift preferences</legend>
-                    <p>
-                        <label for="occasion">Occasion (required)</label>
-                        <select id="occasion" name="occasion" required>
-                            <option value="">Choose an occasion</option>
-                            <option value="housewarming">Housewarming</option>
-                            <option value="birthday">Birthday</option>
-                            <option value="wedding">Wedding</option>
-                            <option value="other">Another occasion</option>
-                        </select>
+                    <p class="form-actions">
+                        <button type="submit" class="btn btn--primary">Submit</button>
+                        <button type="reset" class="btn btn--ghost">Reset form</button>
                     </p>
-                    <p>
-                        <label for="quantity">Number of gifts (required)</label>
-                        <input type="number" id="quantity" name="quantity" min="1" step="1" required>
-                    </p>
-                    <p>
-                        <label for="budget">Total budget in KZT</label>
-                        <input type="number" id="budget" name="budget-kzt" min="0" step="1">
-                    </p>
-                    <p>
-                        <label for="date">Date of the occasion</label>
-                        <input type="date" id="date" name="occasion-date">
-                    </p>
-                    <p>
-                        <input type="checkbox" id="packaging" name="ask-about-packaging" value="yes">
-                        <label for="packaging">Include a question about available gift packaging</label>
-                    </p>
-                    <p>
-                        <label for="message">Recipient's preferences or questions</label>
-                        <textarea id="message" name="message"
-                                  placeholder="Describe preferred colours, items, or questions."></textarea>
-                    </p>
-                </fieldset>
-                <p>
-                    <button type="submit">Submit</button>
-                    <button type="reset">Reset form</button>
-                </p>
-            </form>
+                </form>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <address>
+    <footer class="site-footer">
+        <address id="store-address">
             Noble, Mandilik El 42, Astana, Kazakhstan<br>
             Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
         </address>
