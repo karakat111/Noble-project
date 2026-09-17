@@ -1,12 +1,11 @@
 :root {
-  /* color: sage green + walnut brown, porcelain background */
-  --color-bg:          #F5F1E8; /* porcelain ivory */
-  --color-bg-panel:    #EDE6D6; /* form panel, slightly deeper than bg */
-  --color-sage:        #4B5D3A; /* deep olive/sage green — header, headings */
+  --color-bg:          #F5F1E8;
+  --color-bg-panel:    #EDE6D6;
+  --color-sage:        #4B5D3A;
   --color-sage-dark:   #333F26;
-  --color-walnut:      #6B4A32; /* warm walnut brown - buttons, accents */
+  --color-walnut:      #6B4A32;
   --color-walnut-dark: #4A3220;
-  --color-terracotta:  #A85C32; /* clay accent - focus, badges */
+  --color-terracotta:  #A85C32;
   --color-ink:         #2B2620;
   --color-cream:       #FBF8F1;
   --color-border:      #D6CBB0;
@@ -15,8 +14,6 @@
   --font-body: "Work Sans", "Segoe UI", system-ui, sans-serif;
 }
 
-/* universal selector -  good place for box-sizing: applies to every
-   element and its pseudo-elements so padding/border never blow out widths */
 *,
 *::before,
 *::after {
@@ -53,8 +50,6 @@ a:focus {
   color: var(--color-terracotta);
 }
 
-/*  header + navigation */
-
 .site-header {
   background: var(--color-sage);
   border-bottom: 3px solid var(--color-sage-dark);
@@ -62,7 +57,7 @@ a:focus {
 
 .site-header__inner {
   max-width: 960px;
-  margin: 0 auto; /* centering #1: horizontal centering of a fixed max-width block */
+  margin: 0 auto;
   padding: 1.4rem 1.5rem 1.1rem 1.5rem;
 }
 
@@ -73,7 +68,6 @@ a:focus {
   margin-bottom: 0.9rem;
 }
 
-/* .site-nav -  nav is already a flex row */
 .site-nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -94,13 +88,9 @@ a:focus {
   border-bottom-color: var(--color-terracotta);
 }
 
-/* :first-child - the first nav item gets a slight accent to mark it as
-   the "home" entry in the list */
 .site-nav li:first-child a {
   font-weight: 600;
 }
-
-/*  footer  */
 
 .site-footer {
   background: var(--color-sage-dark);
@@ -119,8 +109,6 @@ a:focus {
 }
 
 #store-address {
-  /* id, because this is the one unique store address on the page - it is
-     not a reusable pattern, so a class would be the wrong tool here */
   font-family: var(--font-display);
   font-size: 1.05rem;
   letter-spacing: 0.01em;
@@ -129,7 +117,7 @@ a:focus {
 
 main {
   max-width: 760px;
-  margin: 3rem auto 0 auto; /* centering 1 (second example): main centered by width */
+  margin: 3rem auto 0 auto;
   padding: 0 1.5rem;
 }
 
@@ -138,32 +126,24 @@ main h2 {
   margin-bottom: 1.1rem;
 }
 
-/* intro block */
-
 .contact-intro {
   position: static;
-  /* static is the default positioning value: the element stays in normal
-     document flow and top/left/z-index have no effect on it. Stated
-     explicitly here just to document it for the checklist. */
 }
 
-/* type selector -styles every paragraph in the intro block at once */
 .contact-intro p {
   font-size: 1rem;
-  line-height: 1.7;        /* generous line-height for comfortable reading */
+  line-height: 1.7;
   letter-spacing: 0.005em;
   color: var(--color-ink);
   margin-bottom: 1.1rem;
 }
 
-/* :first-child - only the first paragraph (the one with the photo) gets
-   extra line-height so the text wrapping the image has room to breathe */
 .contact-intro p:first-child {
   line-height: 1.8;
 }
 
 .intro-photo {
-  float: left;                 /* float + text wrap */
+  float: left;
   width: 190px;
   height: 150px;
   object-fit: cover;
@@ -172,39 +152,26 @@ main h2 {
   border: 1px solid var(--color-border);
 }
 
-/* clear on the second paragraph: without it, that paragraph would tuck in
-   right under the floated photo, and if the photo is taller than the first
-   paragraph's text, the next section could ride up alongside it and break
-   the layout. clear guarantees the new block starts below the float. */
 .contact-intro p + p {
-  /* adjacent sibling selector: a paragraph immediately after a paragraph */
   clear: left;
 }
-
-/*  form wrapper */
 
 .contact-form-wrap {
   margin: 2.5rem 0 3rem 0;
 }
 
 .contact-form {
-  position: relative; /* containing block for .badge-mark and .required-badge */
+  position: relative;
   background: var(--color-bg-panel);
   border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 2rem 1.75rem 1.75rem 1.75rem;
-
-  /* grid works better than flex here because the page needs a two-dimensional
-     aligned grid of "label - input" pairs, with the label column the same
-     width on every row - flex doesn't give that cross-row column alignment
-     for free the way grid does. */
   display: grid;
   grid-template-columns: minmax(140px, 180px) 1fr;
   gap: 1rem 1.25rem;
 }
 
 .contact-form::before {
-  /* ::before — decorative strapline above the form */
   content: "Send a request — we reply on store business days";
   grid-column: 1 / -1;
   font-family: var(--font-display);
@@ -213,9 +180,6 @@ main h2 {
   margin-bottom: 0.25rem;
 }
 
-/* decorative accent centered on the top edge of the form -
-   centering 3: absolute + transform, for centering an element of unknown
-   width precisely on both axes */
 .badge-mark {
   position: absolute;
   top: 0;
@@ -248,38 +212,31 @@ main h2 {
   margin-bottom: 0.25rem;
 }
 
-/* fieldset > label -  child combinator: only labels that are DIRECT children
-   of fieldset (i.e. not nested deeper, like inside .contact-choice) get the
-   heavier label weight */
 fieldset > .form-field > label {
   font-weight: 500;
 }
 
 .form-field {
-  display: contents; /* the label/input pair drops straight into the parent grid */
+  display: contents;
   position: relative;
 }
 
-/* descendant selector - any label anywhere inside the form, regardless of nesting depth */
 form label {
   align-self: center;
   color: var(--color-sage-dark);
   font-size: 0.92rem;
 }
 
-/* grouping selector - text-like inputs share the same base treatment */
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
   font-family: var(--font-body);
 }
 
-/* attribute selector -  required fields get a more visible border */
 input[required] {
   border-width: 2px;
 }
 
-/* attribute selector by value - the date field gets its own accent color */
 #visit-date {
   accent-color: var(--color-walnut);
 }
@@ -319,8 +276,6 @@ textarea:focus {
   padding: 0 0.3rem;
 }
 
-/*  radio group: flex row  */
-
 .form-field--contact-choice {
   align-items: start;
 }
@@ -332,19 +287,17 @@ textarea:focus {
 }
 
 .contact-choice {
-  display: flex;      /* a second flex block, besides the nav in base.css */
+  display: flex;
   align-items: center;
   gap: 0.4rem 1.5rem;
   flex-wrap: wrap;
 }
 
-/* adjacent sibling (+) - the label that comes right AFTER a radio input */
 input[type="radio"] + label {
   font-size: 0.9rem;
   margin-right: 0.5rem;
 }
 
-/* adjacent sibling (+) reused for the checkbox row */
 input[type="checkbox"] + label {
   font-size: 0.9rem;
 }
@@ -365,11 +318,9 @@ input[type="checkbox"] + label {
   resize: vertical;
 }
 
-/*  buttons: flex centering  */
-
 .form-actions {
   display: flex;
-  justify-content: center;  /* centering 2 : flex justify + align */
+  justify-content: center;
   align-items: center;
   gap: 1rem;
   margin-top: 0.5rem;
@@ -406,8 +357,6 @@ input[type="checkbox"] + label {
   color: var(--color-terracotta);
 }
 
-/* fixed phone strip */
-
 .phone-strip {
   position: fixed;
   bottom: 1rem;
@@ -429,3 +378,112 @@ input[type="checkbox"] + label {
 }
 
 
+.site-tagline {
+  color: var(--color-cream);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+  opacity: 0.85;
+}
+
+main > p:first-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.section-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  margin: 0 0 2.5rem 0;
+}
+
+.section-nav a {
+  display: inline-block;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  color: var(--color-sage-dark);
+}
+
+.section-nav a:hover,
+.section-nav a:focus {
+  border-color: var(--color-terracotta);
+  color: var(--color-terracotta);
+}
+
+.content-section {
+  margin-bottom: 2.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.content-section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.content-section p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.content-section ul {
+  margin: 0 0 1.25rem 1.25rem;
+  padding: 0;
+}
+
+.content-section li {
+  margin-bottom: 0.35rem;
+}
+
+figure {
+  margin: 1.5rem 0;
+}
+
+figure img {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+}
+
+figcaption {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-walnut);
+  margin-top: 0.5rem;
+}
+
+.callout {
+  position: relative;
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-terracotta);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.callout h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.callout ol {
+  margin: 0 0 1rem 1.25rem;
+  padding: 0;
+}
+
+.callout li {
+  margin-bottom: 0.4rem;
+}
+
+address {
+  font-style: normal;
+}

@@ -6,24 +6,30 @@
     <meta name="description" content="Explore tea and coffee pieces, table settings, and decorative accessories featured in the Noble project.">
     <meta name="author" content="OpenAI ChatGPT — educational example">
     <title>Collections | Noble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/collections.css">
 </head>
 <body>
-    <!-- Author: Arsen Ibatullin -->
-    <header>
-        <p>Noble - Tableware Store</p>
-        <h1>Explore the Collections</h1>
-        <nav aria-label="Main navigation">
-            <ul>
-                <li><a href="indexx.html">Home</a></li>
-                <li><a href="page-1.html">Products</a></li>
-                <li><a href="collections.html" aria-current="page">Collections</a></li>
-                <li><a href="gift-guide.html">Gift Guide</a></li>
-                <li><a href="care.html">Care and Storage</a></li>
-                <li><a href="visit.html">Visit the Store</a></li>
-                <li><a href="page2.html">Contact</a></li>
-                <li><a href="colophon.html">About the project</a></li>
-            </ul>
-        </nav>
+    <!-- Author: Karakat Utembayeva -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <p class="site-tagline">Noble - Tableware Store</p>
+            <h1>Explore the Collections</h1>
+            <nav class="site-nav" aria-label="Main navigation">
+                <ul>
+                    <li><a href="indexx.html">Home</a></li>
+                    <li><a href="page-1.html">Products</a></li>
+                    <li><a href="collections.html" aria-current="page">Collections</a></li>
+                    <li><a href="gift-guide.html">Gift Guide</a></li>
+                    <li><a href="care.html">Care and Storage</a></li>
+                    <li><a href="visit.html">Visit the Store</a></li>
+                    <li><a href="page2.html">Contact</a></li>
+                    <li><a href="colophon.html">About the project</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -33,15 +39,16 @@
             For individual items and recorded prices, visit the
             <a href="page-1.html#price-table">product catalogue</a>.</p>
 
-        <nav aria-label="Collections on this page">
+        <nav class="section-nav" aria-label="Collections on this page">
             <ul>
                 <li><a href="#tea-coffee">Tea and coffee</a></li>
                 <li><a href="#table-setting">Table setting</a></li>
                 <li><a href="#decorative-accessories">Decorative accessories</a></li>
             </ul>
         </nav>
+
         <!-- Each section has its own headers and i divided them using hr -->
-        <section id="tea-coffee">
+        <section id="tea-coffee" class="content-section">
             <h2>Tea and Coffee</h2>
             <p>A cup, a matching saucer, and a teapot provide a starting point
                 for a tea or coffee setting. The existing catalogue features
@@ -64,7 +71,7 @@
             </figure>
         </section>
 
-        <section id="table-setting">
+        <section id="table-setting" class="content-section">
             <h2>Table Setting</h2>
             <p>A table setting brings together pieces used for eating and serving.
                 The project catalogue includes bowls, dishes, pitchers, and
@@ -87,7 +94,7 @@
             </figure>
         </section>
 
-        <section id="decorative-accessories">
+        <section id="decorative-accessories" class="content-section">
             <h2>Decorative Accessories</h2>
             <p>The catalogue also records candle holders and jewellery boxes.
                 These smaller objects offer another way to explore the store
@@ -101,7 +108,7 @@
                 for the product groups already documented in this project.</p>
         </section>
 
-        <aside aria-labelledby="choosing-heading">
+        <aside class="callout" aria-labelledby="choosing-heading">
             <h2 id="choosing-heading">Before Choosing a Piece</h2>
             <ol>
                 <li>Decide how you want to use it and how many pieces you need.</li>
@@ -112,8 +119,8 @@
         </aside>
     </main>
 
-    <footer>
-        <address>
+    <footer class="site-footer">
+        <address id="store-address">
             Noble, Mandilik El 42, Astana, Kazakhstan<br>
             Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
         </address>
