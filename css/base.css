@@ -1,0 +1,30 @@
+/* Warm neutral colors suit the luxury tableware and keep the page simple. */
+:root {
+    --color-warm-ivory: #FAF7F2;
+    --color-charcoal: #262626;
+    --color-antique-gold: #806020;
+    --color-pale-stone: #E4DDD2;
+    --color-black: #000000;
+}
+
+/* Arial keeps normal text and long product descriptions easy to read. */
+body {
+    background-color: var(--color-warm-ivory);
+    color: var(--color-charcoal);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Georgia gives the headings a classic look that suits the tableware. */
+h1, h2, h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+}
+
+/* Gold is only an accent so it stands out without taking over the page. */
+a {
+    color: var(--color-antique-gold);
+}

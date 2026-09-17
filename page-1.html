@@ -6,16 +6,18 @@
     <meta name="description" content="This page features various types of Noble tableware and their prices. I looked at and reviewed the prices of the items and entered them into a table. Here, you can also view the product categories and learn more about them.">
     <meta name="author" content="Utembayeva Karakat">
     <title>Product Catalog - Noble</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/turar.css">
 </head>
 
-<body>
+<body class="catalog-page">
     <!-- Author: Utembayeva Karakat -->
-    <header>
+    <header class="site-header">
     <h1>Product Catalog</h1>
 </header>
-   <nav>
+   <nav class="site-nav">
 
-        <ul>
+        <ul class="nav-list">
           <li><a href="indexx.html">Home</a></li>
             <li><a href="page-1.html">Products</a></li>
             <li><a href="collections.html">Collections</a></li>
@@ -26,12 +28,12 @@
             <li><a href="colophon.html">About the project</a></li>
         </ul>
     </nav>
-    <main>
+    <main class="page-content">
 
-    <section>
+    <section class="featured-product" id="featured-product"> <!-- An ID is appropriate because this featured product section is unique on the page. -->
         <h2>Featured Product</h2>
 
-        <article>
+        <article class="product-story">
             <!-- I use article because the product description is a separate piece of content -->
             <h3> Mug</h3>
 
@@ -42,13 +44,13 @@
         <q>The consultants are friendly and helpful when choosing, and it’s clear they are professionals who know their stuff. </q>
             </p>
         </article>
-        <figure>
+        <figure class="product-photo">
   
     <img src="images.jpg/noble-tarelka.jpg" alt="Plate and mug set together" width="600" height="400">
     <figcaption>The mug paired with a matching plate</figcaption>
 </figure>
 
-       <aside>
+       <aside class="employee-advice">
     <h3>Advice from an Employee</h3>
     <blockquote cite="">
         <p>Noble is a stylish, luxury tableware brand.</p>
@@ -59,7 +61,7 @@
     <section>
     <h2 id="price-table">Price Table</h2>
 <!-- I use a table because it makes the real product prices easy to compare -->
-    <table>
+    <table class="price-table">
         <caption>Prices of Noble products</caption>
         <thead>
     <tr>
@@ -133,7 +135,7 @@
     <p><small><sup>*</sup>Limited stock available</small></p>
     <hr>
 </section>
-<section>
+<section class="product-gallery">
     <h2>More Products</h2>
     <figure>
         <img src="images.jpg/photo_2026-09-09_20-44-39.jpg" alt="Full tableware set displayed in Noble store" width="600" height="400">
@@ -148,7 +150,7 @@
 <section>
     <h2 id="categories">Product Categories</h2>
 
-    <ul>
+    <ul class="category-list">
         <li>Tableware
             <ul>
                 <li>Cups</li>
@@ -198,13 +200,13 @@
     </dl>
 </section>
 <!-- div used here only as a wrapper for layout grouping, no semantic tag fits -->
-<div>
+<div class="catalog-shortcuts">
     <a href="#price-table">Go to Price Table</a>
     <br>
     <a href="#categories">Go to Product Categories</a>
 </div>
     </main>
-    <footer>
+    <footer class="site-footer">
     <p>Phone: <a href="tel:+77003933327">7-700-393-3327</a></p>
     <p>Available in <mark>limited edition</mark> packaging.</p> 
     <p>Address: Mandilik El 42, Astana, Kazakhstan</p>

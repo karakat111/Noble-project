@@ -1,0 +1,247 @@
+/* Border-box makes sizing easier because padding and borders are included in the declared size. */
+* {
+    box-sizing: border-box;
+}
+
+/* Centering technique 1: margin auto. */
+.page-content {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 1.5rem;
+}
+
+/* Centering technique 2: Grid. */
+.site-header {
+    display: grid;
+    place-items: center;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.site-footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--color-pale-stone);
+}
+
+/* Centering technique 3: Flexbox. */
+.nav-list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Direct list items can shrink, but do not grow to fill spare space. */
+.nav-list > li {
+    flex: 0 1 auto;
+}
+
+/* This descendant selector styles links inside the navigation. */
+.site-nav a {
+    display: block;
+    color: var(--color-charcoal);
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+}
+
+/* Grid gives the Home introduction and image gallery rows and columns. */
+.home-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    gap: 1.5rem;
+}
+
+/* The introduction spans the full grid width. */
+.home-gallery > .store-intro {
+    grid-column: 1 / -1;
+}
+
+/* Grid suits the two-dimensional layout of the product gallery. */
+.product-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+    gap: 1.5rem;
+}
+
+/* The heading spans the complete grid width. */
+.product-gallery > h2 {
+    grid-column: 1 / -1;
+}
+
+/* Static keeps the heading in the normal document flow. */
+.store-intro > h2 {
+    position: static;
+}
+
+/* Relative gives each caption its own figure as a positioning context. */
+.store-photo, .product-photo {
+    position: relative;
+}
+
+/* Each caption is positioned near the bottom of its own figure. */
+.store-photo figcaption,
+.product-photo figcaption {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    max-width: calc(100% - 1rem);
+    padding: 0.25rem 0.5rem;
+    background-color: var(--color-warm-ivory);
+    /* rgb() example: the same charcoal as the shared palette. */
+    color: rgb(38, 38, 38);
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+/* Fixed keeps the catalog shortcuts available while the user scrolls. */
+.catalog-shortcuts {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    max-width: min(16rem, calc(100% - 2rem));
+    padding: 0.75rem 1rem;
+    background-color: var(--color-warm-ivory);
+    border: 1px solid var(--color-pale-stone);
+    font-size: 0.875rem;
+    z-index: 10;
+    /* rgba() example: a light shadow using transparent black. */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* The product image is floated so following content can wrap beside it. */
+.product-photo {
+    float: left;
+    width: 20rem;
+    max-width: 100%;
+    margin: 0 1.5rem 1.5rem 0;
+}
+
+.product-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Without clear, this content could continue beside the floated image. Clear moves it below the float. */
+.employee-advice blockquote {
+    clear: both;
+}
+
+/* Required :hover example: a subtle background for navigation links. */
+.site-nav a:hover {
+    background-color: var(--color-pale-stone);
+}
+
+/* Required :focus example: a clear outline for keyboard users. */
+.site-nav a:focus {
+    /* Named-color example: black makes the keyboard outline clear. */
+    outline: 2px solid black;
+    outline-offset: 2px;
+}
+
+/* Required :nth-child example: shade every even price row. */
+.price-table tbody tr:nth-child(even) {
+    background-color: var(--color-pale-stone);
+}
+
+/* Required pseudo-element example: a decorative gold line after the heading. */
+.store-intro h2::after {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    margin-top: 0.5rem;
+    background-color: var(--color-antique-gold);
+}
+
+/* Required adjacent sibling selector: slightly larger introduction text. */
+.store-intro h2 + p {
+    font-size: 1.05rem;
+}
+
+/* Required attribute selector: make telephone links easier to spot. */
+a[href^="tel:"] {
+    color: var(--color-antique-gold);
+    font-weight: 700;
+}
+
+/* .store-intro specificity = (0,1,0). The outline does not change the layout. */
+.store-intro {
+    outline-width: 1px;
+    outline-style: solid;
+    outline-color: var(--color-pale-stone);
+    outline-offset: 0.5rem;
+}
+
+/* #home-intro specificity = (1,0,0).
+   The ID selector wins for outline-color because it has higher specificity.
+   The final outline is gold, even if the class rule is placed later. */
+#home-intro {
+    outline-color: var(--color-antique-gold);
+}
+
+/* Keep gallery images inside their columns without stretching them. */
+.store-photo,
+.product-gallery > figure {
+    min-width: 0;
+    margin: 0;
+}
+
+.store-photo img,
+.product-gallery img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Vertical margins between normal block elements can collapse.
+   These adjacent paragraphs have 1.5rem and 1rem margins between them,
+   so the larger margin gives 1.5rem of space instead of adding to 2.5rem.
+   Padding or a border on a parent can prevent parent-child margin collapse,
+   but does not stop the sibling margin collapse shown here. */
+.store-intro > p {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* This second Flexbox layout arranges the main product category groups. */
+.category-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+}
+
+/* Each group can grow and shrink from a starting width of 14rem. */
+.category-list > li {
+    flex: 1 1 14rem;
+    min-width: 0;
+}
+
+/* This section prevents layout problems on narrow screens. */
+@media (max-width: 600px) {
+    .nav-list {
+        flex-direction: column;
+    }
+
+    .catalog-shortcuts {
+        position: static;
+        max-width: 100%;
+        margin-top: 1.5rem;
+    }
+
+    .product-photo {
+        float: none;
+        width: 100%;
+        margin: 0 0 1.5rem;
+    }
+}

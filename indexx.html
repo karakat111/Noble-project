@@ -9,17 +9,27 @@
     
 
     <title>Noble - home</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/turar.css">
+    <style>
+        /* This is the project's single internal style example.
+           It shows source order in the cascade: when specificity is equal,
+           the later rule wins. */
+        .site-nav a {
+            color: var(--color-antique-gold);
+        }
+    </style>
 </head>
-<body>
+<body class="home-page">
 <!-- Author: Utembayeva Karakat -->
-    <header>
+    <header class="site-header">
         <h1>Noble</h1>
         <p><small> luxury tableware store</small></p>
     </header>
    
-    <nav>
+    <nav class="site-nav">
 
-        <ul>
+        <ul class="nav-list">
           <li><a href= "indexx.html">Home</a></li>
             <li><a href= "page-1.html">Products</a></li>
             <li><a href="collections.html">Collections</a></li>
@@ -30,10 +40,10 @@
             <li><a href= "colophon.html">About the project</a></li>
         </ul>
     </nav>
-    <main>
+    <main class="page-content home-gallery">
         
         <!-- i use section because this content has its own topic and heading -->
-        <section>
+        <section class="store-intro" id="home-intro"> <!-- An ID is appropriate because this introduction section is unique on the page. -->
             <h2>About Noble</h2>
             <p>
                 This is a tableware store where you can enjoy beautiful views while selecting tableware for yourself or as a gift. Everything in the store looks very aesthetically pleasing and is thoughtfully arranged.</p>
@@ -44,14 +54,14 @@
         
         </section>
 
-        <figure>
+        <figure class="store-photo">
     <img src="images.jpg/noble-fasad.jpg"
          alt="Exterior facade of Noble store"
          width="600"
          height="400">
     <figcaption>Noble store facade</figcaption>
 </figure>
-            <figure>
+            <figure class="store-photo">
         <img src="images.jpg/noble-vitrina.jpg"
              alt="Noble store display with tableware"
              width="600"
@@ -60,7 +70,7 @@
         <figcaption>Noble store display with tableware</figcaption>
     </figure>
 
-    <figure>
+    <figure class="store-photo">
         <img src="images.jpg/photo_2026-09-09_20-44-36.jpg"
              alt="Noble store interior"
              width="600"
@@ -70,7 +80,7 @@
     </figure>
 
     </main>
-    <footer>
+    <footer class="site-footer">
          <p> INFO: </P>
         <p>
             Working hours: <mark>10:00-20:00</mark>
