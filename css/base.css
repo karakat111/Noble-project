@@ -83,6 +83,8 @@ a:focus {
 }
 
 .site-nav ul {
+  justify-content: flex-start; /* or space-between, depends how you want links to sit */
+  align-items: center;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

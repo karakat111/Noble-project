@@ -48,7 +48,7 @@
   padding: 2rem 1.75rem 1.75rem 1.75rem;
 
   display: grid;
-  grid-template-columns: minmax(140px, 180px) 1fr;
+  grid-template-columns: repeat(1, minmax(140px, 180px)) 1fr;
   gap: 1rem 1.25rem;
 }
 
@@ -215,6 +215,10 @@ input[type="checkbox"] + label {
   align-items: center;
   gap: 1rem;
   margin-top: 0.5rem;
+}
+
+.btn {
+  flex-grow: 1; /* buttons share available space equally */
 }
 
 .btn {
