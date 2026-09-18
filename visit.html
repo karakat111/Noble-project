@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Plan a visit to Noble in Astana, prepare questions about tableware, and explore a practice visit-planning form.">
-    <meta name="author" content="OpenAI ChatGPT — educational example">
+    <meta name="author" content="Example of visit page">
     <title>Visit the Store | Noble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/arsen.css">
 </head>
-<body>
+<body class="arsen-page visit-page">
     <!-- Author: Arsen Ibatullin -->
-    <header>
+    <header class="site-header">
         <p>Noble — Tableware Store</p>
         <h1>Visit the Store</h1>
-        <nav aria-label="Main navigation">
+        <nav class="site-nav" aria-label="Main navigation">
             <ul>
                 <li><a href="indexx.html">Home</a></li>
                 <li><a href="page-1.html">Products</a></li>
@@ -26,14 +31,15 @@
         </nav>
     </header>
     <main>
+        <section>
         <p>A visit gives you an opportunity to look at the tableware in person
             and ask questions about individual pieces. Before travelling, browse
             the <a href="page-1.html">catalogue</a> and note the items that interest
             you. The photographs and prices in this project document an earlier
             visit and do not guarantee current availability.</p>
-        <p>Find the <a href="#location">location details</a>, read the
-            <a href="#prepare">visit checklist</a>, or try the
-            <a href="#visit-planner">practice planning form</a>.</p>
+        <p>Find the <a href="#location">location details</a> or read the
+            <a href="#prepare">visit checklist</a>.</p>
+        </section>
 
         <section id="location">
             <h2>Finding Noble</h2>
@@ -82,7 +88,7 @@
                 to ask about cleaning and everyday use.</p>
         </section>
     </main>
-    <footer>
+    <footer class="site-footer">
         <address>
             Noble, Mandilik El 42, Astana, Kazakhstan<br>
             Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>

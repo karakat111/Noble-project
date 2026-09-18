@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="This page explains how I created the Noble website, what tools I used, and how I checked my HTML code">
-    <meta name="author" content="Utembayeva Karakat">
+    <meta name="author" content="Arsen Ibatullin">
     <title>Colophon - Noble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/arsen.css">
 </head>
-<body>
-    <!-- Author: Utembayeva Karakat -->
-    <header>
+<body class="arsen-page colophon-page">
+    <!-- Author: Arsen Ibatullin -->
+    <header class="site-header">
         <h1>How This Site Was Made</h1>
     </header>
 
-    <nav>
+    <nav class="site-nav" aria-label="Main navigation">
         <ul>
           <li><a href="indexx.html">Home</a></li>
             <li><a href="page-1.html">Products</a></li>
@@ -22,13 +27,13 @@
             <li><a href="care.html">Care and Storage</a></li>
             <li><a href="visit.html">Visit the Store</a></li>
             <li><a href="page2.html">Contact</a></li>
-            <li><a href="colophon.html">About the project</a></li>
+            <li><a href="colophon.html" aria-current="page">About the project</a></li>
         </ul>
     </nav>
 
     <main>
         <section>
-            <h2>Tools I Used</h2>
+            <h2>Tools We Used</h2>
             <!-- I explain my tools here so readers understand how the site was built without design software -->
             <p>
                I wrote the project’s HTML code in Visual Studio Code and used the <code>Live Server </code> extension so I could open my website in the browser while I was working on it. This is very convenient because you can see changes immediately without having to refresh the page. I wrote the code, created each file, and checked to see if they worked and opened in the browser. After I finished working on each page, I checked it using the W3C Markup Validator to make sure there were no errors in the HTML and that my code followed the required structure.
@@ -70,7 +75,7 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <p>&copy; 2026 Noble</p>
     </footer>
 </body>
