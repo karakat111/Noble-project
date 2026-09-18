@@ -1,218 +1,265 @@
-/* Border-box makes sizing easier because padding and borders are included in the declared size. */
-* {
+/* Fonts and shared layout */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap");
+
+
+.home-page,
+.catalog-page {
+    --color-antique-gold: #FBF8F1;
+}
+
+
+
+
+:where(.home-page, .catalog-page) * {
     box-sizing: border-box;
 }
 
-/* Centering technique 1: margin auto. */
-.page-content {
-    max-width: 1200px;
+
+:where(.home-page, .catalog-page) .page-content {
+    max-width: 760px;
     margin-left: auto;
     margin-right: auto;
-    padding: 2rem 1.5rem;
+    padding: 0 1.5rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
 }
 
-/* Centering technique 2: Grid. */
-.site-header {
+
+:where(.home-page, .catalog-page) .site-header {
     display: grid;
     place-items: center;
-    padding: 2rem 1.5rem;
-    text-align: center;
+    padding: 22px 24px 0;
+    text-align: left;
+    border-bottom: 0;
 }
 
-.site-footer {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    border-top: 1px solid var(--color-pale-stone);
+:where(.home-page, .catalog-page) .site-header h1 {
+    width: 100%;
+    max-width: 912px;
+    margin: 0;
 }
 
-/* Centering technique 3: Flexbox. */
-.nav-list {
+:where(.home-page, .catalog-page) .site-header p {
+    margin: 0 0 5px;
+    width: 100%;
+    max-width: 912px;
+    color: var(--color-cream);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    grid-row: 1;
+}
+
+.home-page .site-header small {
+    font-size: inherit;
+}
+
+/* Navigation */
+:where(.home-page, .catalog-page) .site-nav {
+    
+    display: flex;
+    justify-content: center;
+    background: var(--color-sage);
+    border-bottom: 3px solid var(--color-sage-dark);
+    padding: 14px 24px 18px;
+}
+
+:where(.home-page, .catalog-page) .site-footer p {
+    margin: 0.5rem 0;
+}
+
+
+:where(.home-page, .catalog-page) .site-nav .nav-list {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 0.5rem 1rem;
+    gap: 0.5rem 1.4rem;
     flex-wrap: wrap;
     list-style: none;
+    max-width: 912px;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
-/* Direct list items can shrink, but do not grow to fill spare space. */
-.nav-list > li {
+
+:where(.home-page, .catalog-page) .nav-list > li {
     flex: 0 1 auto;
 }
 
-/* This descendant selector styles links inside the navigation. */
-.site-nav a {
-    display: block;
-    color: var(--color-charcoal);
+
+:where(.home-page, .catalog-page) .site-nav a {
+    display: inline-block;
+    color: var(--color-bg-panel);
     text-decoration: none;
-    padding: 0.75rem 1rem;
+    padding: 0 0 0.2rem;
 }
 
-/* Grid gives the Home introduction and image gallery rows and columns. */
-.home-gallery {
+/* Home gallery */
+:where(.home-page, .catalog-page) .home-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    gap: 1.5rem;
+}
+
+
+:where(.home-page, .catalog-page) .home-gallery > .store-intro {
+    grid-column: 1 / -1;
+}
+
+/* Product gallery */
+:where(.home-page, .catalog-page) .product-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
     gap: 1.5rem;
 }
 
-/* The introduction spans the full grid width. */
-.home-gallery > .store-intro {
+
+:where(.home-page, .catalog-page) .product-gallery > h2 {
     grid-column: 1 / -1;
 }
 
-/* Grid suits the two-dimensional layout of the product gallery. */
-.product-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
-    gap: 1.5rem;
-}
 
-/* The heading spans the complete grid width. */
-.product-gallery > h2 {
-    grid-column: 1 / -1;
-}
-
-/* Static keeps the heading in the normal document flow. */
-.store-intro > h2 {
+:where(.home-page, .catalog-page) .store-intro > h2 {
     position: static;
 }
 
-/* Relative gives each caption its own figure as a positioning context. */
-.store-photo, .product-photo {
+
+:where(.home-page, .catalog-page) .store-photo, :where(.home-page, .catalog-page) .product-photo {
     position: relative;
 }
 
-/* Each caption is positioned near the bottom of its own figure. */
-.store-photo figcaption,
-.product-photo figcaption {
+
+:where(.home-page, .catalog-page) .store-photo figcaption,
+:where(.home-page, .catalog-page) .product-photo figcaption {
     position: absolute;
-    bottom: 0.5rem;
-    left: 0.5rem;
-    max-width: calc(100% - 1rem);
+    bottom: 0.65rem;
+    left: 0.65rem;
+    max-width: calc(100% - 1.3rem);
     padding: 0.25rem 0.5rem;
-    background-color: var(--color-warm-ivory);
-    /* rgb() example: the same charcoal as the shared palette. */
-    color: rgb(38, 38, 38);
-    font-size: 0.875rem;
+    background-color: var(--color-bg-panel);
+    
+    color: rgb(107, 74, 50);
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.95rem;
     line-height: 1.4;
 }
 
-/* Fixed keeps the catalog shortcuts available while the user scrolls. */
-.catalog-shortcuts {
+
+:where(.home-page, .catalog-page) .catalog-shortcuts {
     position: fixed;
     bottom: 1rem;
-    right: 1rem;
-    max-width: min(16rem, calc(100% - 2rem));
-    padding: 0.75rem 1rem;
-    background-color: var(--color-warm-ivory);
-    border: 1px solid var(--color-pale-stone);
+    right: 0.75rem;
+    width: 12rem;
+    max-width: calc(100% - 2rem);
+    padding: 0.85rem 1rem;
+    background-color: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
     font-size: 0.875rem;
     z-index: 10;
-    /* rgba() example: a light shadow using transparent black. */
+    
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* The product image is floated so following content can wrap beside it. */
-.product-photo {
+
+:where(.home-page, .catalog-page) .product-photo {
     float: left;
-    width: 20rem;
+    width: 19rem;
     max-width: 100%;
     margin: 0 1.5rem 1.5rem 0;
 }
 
-.product-photo img {
+:where(.home-page, .catalog-page) .product-photo img {
     display: block;
     width: 100%;
     height: auto;
 }
 
-/* Without clear, this content could continue beside the floated image. Clear moves it below the float. */
-.employee-advice blockquote {
+
+:where(.home-page, .catalog-page) .employee-advice blockquote {
     clear: both;
 }
 
-/* Required :hover example: a subtle background for navigation links. */
-.site-nav a:hover {
-    background-color: var(--color-pale-stone);
+
+:where(.home-page, .catalog-page) .site-nav a:hover {
+    color: var(--color-terracotta);
+    border-bottom-color: var(--color-terracotta);
 }
 
-/* Required :focus example: a clear outline for keyboard users. */
-.site-nav a:focus {
-    /* Named-color example: black makes the keyboard outline clear. */
+
+:where(.home-page, .catalog-page) .site-nav a:focus {
+    
     outline: 2px solid black;
     outline-offset: 2px;
+    background-color: var(--color-cream);
+    color: var(--color-sage-dark);
 }
 
-/* Required :nth-child example: shade every even price row. */
-.price-table tbody tr:nth-child(even) {
-    background-color: var(--color-pale-stone);
+
+:where(.home-page, .catalog-page) .price-table tbody tr:nth-child(even) {
+    background-color: var(--color-bg-panel);
 }
 
-/* Required pseudo-element example: a decorative gold line after the heading. */
-.store-intro h2::after {
+
+:where(.home-page, .catalog-page) .store-intro h2::after {
     content: "";
     display: block;
     width: 3rem;
     height: 3px;
     margin-top: 0.5rem;
-    background-color: var(--color-antique-gold);
+    background-color: var(--intro-accent);
 }
 
-/* Required adjacent sibling selector: slightly larger introduction text. */
-.store-intro h2 + p {
-    font-size: 1.05rem;
+
+:where(.home-page, .catalog-page) .store-intro h2 + p {
+    margin-top: 0.75rem;
 }
 
-/* Required attribute selector: make telephone links easier to spot. */
-a[href^="tel:"] {
-    color: var(--color-antique-gold);
+
+:where(.home-page, .catalog-page) a[href^="tel:"] {
+    text-underline-offset: 3px;
+    text-decoration: underline;
     font-weight: 700;
 }
 
-/* .store-intro specificity = (0,1,0). The outline does not change the layout. */
-.store-intro {
-    outline-width: 1px;
-    outline-style: solid;
-    outline-color: var(--color-pale-stone);
-    outline-offset: 0.5rem;
+
+:where(.home-page, .catalog-page) .store-intro {
+    --intro-accent: var(--color-border);
+    padding: 0;
 }
 
-/* #home-intro specificity = (1,0,0).
-   The ID selector wins for outline-color because it has higher specificity.
-   The final outline is gold, even if the class rule is placed later. */
-#home-intro {
-    outline-color: var(--color-antique-gold);
+
+:where(.home-page, .catalog-page) #home-intro {
+    --intro-accent: var(--color-terracotta);
 }
 
-/* Keep gallery images inside their columns without stretching them. */
-.store-photo,
-.product-gallery > figure {
+
+:where(.home-page, .catalog-page) .store-photo,
+:where(.home-page, .catalog-page) .product-gallery > figure {
     min-width: 0;
     margin: 0;
 }
 
-.store-photo img,
-.product-gallery img {
+:where(.home-page, .catalog-page) .store-photo img,
+:where(.home-page, .catalog-page) .product-gallery img {
     display: block;
+    width: 100%;
     max-width: 100%;
     height: auto;
 }
 
-/* Vertical margins between normal block elements can collapse.
-   These adjacent paragraphs have 1.5rem and 1rem margins between them,
-   so the larger margin gives 1.5rem of space instead of adding to 2.5rem.
-   Padding or a border on a parent can prevent parent-child margin collapse,
-   but does not stop the sibling margin collapse shown here. */
-.store-intro > p {
+
+:where(.home-page, .catalog-page) .store-intro > p {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
 }
 
-/* This second Flexbox layout arranges the main product category groups. */
-.category-list {
+
+:where(.home-page, .catalog-page) .category-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -221,27 +268,207 @@ a[href^="tel:"] {
     padding: 0;
 }
 
-/* Each group can grow and shrink from a starting width of 14rem. */
-.category-list > li {
-    flex: 1 1 14rem;
+
+:where(.home-page, .catalog-page) .category-list > li {
+    flex: 1 1 12rem;
     min-width: 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-bg-panel);
+    color: var(--color-sage-dark);
+    font-weight: 600;
 }
 
-/* This section prevents layout problems on narrow screens. */
-@media (max-width: 600px) {
-    .nav-list {
-        flex-direction: column;
+/* Product content */
+.catalog-page .page-content > section {
+    margin-bottom: 2.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+}
+
+.catalog-page .page-content > section:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+:where(.home-page, .catalog-page) .page-content h2 {
+    margin-top: 0;
+}
+
+:where(.home-page, .catalog-page) .page-content h3 {
+    font-size: 1.17rem;
+}
+
+:where(.home-page, .catalog-page) .product-story p {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+:where(.home-page, .catalog-page) .page-content a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+:where(.home-page, .catalog-page) .page-content mark,
+:where(.home-page, .catalog-page) .site-footer mark {
+    background: var(--color-bg-panel);
+    color: var(--color-sage-dark);
+    padding: 0.1rem 0.3rem;
+    border-radius: 4px;
+}
+
+:where(.home-page, .catalog-page) .store-photo,
+:where(.home-page, .catalog-page) .product-photo {
+    padding-bottom: 4.5rem;
+    background: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    align-self: start;
+}
+
+:where(.home-page, .catalog-page) .store-photo img,
+:where(.home-page, .catalog-page) .product-photo img,
+:where(.home-page, .catalog-page) .product-gallery img {
+    border-radius: 6px;
+}
+
+:where(.home-page, .catalog-page) .product-gallery img {
+    max-width: 420px;
+    background: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+}
+
+:where(.home-page, .catalog-page) .product-gallery figcaption,
+:where(.home-page, .catalog-page) .price-table caption {
+    font-family: var(--font-display);
+    color: var(--color-walnut);
+    font-style: italic;
+    margin-top: 0.5rem;
+}
+
+:where(.home-page, .catalog-page) .employee-advice blockquote {
+    margin: 1.5rem 0;
+    padding: 1rem 1.5rem;
+    background: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-terracotta);
+    border-radius: 6px;
+}
+
+:where(.home-page, .catalog-page) .employee-advice blockquote p {
+    margin: 0 0 0.5rem;
+}
+
+:where(.home-page, .catalog-page) .employee-advice blockquote footer {
+    color: var(--color-walnut);
+    font-size: 0.9rem;
+}
+
+:where(.home-page, .catalog-page) .price-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.95rem;
+    background: var(--color-cream);
+}
+
+:where(.home-page, .catalog-page) .price-table caption {
+    text-align: left;
+    padding-bottom: 0.75rem;
+    font-size: 1.2rem;
+}
+
+:where(.home-page, .catalog-page) .price-table th,
+:where(.home-page, .catalog-page) .price-table td {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    text-align: left;
+    vertical-align: top;
+}
+
+:where(.home-page, .catalog-page) .price-table thead th {
+    background: var(--color-sage);
+    color: var(--color-cream);
+}
+
+:where(.home-page, .catalog-page) .category-list ul {
+    margin-top: 0.5rem;
+    padding-left: 1.25rem;
+    font-weight: 400;
+    color: var(--color-ink);
+}
+
+.catalog-page section > ol {
+    padding-left: 1.5rem;
+}
+
+.catalog-page dl {
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background: var(--color-bg-panel);
+}
+
+.catalog-page dt {
+    font-weight: 600;
+    color: var(--color-sage-dark);
+}
+
+.catalog-page dd {
+    margin: 0.25rem 0 1rem;
+}
+
+.catalog-page dd:last-child {
+    margin-bottom: 0;
+}
+
+
+.catalog-page .site-footer {
+    padding-bottom: 7rem;
+}
+
+/* Responsive styles */
+@media (max-width: 1199px) {
+    :where(.home-page, .catalog-page) .catalog-shortcuts {
+        position: static;
+        width: auto;
+        max-width: 100%;
+        margin-top: 1.5rem;
     }
 
-    .catalog-shortcuts {
+    .catalog-page .site-footer {
+        padding-bottom: 1.5rem;
+    }
+}
+
+
+@media (max-width: 600px) {
+    :where(.home-page, .catalog-page) .site-nav .nav-list {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    :where(.home-page, .catalog-page) .catalog-shortcuts {
         position: static;
         max-width: 100%;
         margin-top: 1.5rem;
     }
 
-    .product-photo {
+    :where(.home-page, .catalog-page) .product-photo {
         float: none;
         width: 100%;
         margin: 0 0 1.5rem;
+    }
+
+    :where(.home-page, .catalog-page) .page-content {
+        margin-top: 2rem;
+        padding: 0 1.5rem;
+    }
+
+    :where(.home-page, .catalog-page) .price-table th,
+    :where(.home-page, .catalog-page) .price-table td {
+        padding: 0.65rem 0.5rem;
     }
 }
