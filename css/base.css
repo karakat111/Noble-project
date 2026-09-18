@@ -103,8 +103,23 @@ a:focus {
   border-bottom-color: var(--color-terracotta);
 }
 
-.site-nav li:first-child a {
+/* Every page marks its own navigation link with aria-current="page".
+   The dark background keeps the same highlight readable on light and green menus. */
+.site-nav a[aria-current="page"] {
+  display: inline-block;
+  padding: 6px 10px;
+  background: var(--color-sage-dark);
+  color: var(--color-cream);
+  border-bottom: 2px solid var(--color-cream);
+  border-radius: 4px;
   font-weight: 600;
+}
+
+.site-nav a[aria-current="page"]:hover,
+.site-nav a[aria-current="page"]:focus {
+  background: var(--color-sage-dark);
+  color: var(--color-cream);
+  border-bottom-color: var(--color-cream);
 }
 
 /* Footer */
