@@ -202,13 +202,6 @@
     background: var(--color-bg-panel);
 }
 
-.colophon-page code,
-.colophon-page kbd,
-.colophon-page samp {
-    font-family: Consolas, "Courier New", monospace;
-    font-size: 14px;
-    overflow-wrap: anywhere;
-}
 
 .colophon-page p code,
 .colophon-page kbd {
@@ -219,7 +212,6 @@
 }
 
 .colophon-page pre {
-    overflow-x: auto;
     margin: 24px 0;
     padding: 20px 24px;
     background: var(--color-bg-panel);
@@ -238,9 +230,6 @@
     color: var(--color-sage-dark);
 }
 
-.arsen-page .site-footer address {
-    font-style: normal;
-}
 
 .arsen-page .site-footer p {
     margin: 10px 0 0;
