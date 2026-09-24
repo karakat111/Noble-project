@@ -9,25 +9,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    <!-- Bootstrap 5.3.8: grid, navbar, spacing, buttons and responsive behaviour. -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5.3.3: shared project grid, navbar, spacing, buttons and responsive behaviour. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/arsen.css">
 </head>
 <body class="arsen-page visit-page">
     <!-- Author: Arsen Ibatullin -->
-    <!-- container-fluid keeps the green header full width; the nested container aligns its text and navigation. -->
-    <header class="site-header container-fluid py-3">
-        <div class="container">
-            <p class="mb-1 small">Noble — Tableware Store</p>
-            <h1 class="mb-3">Visit the Store</h1>
-            <!-- Bootstrap navbar: collapses into a toggler below the lg breakpoint. -->
-            <nav class="navbar navbar-expand-lg navbar-dark p-0" aria-label="Main navigation">
+    <!-- container-fluid keeps the shared navigation bar full width. -->
+    <header class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="indexx.html">Noble</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitNavigation" aria-controls="visitNavigation" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="visitNavigation">
-                    <ul class="navbar-nav gap-lg-2">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="indexx.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="page-1.html">Products</a></li>
                         <li class="nav-item"><a class="nav-link" href="collections.html">Collections</a></li>
@@ -38,11 +36,13 @@
                         <li class="nav-item"><a class="nav-link" href="colophon.html">About the project</a></li>
                     </ul>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
     <!-- container keeps the reading content comfortably narrow on wide screens. -->
-    <main class="container py-5">
+    <main class="container py-4">
+        <p class="small text-muted mb-1 d-none d-md-block">Noble — Tableware Store</p>
+        <h1 class="page-title mb-3">Visit the Store</h1>
         <section class="mb-5">
         <p class="lead">A visit gives you an opportunity to look at the tableware in person
             and ask questions about individual pieces. Before travelling, browse
@@ -58,7 +58,7 @@
         <section id="location" class="border-top pt-4 mb-5">
             <div class="row align-items-center g-4">
                 <div class="col-12 col-lg-7">
-                    <h2>Finding Noble</h2>
+                    <h2 class="h4 text-sage-dark mb-3">Finding Noble</h2>
                     <p>The existing project lists the store at <strong>Mandilik El 42,
                 Astana, Kazakhstan</strong>, with opening hours of
                 <time datetime="10:00">10:00</time>–<time datetime="20:00">20:00</time>.
@@ -82,7 +82,7 @@
         </section>
 
         <section id="prepare" class="border-top pt-4 mb-5">
-            <h2>Before You Go</h2>
+            <h2 class="h4 text-sage-dark mb-3">Before You Go</h2>
             <!-- An ordered list suits the sequence of preparing for a visit. -->
             <ol class="mb-4">
                 <li>Browse the <a href="collections.html">collections</a> and note the pieces you want to see.</li>
@@ -96,7 +96,7 @@
         </section>
 
         <section class="border-top pt-4 mb-0">
-            <h2>Questions During Your Visit</h2>
+            <h2 class="h4 text-sage-dark mb-3">Questions During Your Visit</h2>
             <p>Ask about the exact piece you are considering. Items that look
                 similar may differ in dimensions, decoration, or intended use.
                 Compare a complete set with individual pieces before deciding
@@ -111,13 +111,13 @@
             to ask about cleaning and everyday use.</p>
         </section>
     </main>
-    <footer class="site-footer">
+    <footer class="container py-4 mt-5 border-top">
         <address>
             Noble, Mandilik El 42, Astana, Kazakhstan<br>
             Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
         </address>
         <p><small>&copy; 2026 Noble educational project.</small></p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

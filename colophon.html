@@ -9,24 +9,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    <!-- Bootstrap 5.3.8: navbar, spacing, typography, code block and responsive behaviour. -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5.3.3: shared project navbar, spacing, typography and responsive behaviour. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/arsen.css">
 </head>
 <body class="arsen-page colophon-page">
     <!-- Author: Arsen Ibatullin -->
-    <!-- container-fluid keeps the green header full width; the nested container aligns its content. -->
-    <header class="site-header container-fluid py-3">
-        <div class="container">
-            <h1 class="display-5 mb-3">How This Site Was Made</h1>
-            <!-- Bootstrap navbar: collapses into a toggler below the lg breakpoint. -->
-            <nav class="navbar navbar-expand-lg navbar-dark p-0" aria-label="Main navigation">
+    <!-- container-fluid keeps the shared navigation bar full width. -->
+    <header class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="indexx.html">Noble</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#colophonNavigation" aria-controls="colophonNavigation" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="colophonNavigation">
-                    <ul class="navbar-nav gap-lg-2">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="indexx.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="page-1.html">Products</a></li>
                         <li class="nav-item"><a class="nav-link" href="collections.html">Collections</a></li>
@@ -37,14 +36,15 @@
                         <li class="nav-item"><a class="nav-link active" href="colophon.html" aria-current="page">About the project</a></li>
                     </ul>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
 
     <!-- container keeps the long project explanation readable on wide screens. -->
-    <main class="container py-5">
+    <main class="container py-4">
+        <h1 class="page-title mb-3">How This Site Was Made</h1>
         <section class="mb-5">
-            <h2>Tools We Used</h2>
+            <h2 class="h4 text-sage-dark mb-3">Tools We Used</h2>
             <!-- I explain my tools here so readers understand how the site was built without design software -->
             <p class="lead mb-0">
                I wrote the project’s HTML code in Visual Studio Code and used the <code>Live Server </code> extension so I could open my website in the browser while I was working on it. This is very convenient because you can see changes immediately without having to refresh the page. I wrote the code, created each file, and checked to see if they worked and opened in the browser. After I finished working on each page, I checked it using the W3C Markup Validator to make sure there were no errors in the HTML and that my code followed the required structure.
@@ -52,7 +52,7 @@
         </section>
 
         <section class="border-top pt-4 mb-5">
-            <h2>How I Started Each Page</h2>
+            <h2 class="h4 text-sage-dark mb-3">How I Started Each Page</h2>
             <p>
                 Every page starts with the same basic structure, which I typed using the
                 Emmet shortcut <kbd>!</kbd> and then pressing <kbd>Tab</kbd>.
@@ -66,7 +66,7 @@
         </section>
 
         <section class="border-top pt-4 mb-5">
-            <h2>Checking My Work</h2>
+            <h2 class="h4 text-sage-dark mb-3">Checking My Work</h2>
             <p>
                 I validated every page using the W3C Markup Validator. A page
                 with no errors shows this message:
@@ -75,7 +75,7 @@
         </section>
 
         <section class="border-top pt-4 mb-0">
-            <h2>My Experience Creating the Website</h2>
+            <h2 class="h4 text-sage-dark mb-3">My Experience Creating the Website</h2>
             <p>I decided to choose Noble as the theme for my website because it’s a very popular and beautiful place. I wanted to make the website stand out—not like typical cafes or clothing stores, but a truly unique place. I wanted to create a simple website like this so that customers could learn about the store, browse the products, and find the information they need.</p>
 
             <p> I created a project with a basic HTML structure for all the pages. First, I created the home page, which contains basic information about Noble and includes photos; then I created the second page, which describes the product categories and prices; and I created the page with all the store’s contact information.Finally, I created this Colophon page to explain how I made the website. </p>
@@ -86,9 +86,9 @@
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="container py-4 mt-5 border-top text-center">
         <p>&copy; 2026 Noble</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
