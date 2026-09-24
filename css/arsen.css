@@ -1,141 +1,11 @@
-.arsen-page .site-header {
-    padding: 22px 24px 18px;
-}
-
-/* Center the existing header elements without calculated padding or new wrappers. */
-.arsen-page .site-header p,
-.arsen-page .site-header h1,
-.arsen-page .site-header .site-nav,
-.colophon-page .site-nav ul {
-    max-width: 912px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+/* Brand corrections shared by Arsen's Bootstrap pages. */
 .arsen-page .site-header p {
     color: var(--color-cream);
     font-size: 14px;
     letter-spacing: 0.5px;
-    margin-top: 0;
-    margin-bottom: 5px;
 }
 
-.arsen-page .site-header h1 {
-    margin-top: 0;
-}
-
-.arsen-page .site-nav ul {
-    align-items: center;
-}
-
-
-/* Colophon already has a sibling nav. Keep that structure and extend the green header. */
-/*COLOPHON PAGE*/
-.colophon-page .site-header {
-    padding-bottom: 0;
-    border-bottom: 0;
-}
-
-.colophon-page .site-header h1 {
-    margin-bottom: 0;
-}
-
-.colophon-page .site-nav {
-    background: var(--color-sage);
-    padding: 14px 24px 18px;
-    border-bottom: 3px solid var(--color-sage-dark);
-}
-
-.arsen-page main {
-    font-size: 16px;
-    line-height: 1.7;
-    letter-spacing: 0.1px;
-}
-
-.arsen-page main p {
-    margin-top: 0;
-    margin-bottom: 24px;
-}
-
-.arsen-page main section {
-    margin-bottom: 44px;
-    padding-top: 24px;
-    border-top: 1px solid var(--color-border);
-}
-
-.arsen-page main section:first-of-type {
-    border-top: 0;
-    padding-top: 0;
-}
-
-/* The section border/padding prevents its first child's margin from collapsing outside it. */
-.arsen-page section h2 {
-    margin-top: 0;
-}
-
-
-.arsen-page main a {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.arsen-page section ul,
-.arsen-page section ol {
-    margin: 0 0 20px;
-    padding-left: 24px;
-}
-
-
-
-.arsen-page section li::marker {
-    color: var(--color-walnut);
-    font-weight: 600;
-}
-
-/* Flex lets topic links wrap naturally when their labels have different lengths. */
-/*CARE PAGE*/
-.arsen-page .section-nav ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    list-style: none;
-    margin-bottom: 40px;
-}
-
-
-.arsen-page .section-nav a {
-    display: block;
-    padding: 6px 16px;
-    background: var(--color-bg-panel);
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    font-size: 14px;
-    color: var(--color-sage-dark);
-    text-decoration: none;
-}
-
-.arsen-page .section-nav a:hover,
-.arsen-page .section-nav a:focus {
-    border-color: var(--color-terracotta);
-    color: var(--color-terracotta);
-}
-
-
-/*VISIT PAGE*/
-.visit-page figure {
-    max-width: 420px;
-    margin: 24px 0;
-}
-
-.visit-page figure img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-}
-
+/*VISIT PAGE: Bootstrap img-fluid, rounded and border classes replace the old image layout. */
 .visit-page figcaption {
     margin-top: 8px;
     color: var(--color-walnut);
@@ -144,65 +14,6 @@
     font-style: italic;
 }
 
-/* Grid aligns term/definition pairs in columns without changing their semantic markup. */
-.care-page dl {
-    display: grid;
-    grid-template-columns: 160px 400px;
-    gap: 12px 20px;
-    margin: 24px 0;
-    padding: 20px;
-    background: var(--color-bg-panel);
-    border: 1px solid var(--color-border);
-    border-radius: 6px;
-}
-
-.care-page dt {
-    color: var(--color-sage-dark);
-    font-weight: 600;
-}
-
-.care-page dd {
-    margin: 0;
-}
-
-.care-page table {
-    width: 100%;
-    margin: 20px 0 24px;
-    font-size: 15px;
-    border-collapse: collapse;
-}
-
-.care-page caption {
-    text-align: left;
-    padding-bottom: 12px;
-    font-family: var(--font-display);
-    font-size: 19px;
-    color: var(--color-walnut);
-}
-
-.care-page th,
-.care-page td {
-    border: 1px solid var(--color-border);
-    padding: 14px 16px;
-    text-align: left;
-    vertical-align: top;
-}
-
-.care-page thead th {
-    background: var(--color-sage);
-    color: var(--color-cream);
-}
-
-.care-page tbody th {
-    width: 28%;
-    color: var(--color-sage-dark);
-}
-
-.care-page tbody {
-    background: var(--color-bg-panel);
-}
-
-
 .colophon-page p code,
 .colophon-page kbd {
     padding: 2px 6px;
@@ -210,26 +21,6 @@
     border: 1px solid var(--color-border);
     border-radius: 4px;
 }
-
-.colophon-page pre {
-    margin: 24px 0;
-    padding: 20px 24px;
-    background: var(--color-bg-panel);
-    border: 1px solid var(--color-border);
-    border-left: 4px solid var(--color-terracotta);
-    border-radius: 6px;
-    line-height: 1.6;
-    color: var(--color-ink);
-}
-
-.colophon-page samp {
-    display: block;
-    padding: 16px 20px;
-    border-left: 4px solid var(--color-sage);
-    background: var(--color-bg-panel);
-    color: var(--color-sage-dark);
-}
-
 
 .arsen-page .site-footer p {
     margin: 10px 0 0;
