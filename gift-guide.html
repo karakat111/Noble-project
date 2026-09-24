@@ -1,189 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plan a tableware gift using the items featured in the Noble catalogue and a practice gift enquiry form.">
-    <meta name="author" content="Utembayeva Karakat">
-    <title>Gift Guide | Noble</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/karakat.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plan a tableware gift using the items featured in the Noble catalogue and a practice gift enquiry form.">
+  <meta name="author" content="Utembayeva Karakat">
+  <title>Gift Guide | Noble</title>
+  <!-- Bootstrap 5.3.3 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/karakat.css">
 </head>
 <body>
-    <!-- Author: Karakat Utembayeva -->
-    <header class="site-header">
-        <div class="site-header__inner">
-            <p class="site-tagline">Noble — Tableware Store</p>
-            <h1>Gift Guide</h1>
-            <nav class="site-nav" aria-label="Main navigation">
-                <ul>
-                    <li><a href="indexx.html">Home</a></li>
-                    <li><a href="page-1.html">Products</a></li>
-                    <li><a href="collections.html">Collections</a></li>
-                    <li><a href="gift-guide.html" aria-current="page">Gift Guide</a></li>
-                    <li><a href="care.html">Care and Storage</a></li>
-                    <li><a href="visit.html">Visit the Store</a></li>
-                    <li><a href="page2.html">Contact</a></li>
-                    <li><a href="colophon.html">About the project</a></li>
-                </ul>
-            </nav>
+  <!-- Author: Karakat Utembayeva -->
+
+  <header class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="indexx.html">Noble</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="indexx.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="page-1.html">Products</a></li>
+            <li class="nav-item"><a class="nav-link" href="collections.html">Collections</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="gift-guide.html">Gift Guide</a></li>
+            <li class="nav-item"><a class="nav-link" href="care.html">Care and Storage</a></li>
+            <li class="nav-item"><a class="nav-link" href="visit.html">Visit the Store</a></li>
+            <li class="nav-item"><a class="nav-link" href="page2.html">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="colophon.html">About the project</a></li>
+          </ul>
         </div>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-    <main>
-        <p>A useful gift starts with the person receiving it. Think about their
-            daily habits, the space they have, and the pieces they already enjoy.
-            This guide groups items documented in the Noble catalogue by possible
-            occasions. Confirm current stock, prices, and packaging with the store
-            before making a purchase.</p>
-        <p>Browse the ideas below or jump to the
-            <a href="#gift-enquiry">practice gift enquiry form</a>.</p>
+  <main class="container py-4">
+    <p class="small text-muted mb-1 d-none d-md-block">Noble — Tableware Store</p>
+    <h1 class="page-title mb-3">Gift Guide</h1>
 
-        <!-- Used sections to divide headers and used h2 for headers -->
-        <section id="housewarming" class="content-section">
-            <h2>For a New Home</h2>
-            <p>Start by finding out what the recipient still needs. A bowl or
-                pitcher from the catalogue could complement their existing tableware.
-                A single useful piece may be easier to accommodate than a large set,
-                especially when storage space is limited.</p>
-            <ul>
-                <li>Check the colours and shapes of their existing pieces.</li>
-                <li>Ask about the dimensions and intended use of the item.</li>
-                <li>Confirm which pieces are included if choosing a set.</li>
-            </ul>
+    <p class="lead">A useful gift starts with the person receiving it. Think about their daily habits, the space they have, and the pieces they already enjoy. This guide groups items documented in the Noble catalogue by possible occasions. Confirm current stock, prices, and packaging with the store before making a purchase.</p>
+    <p class="mb-4">Browse the ideas below or jump to the <a href="#gift-enquiry">practice gift enquiry form</a>.</p>
+
+    <div class="row g-4 mb-5">
+      <div class="col-12 col-md-6">
+        <section id="housewarming" class="bg-panel p-4 rounded border border-brand h-100">
+          <h2 class="h4 text-walnut">For a New Home</h2>
+          <p>Start by finding out what the recipient still needs. A bowl or pitcher from the catalogue could complement their existing tableware. A single useful piece may be easier to accommodate than a large set, especially when storage space is limited.</p>
+          <ul class="mb-0">
+            <li>Check the colours and shapes of their existing pieces.</li>
+            <li>Ask about the dimensions and intended use of the item.</li>
+            <li>Confirm which pieces are included if choosing a set.</li>
+          </ul>
         </section>
+      </div>
 
-        <section id="tea-coffee-gifts" class="content-section">
-            <h2>For Someone Who Enjoys Tea or Coffee</h2>
-            <p>The catalogue features a patterned mug, saucers, and a teapot.
-                Consider whether the recipient usually drinks alone or serves
-                guests. Their preferred cup size and the comfort of the handle
-                can matter as much as the decoration.</p>
-            <figure>
-                <img src="images.jpg/photo_2026-09-18_01-33-18.jpg"
-                     alt="Mug and matching plate shown in the Noble project catalogue"
-                     width="600">
-                <figcaption>A mug and plate photographed for the existing catalogue.</figcaption>
-            </figure>
-            <p>Explore the <a href="collections.html#tea-coffee">tea and coffee section</a>
-                to compare the types of pieces featured in the project.</p>
+      <div class="col-12 col-md-6">
+        <section id="tea-coffee-gifts" class="bg-panel p-4 rounded border border-brand h-100">
+          <h2 class="h4 text-walnut">For Someone Who Enjoys Tea or Coffee</h2>
+          <p>The catalogue features a patterned mug, saucers, and a teapot. Consider whether the recipient usually drinks alone or serves guests. Their preferred cup size and the comfort of the handle can matter as much as the decoration.</p>
+          <figure class="mb-3">
+            <img src="images.jpg/photo_2026-09-18_01-33-18.jpg" class="img-fluid rounded border border-brand" alt="Mug and matching plate shown in the Noble project catalogue">
+            <figcaption class="small text-walnut fst-italic mt-2">A mug and plate photographed for the existing catalogue.</figcaption>
+          </figure>
+          <p class="mb-0">Explore the <a href="collections.html#tea-coffee">tea and coffee section</a> to compare the types of pieces featured in the project.</p>
         </section>
+      </div>
 
-        <section id="celebration-gifts" class="content-section">
-            <h2>For a Wedding or Special Celebration</h2>
-            <p>Ask what the recipients would actually use before choosing a
-                serving piece. The catalogue includes dishes and decanters, while
-                candle holders and jewellery boxes offer decorative alternatives.
-                Choose around the recipients' preferences rather than assuming
-                that a larger or more expensive gift will suit them better.</p>
-            <p>Ask the store whether suitable gift packaging is available for the
-                selected item. This page does not confirm wrapping, delivery,
-                engraving, or any other additional service.</p>
+      <div class="col-12">
+        <section id="celebration-gifts" class="bg-panel p-4 rounded border border-brand">
+          <h2 class="h4 text-walnut">For a Wedding or Special Celebration</h2>
+          <p>Ask what the recipients would actually use before choosing a serving piece. The catalogue includes dishes and decanters, while candle holders and jewellery boxes offer decorative alternatives. Choose around the recipients' preferences rather than assuming that a larger or more expensive gift will suit them better.</p>
+          <p class="mb-0">Ask the store whether suitable gift packaging is available for the selected item. This page does not confirm wrapping, delivery, engraving, or any other additional service.</p>
         </section>
+      </div>
+    </div>
 
-        <section aria-labelledby="planning-heading" class="content-section">
-            <h2 id="planning-heading">Plan Your Choice</h2>
-            <ol>
-                <li>Choose an occasion and note the recipient's preferences.</li>
-                <li>Set a budget and decide how many gifts you need.</li>
-                <li>Compare the <a href="page-1.html#price-table">recorded catalogue prices</a>.</li>
-                <li>Confirm availability, care instructions, and packaging with the store.</li>
-            </ol>
-        </section>
+    <section class="mb-5">
+      <h2 class="h4 text-walnut">Plan Your Choice</h2>
+      <ol>
+        <li>Choose an occasion and note the recipient's preferences.</li>
+        <li>Set a budget and decide how many gifts you need.</li>
+        <li>Compare the <a href="page-1.html#price-table">recorded catalogue prices</a>.</li>
+        <li>Confirm availability, care instructions, and packaging with the store.</li>
+      </ol>
+    </section>
 
-        <section id="gift-enquiry" class="content-section">
-            <h2>Practice Gift Enquiry</h2>
-            <p id="demo-note" class="form-note"><strong>Demonstration only:</strong> this form does
-                not contact Noble, reserve products, or save a request. Use made-up
-                details when testing it. For an actual enquiry, use the
-                <a href="page2.html">store contact information</a>.</p>
+    <section id="gift-enquiry">
+      <h2 class="h4 text-walnut mb-3">Practice Gift Enquiry</h2>
 
-            <!-- Form to practice gift enquiry. There is no backend, so Form takes get method  -->
-            <div class="contact-form-wrap">
-                <form action="gift-guide.html" method="get" class="contact-form">
+      <div class="alert alert-light border-start border-4 border-terracotta mb-4" role="alert">
+        <strong>Demonstration only:</strong> this form does not contact Noble, reserve products, or save a request. Use made-up details when testing it. For an actual enquiry, use the <a href="page2.html">store contact information</a>.
+      </div>
 
-                    <div class="badge-mark" aria-hidden="true">&#10022;</div>
-
-                    <!-- Used fieldset to combine inputs and legend to show fieldset header-->
-                    <fieldset class="form-fieldset">
-                        <legend>Contact details for the example</legend>
-                        <p class="form-field">
-                            <label for="name">Name (required)</label>
-                            <input type="text" id="name" name="customer-name" required placeholder="Example name">
-                        </p>
-                        <p class="form-field">
-                            <label for="email">Email (required)</label>
-                            <input type="email" id="email" name="email" required placeholder="example@example.com">
-                        </p>
-                        <p class="form-field">
-                            <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Example phone number">
-                        </p>
-                        <fieldset class="form-fieldset--nested">
-                            <legend>Preferred contact method</legend>
-                            <!-- A shared name makes these radio buttons a single-choice group. -->
-                            <p class="contact-choice">
-                                <input type="radio" id="contact-email" name="contact-method" value="email" checked>
-                                <label for="contact-email">Email</label>
-                                <input type="radio" id="contact-phone" name="contact-method" value="phone">
-                                <label for="contact-phone">Phone</label>
-                            </p>
-                        </fieldset>
-                    </fieldset>
-
-                    <fieldset class="form-fieldset">
-                        <legend>Gift preferences</legend>
-                        <p class="form-field">
-                            <label for="occasion">Occasion (required)</label>
-                            <select id="occasion" name="occasion" required>
-                                <option value="">Choose an occasion</option>
-                                <option value="housewarming">Housewarming</option>
-                                <option value="birthday">Birthday</option>
-                                <option value="wedding">Wedding</option>
-                                <option value="other">Another occasion</option>
-                            </select>
-                        </p>
-                        <p class="form-field">
-                            <label for="quantity">Number of gifts (required)</label>
-                            <input type="number" id="quantity" name="quantity" min="1" step="1" required>
-                        </p>
-                        <p class="form-field">
-                            <label for="budget">Total budget in KZT</label>
-                            <input type="number" id="budget" name="budget-kzt" min="0" step="1">
-                        </p>
-                        <p class="form-field">
-                            <label for="date">Date of the occasion</label>
-                            <input type="date" id="date" name="occasion-date">
-                        </p>
-                        <p class="form-field form-field--checkbox">
-                            <input type="checkbox" id="packaging" name="ask-about-packaging" value="yes">
-                            <label for="packaging">Include a question about available gift packaging</label>
-                        </p>
-                        <p class="form-field form-field--message">
-                            <label for="message">Recipient's preferences or questions</label>
-                            <textarea id="message" name="message" rows="4"
-                                      placeholder="Describe preferred colours, items, or questions."></textarea>
-                        </p>
-                    </fieldset>
-                    <p class="form-actions">
-                        <button type="submit" class="btn btn--primary">Submit</button>
-                        <button type="reset" class="btn btn--ghost">Reset form</button>
-                    </p>
-                </form>
+      <form action="gift-guide.html" method="get" class="bg-panel p-4 p-md-5 rounded border border-brand shadow-sm">
+        <fieldset class="mb-4">
+          <legend class="h5 text-sage-dark">Contact details for the example</legend>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="name" class="form-label">Name (required)</label>
+              <input type="text" class="form-control" id="name" name="customer-name" required placeholder="Example name">
             </div>
-        </section>
-    </main>
+            <div class="col-12 col-md-6">
+              <label for="email" class="form-label">Email (required)</label>
+              <input type="email" class="form-control" id="email" name="email" required placeholder="example@example.com">
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="phone" class="form-label">Phone</label>
+              <input type="tel" class="form-control" id="phone" name="phone" placeholder="Example phone number">
+            </div>
+            <div class="col-12 col-md-6">
+              <span class="form-label d-block mb-1">Preferred contact method</span>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="contact-method" id="contact-email" value="email" checked>
+                <label class="form-check-label" for="contact-email">Email</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="contact-method" id="contact-phone" value="phone">
+                <label class="form-check-label" for="contact-phone">Phone</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
 
-    <footer class="site-footer">
-        <address id="store-address">
-            Noble, Mandilik El 42, Astana, Kazakhstan<br>
-            Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
-        </address>
-        <p>Opening hours listed in the project: 10:00–20:00.</p>
-        <p><small>&copy; 2026 Noble educational project.</small></p>
-    </footer>
+        <fieldset>
+          <legend class="h5 text-sage-dark">Gift preferences</legend>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="occasion" class="form-label">Occasion (required)</label>
+              <select class="form-select" id="occasion" name="occasion" required>
+                <option value="">Choose an occasion</option>
+                <option value="housewarming">Housewarming</option>
+                <option value="birthday">Birthday</option>
+                <option value="wedding">Wedding</option>
+                <option value="other">Another occasion</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="quantity" class="form-label">Number of gifts (required)</label>
+              <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" required>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="budget" class="form-label">Total budget in KZT</label>
+              <input type="number" class="form-control" id="budget" name="budget-kzt" min="0" step="1">
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="date" class="form-label">Date of the occasion</label>
+              <input type="date" class="form-control" id="date" name="occasion-date">
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="packaging" name="ask-about-packaging" value="yes">
+                <label class="form-check-label" for="packaging">Include a question about available gift packaging</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <label for="message" class="form-label">Recipient's preferences or questions</label>
+              <textarea class="form-control" id="message" name="message" rows="4" placeholder="Describe preferred colours, items, or questions."></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-outline-primary">Reset form</button>
+          <button type="button" class="btn btn-primary btn-sm" disabled>Preview</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container py-4 mt-5 border-top">
+    <address id="store-address" class="mb-2">
+      Noble, Mandilik El 42, Astana, Kazakhstan<br>
+      Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
+    </address>
+    <p class="mb-1">Opening hours listed in the project: 10:00–20:00.</p>
+    <p class="small text-muted mb-0">&copy; 2026 Noble educational project.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
