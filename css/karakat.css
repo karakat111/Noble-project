@@ -1,498 +1,100 @@
-/* =========================================================
-   CONTACT PAGE
-   ========================================================= */
 
-.contact-intro {
-  position: static;
+.navbar {
+  background-color: var(--color-sage);
+  border-bottom: 3px solid var(--color-sage-dark);
+  padding-top: 1.2rem;
+  padding-bottom: 1.1rem;
 }
-
-.contact-intro p {
-  font-size: 1rem;
-  line-height: 1.7;
-  letter-spacing: 0.005em;
-  color: var(--color-ink);
-  margin-bottom: 1.1rem;
-}
-
-.contact-intro p:first-child {
-  line-height: 1.8;
-}
-
-.intro-photo {
-  float: left;
-  width: 190px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin: 0.2rem 1.25rem 0.75rem 0;
-  border: 1px solid var(--color-border);
-}
-
-.contact-intro p + p {
-  clear: left;
-}
-
-/* margin collapse:
-   without spacing on the wrapper, margins from neighbouring blocks
-   could collapse and make the gap smaller than expected. */
-.contact-form-wrap {
-  margin: 2.5rem 0 3rem 0;
-  padding-top: 1px;
-}
-
-.contact-form {
-  position: relative;
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  padding: 2rem 1.75rem 1.75rem 1.75rem;
-
-  display: grid;
-  grid-template-columns: repeat(1, minmax(140px, 180px)) 1fr;
-  gap: 1rem 1.25rem;
-}
-
-.contact-form::before {
-  content: "Send a request — we reply on store business days";
-  grid-column: 1 / -1;
+.navbar-brand {
+  color: var(--color-cream);
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--color-walnut);
-  margin-bottom: 0.25rem;
+  font-size: 2.1rem;
+  font-weight: 600;
 }
-
-.badge-mark {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 2.5rem;
-  height: 2.5rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: var(--color-terracotta);
+.navbar-nav .nav-link {
   color: var(--color-cream);
-  border-radius: 50%;
-  font-size: 1.1rem;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-.form-fieldset {
-  border: none;
-  grid-column: 1 / -1;
-
-  display: grid;
-  grid-template-columns: subgrid;
-  gap: inherit;
-}
-
-.form-fieldset > legend {
-  grid-column: 1 / -1;
-  font-size: 1.15rem;
-  padding: 0;
-  margin-bottom: 0.25rem;
-}
-
-fieldset > .form-field > label {
-  font-weight: 500;
-}
-
-.form-field {
-  display: contents;
-  position: relative;
-}
-
-form label {
-  align-self: center;
-  color: var(--color-sage-dark);
   font-size: 0.92rem;
 }
-
-input[type="text"],
-input[type="email"],
-input[type="tel"] {
-  font-family: var(--font-body);
-}
-
-/* Specificity experiment:
-   attribute selector has lower specificity than the ID below. */
-input[required] {
-  border-width: 2px;
-  border-color: var(--color-walnut);
-}
-
-/* ID selector wins over input[required] for the same property. */
-#visit-date {
-  accent-color: var(--color-walnut);
-  border-color: var(--color-terracotta);
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-input[type="date"],
-select,
-textarea {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  background: var(--color-cream);
-  color: var(--color-ink);
-  font-size: 0.95rem;
-  font-family: inherit;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--color-terracotta);
-  box-shadow: 0 0 0 3px rgba(168, 92, 50, 0.22);
-}
-
-.required-badge {
-  position: absolute;
-  top: -0.6rem;
-  right: 0;
-  font-size: 0.7rem;
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
   color: var(--color-terracotta);
-  background: var(--color-cream);
-  padding: 0 0.3rem;
 }
-
-.form-field--contact-choice {
-  align-items: start;
-}
-
-.form-field__label-text {
-  color: var(--color-sage-dark);
-  font-size: 0.92rem;
-  padding-top: 0.4rem;
-}
-
-.contact-choice {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.4rem 1.5rem;
-  flex-wrap: wrap;
-}
-
-input[type="radio"] + label {
-  font-size: 0.9rem;
-  margin-right: 0.5rem;
-}
-
-input[type="checkbox"] + label {
-  font-size: 0.9rem;
-}
-
-.form-field--checkbox {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  grid-column: 2 / -1;
-}
-
-.form-field--message,
-.form-actions {
-  grid-column: 1 / -1;
-}
-
-.form-field--message textarea {
-  resize: vertical;
-}
-
-.form-actions {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.btn {
-  flex-grow: 1; /* buttons share available space equally */
-}
-
-.btn {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  padding: 0.65rem 1.5rem;
-  border-radius: 4px;
-  border: 2px solid transparent;
-  cursor: pointer;
-}
-
-.btn--primary {
-  background: var(--color-walnut);
+.navbar-nav .nav-link.active {
+  background-color: var(--color-sage-dark);
   color: var(--color-cream);
+  border-radius: 4px;
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-cream);
+}
+.navbar-toggler {
+  border-color: rgba(251, 248, 241, 0.4);
+}
+.navbar-toggler-icon {
+  filter: invert(1);
 }
 
-.btn--primary:hover,
-.btn--primary:focus {
-  background: var(--color-walnut-dark);
+/* Brand buttons */
+.btn-primary {
+  --bs-btn-bg: var(--color-walnut);
+  --bs-btn-border-color: var(--color-walnut);
+  --bs-btn-hover-bg: var(--color-walnut-dark);
+  --bs-btn-hover-border-color: var(--color-walnut-dark);
+  --bs-btn-color: var(--color-cream);
+  --bs-btn-hover-color: var(--color-cream);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--color-walnut);
+  --bs-btn-border-color: var(--color-walnut);
+  --bs-btn-hover-bg: var(--color-terracotta);
+  --bs-btn-hover-border-color: var(--color-terracotta);
+  --bs-btn-hover-color: var(--color-cream);
 }
 
-.btn--ghost {
-  background: transparent;
-  border-color: var(--color-walnut);
-  color: var(--color-walnut);
-}
-
-.btn--ghost:hover,
-.btn--ghost:focus {
+/* Form focus ring in brand colour */
+.form-control:focus,
+.form-select:focus {
   border-color: var(--color-terracotta);
-  color: var(--color-terracotta);
+  box-shadow: 0 0 0 0.2rem rgba(168, 92, 50, 0.22);
 }
 
+/* Callout / alert left border in brand colour */
+.border-terracotta {
+  border-left-color: var(--color-terracotta);
+}
+
+/* Fixed phone strip (kept from original design) */
 .phone-strip {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+  z-index: 1030;
   background: var(--color-sage);
   border-radius: 999px;
   padding: 0.65rem 1.25rem;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
 }
-
 .phone-strip a {
   color: var(--color-cream);
   font-size: 0.85rem;
   font-weight: 500;
+  text-decoration: none;
 }
-
 .phone-strip a:hover {
   color: var(--color-terracotta);
 }
 
+/* Small brand helpers */
+.text-walnut { color: var(--color-walnut); }
+.text-sage-dark { color: var(--color-sage-dark); }
+.bg-panel { background-color: var(--color-bg-panel); }
+.border-brand { border-color: var(--color-border); }
 
-/* =========================================================
-   COLLECTIONS + GIFT GUIDE
-   ========================================================= */
-
-.site-tagline {
-  color: var(--color-cream);
-  font-size: 0.85rem;
-  letter-spacing: 0.03em;
-  margin-bottom: 0.3rem;
-  opacity: 0.85;
-}
-
-main > p:first-of-type {
-  margin-bottom: 1.5rem;
-}
-
-/* repeat() requirement */
-.section-nav ul {
-  display: grid;
-  grid-template-columns: repeat(3, max-content);
-  gap: 0.6rem;
-  list-style: none;
-  margin: 0 0 2.5rem 0;
-}
-
-.section-nav a {
-  display: inline-block;
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  padding: 0.4rem 1rem;
-  font-size: 0.85rem;
-  color: var(--color-sage-dark);
-}
-
-.section-nav a:hover,
-.section-nav a:focus {
-  border-color: var(--color-terracotta);
-  color: var(--color-terracotta);
-}
-
-.content-section {
-  margin-bottom: 2.75rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--color-border);
-}
-
-.content-section:first-of-type {
-  border-top: none;
-  padding-top: 0;
-}
-
-.content-section p {
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-
-.content-section ul,
-.content-section ol {
-  margin: 0 0 1.25rem 1.25rem;
-  padding: 0;
-}
-
-.content-section li {
-  margin-bottom: 0.35rem;
-}
-
-
-/* Images */
-
-figure {
-  margin: 1.5rem 0;
-}
-
-figure img {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  display: block;
-  border-radius: 6px;
-  border: 1px solid var(--color-border);
-}
-
-figcaption {
+/* Page titles keep original italic display look */
+.page-title {
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 0.9rem;
-  color: var(--color-walnut);
-  margin-top: 0.5rem;
-}
-
-
-/* Collections callout */
-
-.callout {
-  position: relative;
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-left: 4px solid var(--color-terracotta);
-  border-radius: 6px;
-  padding: 1.5rem 1.75rem;
-  margin-bottom: 3rem;
-}
-
-.callout h2 {
-  font-size: 1.3rem;
-  margin-bottom: 0.75rem;
-}
-
-.callout ol {
-  margin: 0 0 1rem 1.25rem;
-  padding: 0;
-}
-
-.callout li {
-  margin-bottom: 0.4rem;
-}
-
-
-/* Gift Guide form */
-
-.form-note {
-  background: var(--color-bg-panel);
-  border-left: 4px solid var(--color-terracotta);
-  padding: 0.85rem 1.1rem;
-  border-radius: 4px;
-  font-size: 0.92rem;
-  margin: 1rem 0 1.5rem 0;
-}
-
-#gift-enquiry form {
-  background: var(--color-bg-panel);
-  border: 1px solid var(--color-border);
-  border-radius: 6px;
-  padding: 1.75rem;
-}
-
-#gift-enquiry fieldset {
-  border: 1px solid var(--color-border);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.25rem;
-  background: var(--color-bg-panel);
-}
-
-#gift-enquiry legend {
-  font-size: 1.15rem;
   color: var(--color-sage-dark);
-}
-
-#gift-enquiry p {
-  margin-bottom: 1rem;
-}
-
-#gift-enquiry label {
-  display: inline-block;
-  color: var(--color-sage-dark);
-  font-size: 0.92rem;
-  margin-bottom: 0.3rem;
-}
-
-#gift-enquiry input[type="text"],
-#gift-enquiry input[type="email"],
-#gift-enquiry input[type="tel"],
-#gift-enquiry input[type="number"],
-#gift-enquiry input[type="date"],
-#gift-enquiry select,
-#gift-enquiry textarea {
-  width: 100%;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  background: var(--color-cream);
-  color: var(--color-ink);
-  font-family: inherit;
-  font-size: 0.95rem;
-}
-
-#gift-enquiry textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-#gift-enquiry input:focus,
-#gift-enquiry select:focus,
-#gift-enquiry textarea:focus {
-  outline: none;
-  border-color: var(--color-terracotta);
-  box-shadow: 0 0 0 3px rgba(168, 92, 50, 0.22);
-}
-
-#gift-enquiry button {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  padding: 0.65rem 1.5rem;
-  margin-right: 0.5rem;
-  border-radius: 4px;
-  border: 2px solid var(--color-walnut);
-  cursor: pointer;
-}
-
-#gift-enquiry button[type="submit"] {
-  background: var(--color-walnut);
-  color: var(--color-cream);
-}
-
-#gift-enquiry button[type="reset"] {
-  background: transparent;
-  color: var(--color-walnut);
-}
-
-
-/* Named color requirement */
-#gift-enquiry button[type="reset"]:hover {
-  border-color: sienna;
-  color: sienna;
-}
-
-
-/* Address */
-
-address {
-  font-style: normal;
+  font-size: 2.1rem;
+  font-weight: 600;
 }
