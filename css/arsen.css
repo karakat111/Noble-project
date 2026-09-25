@@ -10,7 +10,7 @@
     color: var(--color-cream);
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 2.1rem;
+    font-size: 35px;
     font-weight: 600;
 }
 
@@ -61,10 +61,10 @@
     font-style: italic;
 }
 
-.colophon-page p code,
 .colophon-page kbd {
     padding: 2px 6px;
-    background: var(--color-bg-panel);
-    border: 1px solid var(--color-border);
+    background: var(--color-sage-dark);
+    color: var(--color-cream);
+    border: 1px solid var(--color-sage-dark);
     border-radius: 4px;
 }
