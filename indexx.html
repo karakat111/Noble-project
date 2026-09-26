@@ -9,42 +9,44 @@
     
 
     <title>Noble - home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/turar.css">
-    <style>
-        /* This is the project's single internal style example.
-           It shows source order in the cascade: when specificity is equal,
-           the later rule wins. */
-        .site-nav a {
-            color: var(--color-antique-gold);
-        }
-    </style>
 </head>
 <body class="home-page">
 <!-- Author: TURAR DYUMBAYEV -->
-    <header class="site-header">
-        <h1>Noble</h1>
-        <p><small>Noble — Tableware Store</small></p>
+    <header class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container">
+                <a class="navbar-brand" href="indexx.html">Noble</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#homeNavigation" aria-controls="homeNavigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="homeNavigation">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" href="indexx.html" aria-current="page">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="page-1.html">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="collections.html">Collections</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gift-guide.html">Gift Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="care.html">Care and Storage</a></li>
+                        <li class="nav-item"><a class="nav-link" href="visit.html">Visit the Store</a></li>
+                        <li class="nav-item"><a class="nav-link" href="page2.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="colophon.html">About the project</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-   
-    <nav class="site-nav">
-
-        <ul class="nav-list">
-          <li><a href="indexx.html" aria-current="page">Home</a></li>
-            <li><a href= "page-1.html">Products</a></li>
-            <li><a href="collections.html">Collections</a></li>
-            <li><a href="gift-guide.html">Gift Guide</a></li>
-            <li><a href="care.html">Care and Storage</a></li>
-            <li><a href="visit.html">Visit the Store</a></li>
-            <li><a href= "page2.html">Contact</a></li>
-            <li><a href= "colophon.html">About the project</a></li>
-        </ul>
-    </nav>
-    <main class="page-content home-gallery">
+    <main class="container py-4">
+        <p class="small text-muted mb-1 d-none d-md-block">Noble — Tableware Store</p>
+        <h1 class="page-title mb-3">Noble</h1>
         
         <!-- i use section because this content has its own topic and heading -->
-        <section class="store-intro" id="home-intro"> <!-- An ID is appropriate because this introduction section is unique on the page. -->
-            <h2>About Noble</h2>
+        <section class="store-intro mb-5" id="home-intro"> <!-- An ID is appropriate because this introduction section is unique on the page. -->
+            <h2 class="h4 mb-3">About Noble</h2>
             <p>
                 This is a tableware store where you can enjoy beautiful views while selecting tableware for yourself or as a gift. Everything in the store looks very aesthetically pleasing and is thoughtfully arranged.</p>
                 <p> The walls are adorned with mirrors and various beautiful medieval-style paintings. There are different shelves where everything is arranged beautifully, elegantly, and by theme; the tableware matches each other, meaning the pieces complement one another. The store has a wide variety of unique plates, glasses, and so on. What I liked most was the shelf with a mirror displaying cups and plates featuring floral patterns in a combination of blue, pink, and green. There’s also a glass shelf with a nautical theme, as well as various fruit-themed sets—like lemon sets—and the assortment includes sets with statues, animals, and items inspired by ancient times. Everything there looks expensive and luxurious.</p>
@@ -54,33 +56,35 @@
         
         </section>
 
-        <figure class="store-photo">
-    <img src="images.jpg/noble-fasad.jpg"
+        <div class="row g-4">
+        <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
+    <img class="img-fluid w-100 rounded border" src="images.jpg/noble-fasad.jpg"
          alt="Exterior facade of Noble store"
          width="600"
          height="400">
-    <figcaption>Noble store facade</figcaption>
+    <figcaption class="mt-2">Noble store facade</figcaption>
 </figure>
-            <figure class="store-photo">
-        <img src="images.jpg/noble-vitrina.jpg"
+            <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
+        <img class="img-fluid w-100 rounded border" src="images.jpg/noble-vitrina.jpg"
              alt="Noble store display with tableware"
              width="600"
              height="400">
 
-        <figcaption>Noble store display with tableware</figcaption>
+        <figcaption class="mt-2">Noble store display with tableware</figcaption>
     </figure>
 
-    <figure class="store-photo">
-        <img src="images.jpg/photo_2026-09-09_20-44-36.jpg"
+    <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
+        <img class="img-fluid w-100 rounded border" src="images.jpg/photo_2026-09-09_20-44-36.jpg"
              alt="Noble store interior"
              width="600"
              height="400">
 
-        <figcaption>Noble store interior</figcaption>
+        <figcaption class="mt-2">Noble store interior</figcaption>
     </figure>
 
+        </div>
     </main>
-    <footer class="site-footer">
+    <footer class="container py-4 mt-5 border-top">
          <p> INFO: </P>
         <p>
             Working hours: <mark>10:00-20:00</mark>
@@ -92,5 +96,6 @@
         <p>&copy; 2026 Noble</p>
     </footer>
     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
