@@ -112,7 +112,7 @@
         <section id="visit-planner" class="border-top pt-4 mt-5">
             <h2 class="h4 text-sage-dark mb-3">Your Visit Plan</h2>
             <p id="visit-plan-help">Use these fields to organise what you want to see. This is a personal checklist, not a booking request. It does not contact the store or reserve products. Automatic summaries are not enabled yet; your entries are not saved when you leave this page.</p>
-            <form id="visit-plan-form" aria-describedby="visit-plan-help">
+            <form id="visit-plan-form">
                 <div class="row g-3">
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="visit-purpose">What would you like to explore?</label>
@@ -125,27 +125,27 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="visit-quantity">Number of pieces to consider</label>
-                        <input class="form-control" id="visit-quantity" name="quantity" type="number" min="1" step="1" value="1" required aria-describedby="visit-quantity-error">
+                        <input class="form-control" id="visit-quantity" name="quantity" type="number" min="1" step="1" value="1">
                         <p id="visit-quantity-error" class="state-error state-hidden mt-2">Enter a whole number of at least one.</p>
                     </div>
                     <div class="col-12">
                         <label class="form-label" for="visit-notes">Items and questions to take with you</label>
-                        <textarea class="form-control" id="visit-notes" name="notes" rows="4" maxlength="1000" aria-describedby="visit-notes-help"></textarea>
+                        <textarea class="form-control" id="visit-notes" name="notes" rows="4" maxlength="500"></textarea>
                         <p id="visit-notes-help" class="small mt-2">Include the product name, size, or care question. Do not enter personal contact details.</p>
                     </div>
                 </div>
                 <!-- Enable the summary button when the JavaScript assignment implements the local planner. -->
                 <div class="d-flex flex-wrap gap-2">
-                    <button class="btn btn-secondary" id="visit-summary-button" type="button" disabled aria-describedby="visit-plan-help">Create my summary</button>
+                    <button class="btn btn-secondary" id="visit-summary-button" type="button" disabled>Create my summary</button>
                     <button class="btn btn-outline-secondary" id="visit-reset" type="reset">Clear plan</button>
                 </div>
             </form>
-            <div id="visit-plan-result" class="border rounded p-3 mt-3" aria-labelledby="visit-result-heading">
+            <div id="visit-plan-result" class="border rounded p-3 mt-3">
                 <h3 class="h5" id="visit-result-heading">Your visit summary</h3>
                 <p id="visit-result-instructions">Use your notes above during your visit. To check current hours and availability, call the store before travelling.</p>
-                <dl id="visit-summary" class="mb-0" aria-live="polite"></dl>
-                <p id="visit-success" class="state-success state-hidden mt-3 mb-0" role="status">Your personal plan is ready. No booking has been made.</p>
-                <p id="visit-error" class="state-error state-hidden mt-3 mb-0" role="alert">Check the highlighted fields before creating your summary.</p>
+                <dl id="visit-summary" class="mb-0"></dl>
+                <p id="visit-success" class="state-success state-hidden mt-3 mb-0">Your personal plan is ready. No booking has been made.</p>
+                <p id="visit-error" class="state-error state-hidden mt-3 mb-0">Check the highlighted fields before creating your summary.</p>
             </div>
             <a class="btn btn-outline-secondary mt-3" href="tel:+77003933327">Call Noble: +7 700 393 33 27</a>
         </section>
