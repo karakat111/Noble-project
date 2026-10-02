@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plan a visit to Noble in Astana, prepare questions about tableware, and explore a practice visit-planning form.">
-    <meta name="author" content="Example of visit page">
+    <meta name="description" content="Find Noble in Astana, check the recorded opening hours, and prepare a personal tableware shopping checklist.">
+    <meta name="author" content="Arsen Ibatullin">
     <title>Visit the Store | Noble</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,20 +18,18 @@
     <!-- Author: Arsen Ibatullin -->
     <!-- container-fluid keeps the shared navigation bar full width. -->
     <header class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
             <div class="container">
                 <a class="navbar-brand" href="indexx.html">Noble</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#visitNavigation" aria-expanded="false">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="visitNavigation">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <!-- Always-visible navigation uses Bootstrap CSS only, including on phones. -->
+                <div class="navbar-collapse" id="visit-navigation">
+                    <ul class="navbar-nav flex-row flex-wrap gap-2 ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="indexx.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="page-1.html">Products</a></li>
                         <li class="nav-item"><a class="nav-link" href="collections.html">Collections</a></li>
                         <li class="nav-item"><a class="nav-link" href="gift-guide.html">Gift Guide</a></li>
                         <li class="nav-item"><a class="nav-link" href="care.html">Care and Storage</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="visit.html">Visit the Store</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="visit.html" aria-current="page">Visit the Store</a></li>
                         <li class="nav-item"><a class="nav-link" href="page2.html">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="colophon.html">About the project</a></li>
                     </ul>
@@ -40,7 +38,7 @@
         </nav>
     </header>
     <!-- container keeps the reading content comfortably narrow on wide screens. -->
-    <main class="container py-4">
+    <main id="main-content" class="container py-4">
         <p class="small text-muted mb-1 d-none d-md-block">Noble — Tableware Store</p>
         <h1 class="page-title mb-3">Visit the Store</h1>
         <section class="mb-5">
@@ -52,13 +50,14 @@
         <div class="d-flex flex-wrap gap-2">
             <a class="btn btn-outline-secondary btn-sm" href="#location">Location details</a>
             <a class="btn btn-outline-secondary btn-sm" href="#prepare">Visit checklist</a>
+            <a class="btn btn-outline-secondary btn-sm" href="#visit-planner">Plan your visit</a>
         </div>
         </section>
 
         <section id="location" class="border-top pt-4 mb-5">
-            <div class="row align-items-center g-5">
+            <div class="row align-items-center g-4">
                 <div class="col-12 col-lg-7">
-                    <h2 class="text-sage-dark mb-3">Finding Noble</h2>
+                    <h2 class="h4 text-sage-dark mb-3">Finding Noble</h2>
                     <p>The existing project lists the store at <strong>Mandilik El 42,
                 Astana, Kazakhstan</strong>, with opening hours of
                 <time datetime="10:00">10:00</time>–<time datetime="20:00">20:00</time>.
@@ -82,7 +81,7 @@
         </section>
 
         <section id="prepare" class="border-top pt-4 mb-5">
-            <h2 class="text-sage-dark mb-3">Before You Go</h2>
+            <h2 class="h4 text-sage-dark mb-3">Before You Go</h2>
             <!-- An ordered list suits the sequence of preparing for a visit. -->
             <ol class="mb-4">
                 <li>Browse the <a href="collections.html">collections</a> and note the pieces you want to see.</li>
@@ -96,7 +95,7 @@
         </section>
 
         <section class="border-top pt-4 mb-0">
-            <h2 class="text-sage-dark mb-3">Questions During Your Visit</h2>
+            <h2 class="h4 text-sage-dark mb-3">Questions During Your Visit</h2>
             <p>Ask about the exact piece you are considering. Items that look
                 similar may differ in dimensions, decoration, or intended use.
                 Compare a complete set with individual pieces before deciding
@@ -110,14 +109,54 @@
             <p class="mb-0">Read <a href="care.html">Care and Storage</a> for more questions
             to ask about cleaning and everyday use.</p>
         </section>
+        <section id="visit-planner" class="border-top pt-4 mt-5">
+            <h2 class="h4 text-sage-dark mb-3">Your Visit Plan</h2>
+            <p id="visit-plan-help">Use these fields to organise what you want to see. This is a personal checklist, not a booking request. It does not contact the store or reserve products. Automatic summaries are not enabled yet; your entries are not saved when you leave this page.</p>
+            <form id="visit-plan-form" aria-describedby="visit-plan-help">
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="visit-purpose">What would you like to explore?</label>
+                        <select class="form-select" id="visit-purpose" name="purpose">
+                            <option value="tableware">Tableware for everyday use</option>
+                            <option value="tea-coffee">Tea and coffee pieces</option>
+                            <option value="gift">A gift</option>
+                            <option value="accessories">Decorative accessories</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="visit-quantity">Number of pieces to consider</label>
+                        <input class="form-control" id="visit-quantity" name="quantity" type="number" min="1" step="1" value="1" required aria-describedby="visit-quantity-error">
+                        <p id="visit-quantity-error" class="state-error state-hidden mt-2">Enter a whole number of at least one.</p>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="visit-notes">Items and questions to take with you</label>
+                        <textarea class="form-control" id="visit-notes" name="notes" rows="4" maxlength="1000" aria-describedby="visit-notes-help"></textarea>
+                        <p id="visit-notes-help" class="small mt-2">Include the product name, size, or care question. Do not enter personal contact details.</p>
+                    </div>
+                </div>
+                <!-- Enable the summary button when the JavaScript assignment implements the local planner. -->
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-secondary" id="visit-summary-button" type="button" disabled aria-describedby="visit-plan-help">Create my summary</button>
+                    <button class="btn btn-outline-secondary" id="visit-reset" type="reset">Clear plan</button>
+                </div>
+            </form>
+            <div id="visit-plan-result" class="border rounded p-3 mt-3" aria-labelledby="visit-result-heading">
+                <h3 class="h5" id="visit-result-heading">Your visit summary</h3>
+                <p id="visit-result-instructions">Use your notes above during your visit. To check current hours and availability, call the store before travelling.</p>
+                <dl id="visit-summary" class="mb-0" aria-live="polite"></dl>
+                <p id="visit-success" class="state-success state-hidden mt-3 mb-0" role="status">Your personal plan is ready. No booking has been made.</p>
+                <p id="visit-error" class="state-error state-hidden mt-3 mb-0" role="alert">Check the highlighted fields before creating your summary.</p>
+            </div>
+            <a class="btn btn-outline-secondary mt-3" href="tel:+77003933327">Call Noble: +7 700 393 33 27</a>
+        </section>
     </main>
     <footer class="container py-4 mt-5 border-top">
-        <address>
+        <address id="store-address" class="mb-2">
             Noble, Mandilik El 42, Astana, Kazakhstan<br>
             Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
         </address>
+        <p>Opening hours listed in the project: 10:00–20:00. Call before travelling.</p>
         <p><small>&copy; 2026 Noble educational project.</small></p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
