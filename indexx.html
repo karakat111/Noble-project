@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/karakat.css">
     <link rel="stylesheet" href="css/turar.css">
 </head>
 <body class="home-page">
@@ -47,10 +48,10 @@
         <!-- i use section because this content has its own topic and heading -->
         <section class="store-intro mb-5" id="home-intro"> <!-- An ID is appropriate because this introduction section is unique on the page. -->
             <h2 class="h4 mb-3">About Noble</h2>
-            <p>
+            <p class="lead">
                 This is a tableware store where you can enjoy beautiful views while selecting tableware for yourself or as a gift. Everything in the store looks very aesthetically pleasing and is thoughtfully arranged.</p>
                 <p> The walls are adorned with mirrors and various beautiful medieval-style paintings. There are different shelves where everything is arranged beautifully, elegantly, and by theme; the tableware matches each other, meaning the pieces complement one another. The store has a wide variety of unique plates, glasses, and so on. What I liked most was the shelf with a mirror displaying cups and plates featuring floral patterns in a combination of blue, pink, and green. There’s also a glass shelf with a nautical theme, as well as various fruit-themed sets—like lemon sets—and the assortment includes sets with statues, animals, and items inspired by ancient times. Everything there looks expensive and luxurious.</p>
-                <p> The consultants and salespeople are very knowledgeable—you can tell they’re professionals. Noble is a really cool place where you can admire and buy tableware, especially for those who love tableware or collect it.
+                <p class="mb-0"> The consultants and salespeople are very knowledgeable—you can tell they’re professionals. Noble is a really cool place where you can admire and buy tableware, especially for those who love tableware or collect it.
 
             </p>
         
@@ -58,42 +59,40 @@
 
         <div class="row g-4">
         <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
-    <img class="img-fluid w-100 rounded border" src="images.jpg/noble-fasad.jpg"
+    <img class="img-fluid rounded border border-brand" src="images.jpg/noble-fasad.jpg"
          alt="Exterior facade of Noble store"
          width="600"
          height="400">
-    <figcaption class="mt-2">Noble store facade</figcaption>
+    <figcaption class="small text-walnut fst-italic mt-2">Noble store facade</figcaption>
 </figure>
             <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
-        <img class="img-fluid w-100 rounded border" src="images.jpg/noble-vitrina.jpg"
+        <img class="img-fluid rounded border border-brand" src="images.jpg/noble-vitrina.jpg"
              alt="Noble store display with tableware"
              width="600"
              height="400">
 
-        <figcaption class="mt-2">Noble store display with tableware</figcaption>
+        <figcaption class="small text-walnut fst-italic mt-2">Noble store display with tableware</figcaption>
     </figure>
 
     <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
-        <img class="img-fluid w-100 rounded border" src="images.jpg/photo_2026-09-09_20-44-36.jpg"
+        <img class="img-fluid rounded border border-brand" src="images.jpg/photo_2026-09-09_20-44-36.jpg"
              alt="Noble store interior"
              width="600"
              height="400">
 
-        <figcaption class="mt-2">Noble store interior</figcaption>
+        <figcaption class="small text-walnut fst-italic mt-2">Noble store interior</figcaption>
     </figure>
 
         </div>
     </main>
     <footer class="container py-4 mt-5 border-top">
-         <p> INFO: </P>
-        <p>
-            Working hours: <mark>10:00-20:00</mark>
-        </p>
-        <p>Phone number:<a href="tel:+77003933327">7-700-393-3327</a></p>
-        <p> Address: Mandilik El 42, Astana, Kazakhstan
-        </p>
-        
-        <p>&copy; 2026 Noble</p>
+        <address id="store-address" class="mb-2">
+            Address: Mandilik El 42, Astana, Kazakhstan<br>
+            Phone number:<a href="tel:+77003933327">7-700-393-3327</a>
+        </address>
+        <p class="mb-1">INFO:</p>
+        <p class="mb-1">Working hours: <mark>10:00-20:00</mark></p>
+        <p class="small text-muted mb-0">&copy; 2026 Noble</p>
     </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,45 +1,4 @@
-/* Noble navigation */
-:where(.home-page, .catalog-page) .navbar {
-    background-color: var(--color-sage);
-    border-bottom: 3px solid var(--color-sage-dark);
-    padding-top: 1.2rem;
-    padding-bottom: 1.1rem;
-}
-
-:where(.home-page, .catalog-page) .navbar-brand {
-    color: var(--color-cream);
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 2.1rem;
-    font-weight: 600;
-}
-
-:where(.home-page, .catalog-page) .navbar-nav .nav-link {
-    color: var(--color-cream);
-    font-size: 0.92rem;
-}
-
-:where(.home-page, .catalog-page) .navbar-nav .nav-link:hover,
-:where(.home-page, .catalog-page) .navbar-nav .nav-link:focus {
-    color: var(--color-terracotta);
-}
-
-:where(.home-page, .catalog-page) .navbar-nav .nav-link.active {
-    background-color: var(--color-sage-dark);
-    color: var(--color-cream);
-    border-bottom: 2px solid var(--color-cream);
-    border-radius: 4px;
-    font-weight: 600;
-}
-
-:where(.home-page, .catalog-page) .navbar-toggler {
-    border-color: rgba(251, 248, 241, 0.4);
-}
-
-:where(.home-page, .catalog-page) .navbar-toggler-icon {
-    filter: invert(1);
-}
-
+/* Branding comes from base.css and the team's existing karakat.css. */
 :where(.home-page, .catalog-page) :is(a, button):focus-visible {
     outline: 2px solid var(--color-sage-dark);
     outline-offset: 3px;
@@ -49,48 +8,9 @@
     outline-color: var(--color-cream);
 }
 
-/* Titles and small brand details */
-:where(.home-page, .catalog-page) .page-title {
-    font-family: var(--font-display);
-    font-style: italic;
-    color: var(--color-sage-dark);
-    font-size: 2.1rem;
-    font-weight: 600;
-}
-
-:where(.home-page, .catalog-page) figcaption {
-    font-family: var(--font-display);
-    color: var(--color-walnut);
-    font-style: italic;
-}
-
-:where(.home-page, .catalog-page) .bg-panel,
-:where(.home-page, .catalog-page) mark {
-    background-color: var(--color-bg-panel);
-    color: var(--color-ink);
-}
-
-.home-page .store-intro h2::after {
-    content: "";
-    display: block;
-    width: 3rem;
-    height: 3px;
-    margin-top: 0.5rem;
-    background-color: var(--color-terracotta);
-}
-
-.catalog-page .btn-outline-primary {
-    --bs-btn-color: var(--color-walnut);
-    --bs-btn-border-color: var(--color-walnut);
-    --bs-btn-hover-bg: var(--color-terracotta);
-    --bs-btn-hover-border-color: var(--color-terracotta);
-    --bs-btn-hover-color: var(--color-cream);
-}
-
-.catalog-page .price-table {
-    --bs-table-bg: var(--color-cream);
-    --bs-table-color: var(--color-ink);
-    --bs-table-border-color: var(--color-border);
-    --bs-table-striped-bg: var(--color-bg-panel);
-    --bs-table-striped-color: var(--color-ink);
+/* Equal image frames for the More Products gallery. */
+.catalog-page .product-gallery .more-products-image {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
 }
