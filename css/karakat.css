@@ -1,4 +1,3 @@
-
 .navbar {
   background-color: var(--color-sage);
   border-bottom: 3px solid var(--color-sage-dark);
@@ -26,12 +25,6 @@
   border-radius: 4px;
   font-weight: 600;
   border-bottom: 2px solid var(--color-cream);
-}
-.navbar-toggler {
-  border-color: rgba(251, 248, 241, 0.4);
-}
-.navbar-toggler-icon {
-  filter: invert(1);
 }
 
 /* Brand buttons */
@@ -97,4 +90,33 @@
   color: var(--color-sage-dark);
   font-size: 2.1rem;
   font-weight: 600;
+}
+
+/* Interface states: switched on and off by JavaScript later */
+.state-hidden {
+  display: none;
+}
+.state-active {
+  background-color: var(--color-sage-dark);
+  color: var(--color-cream);
+}
+.state-selected {
+  outline: 2px solid var(--color-terracotta);
+  outline-offset: 2px;
+}
+.state-error {
+  color: #a12b2b;
+  font-weight: 500;
+}
+.state-success {
+  color: var(--color-sage-dark);
+  font-weight: 500;
+}
+.form-control.state-error,
+.form-select.state-error {
+  border-color: #a12b2b;
+}
+.form-control.state-success,
+.form-select.state-success {
+  border-color: var(--color-sage-dark);
 }
