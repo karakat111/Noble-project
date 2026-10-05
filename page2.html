@@ -64,10 +64,10 @@
 
     <div class="row justify-content-center ">
       <div class="col-12 col-lg-10">
-        <form method="get" action="#" class="bg-panel p-4 p-md-5 rounded border border-brand shadow-sm">
-          <p class="text-walnut fst-italic mb-4">Send a request — we reply on store business days</p>
+        <form id="contact-form" method="get" action="#" class="bg-panel p-4 p-md-5 rounded border border-brand shadow-sm">
+          <p id="contact-note" class="text-walnut fst-italic mb-4">Send a request — we reply on store business days</p>
 
-          <fieldset>
+          <fieldset id="contact-fields"></fieldset>
             <legend class="h5 text-sage-dark mb-3">Ask a question or book a visit</legend>
 
             <div class="row g-3">
@@ -125,9 +125,11 @@
           </fieldset>
 
           <div class="d-flex flex-wrap gap-2 mt-4 justify-content-center">
-            <button type="submit" class="btn btn-primary px-4">Send</button>
-            <button type="reset" class="btn btn-outline-primary px-4">Clear</button>
-            <button type="button" class="btn btn-primary btn-sm" disabled>Save draft</button>
+            <button id="contact-submit" type="submit" class="btn btn-primary px-4">Send</button>
+
+            <button id="contact-reset" type="reset" class="btn btn-outline-primary px-4">Clear</button>
+
+            <button id="contact-save-draft" type="button" class="btn btn-primary btn-sm" disabled>Save draft</button>
           </div>
         </form>
       </div>
