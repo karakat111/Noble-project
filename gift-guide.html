@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <section class="mb-5">
+    <section id="gift-plan" class="mb-5">
       <h2 class="h4 text-walnut">Plan Your Choice</h2>
       <ol>
         <li>Choose an occasion and note the recipient's preferences.</li>
@@ -102,7 +102,7 @@
         <strong>Demonstration only:</strong> this form does not contact Noble, reserve products, or save a request. Use made-up details when testing it. For an actual enquiry, use the <a href="page2.html">store contact information</a>.
       </div>
 
-      <form action="gift-guide.html" method="get" class="bg-panel p-4 p-md-5 rounded border border-brand shadow-sm">
+      <form id="gift-form" action="gift-guide.html" method="get" class="bg-panel p-4 p-md-5 rounded border border-brand shadow-sm">
         <fieldset class="mb-4">
           <legend class="h5 text-sage-dark">Contact details for the example</legend>
           <div class="row g-3">
@@ -171,9 +171,15 @@
         </fieldset>
 
         <div class="d-flex flex-wrap gap-2 mt-4">
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-outline-primary">Reset form</button>
-          <button type="button" class="btn btn-primary btn-sm" disabled>Preview</button>
+<button id="gift-submit" type="submit" class="btn btn-primary">Submit</button>
+
+<button id="gift-reset" type="reset" class="btn btn-outline-primary">
+  Reset form
+</button>
+
+<button id="gift-preview" type="button" class="btn btn-primary btn-sm" disabled>
+  Preview
+</button>
         </div>
       </form>
     </section>
