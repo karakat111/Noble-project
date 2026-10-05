@@ -19,13 +19,13 @@
 <body class="catalog-page">
     <!-- Author: TURAR DYUMBAYEV -->
     <header class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+        <nav class="navbar navbar-expand-lg">
             <div class="container profile-navigation">
                 <a class="navbar-brand" href="indexx.html">Noble</a>
                 <div class="navbar-collapse" id="productsNavigation">
                     <ul class="navbar-nav flex-row flex-wrap gap-2 ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="indexx.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="page-1.html" aria-current="page">Products</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="page-1.html">Products</a></li>
                         <li class="nav-item"><a class="nav-link" href="collections.html">Collections</a></li>
                         <li class="nav-item"><a class="nav-link" href="gift-guide.html">Gift Guide</a></li>
                         <li class="nav-item"><a class="nav-link" href="care.html">Care and Storage</a></li>
@@ -35,14 +35,14 @@
                     </ul>
                 </div>
                 <div class="navigation-actions">
-                    <a class="profile-link" href="cart.html" aria-label="Shopping cart" title="Cart">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                    <a class="profile-link" href="cart.html">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                             <path d="M2 3h3l3 12h11l3-9H6"></path>
                             <circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle>
                         </svg>
                     </a>
-                    <a class="profile-link" href="register.html" aria-label="Register a profile" title="Register">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                    <a class="profile-link" href="register.html">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                         <circle cx="12" cy="8" r="4"></circle>
                         <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
                     </svg>
@@ -57,10 +57,10 @@
             <h1 class="page-title mb-3">Pieces for everyday rituals.</h1>
             <p class="lead mb-0">Explore tableware, serving pieces and thoughtful details for your home.</p>
         </div>
-        <form class="catalog-filter-form" id="catalog-filters" aria-label="Filter products">
+        <form class="catalog-filter-form" id="catalog-filters">
             <div class="catalog-toolbar mb-4" id="categories">
                 <p id="filter-help" class="small">Filters are not active yet. All 10 products are displayed.</p>
-                <fieldset class="category-filters" disabled aria-describedby="filter-help">
+                <fieldset class="category-filters" disabled>
                     <legend class="small fw-semibold mb-2">Category</legend>
                     <input class="btn-check" type="radio" name="category" id="filter-all" value="all" checked>
                     <label class="btn filter-chip" for="filter-all">All pieces · 10</label>
@@ -71,7 +71,7 @@
                     <input class="btn-check" type="radio" name="category" id="filter-accessories" value="accessories" >
                     <label class="btn filter-chip" for="filter-accessories">Accessories · 2</label>
                 </fieldset>
-                <fieldset class="price-filters mt-3" disabled aria-describedby="filter-help">
+                <fieldset class="price-filters mt-3" disabled>
                     <legend class="small fw-semibold mb-2">Price</legend>
                     <input class="btn-check" type="radio" name="price" id="price-any" value="any" checked>
                     <label class="btn filter-chip" for="price-any">Any price</label>
@@ -84,7 +84,7 @@
             </div>
             <div id="price-table" class="catalog-results">
                 <div class="row g-4 product-grid" id="catalog-results">
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="tableware" data-price="over" id="product-mug">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/mug.png" class="card-img-top product-image" alt="Illustration of mug" width="1024" height="1024" fetchpriority="auto">
@@ -93,16 +93,15 @@
                         <div class="card-body d-flex flex-column">
                             <h2 class="h4 product-title">Mug</h2>
                             <p class="product-description small">A handled cup for tea or coffee.</p>
-                            <p class="product-volume small"><span>Volume</span><strong>Ask the store</strong></p>
+                            <p class="product-volume small"><span>Volume</span><strong>≈ 350 ml</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">120,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about mug">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-mug" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-mug" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="tableware" data-price="over" id="product-caviar-cup">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-caviar-cup">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/caviar-cup.png" class="card-img-top product-image" alt="Illustration of caviar cup" width="1024" height="1024" fetchpriority="auto">
@@ -111,16 +110,15 @@
                         <div class="card-body d-flex flex-column">
                             <h2 class="h4 product-title">Caviar cup</h2>
                             <p class="product-description small">A small serving cup for individual portions.</p>
-                            <p class="product-volume small"><span>Volume</span><strong>Ask the store</strong></p>
+                            <p class="product-volume small"><span>Volume</span><strong>≈ 100 ml</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">220,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about caviar cup">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-caviar-cup" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-caviar-cup" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="accessories" data-price="under" id="product-candle-holder">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-candle-holder">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/candle-holder.png" class="card-img-top product-image" alt="Illustration of lithophane candle holder" width="1024" height="1024" fetchpriority="auto">
@@ -132,31 +130,29 @@
                             <p class="product-volume small"><span>Volume</span><strong>Not applicable</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">78,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about lithophane candle holder">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-candle-holder" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-candle-holder" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="serving" data-price="over" id="product-teapot">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-teapot">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
-                            <img src="images.jpg/catalog/teapot.png" class="card-img-top product-image" alt="Illustration of teapot" width="1024" height="1024" fetchpriority="auto">
+                            <img src="images.jpg/catalog/teapot.png" class="card-img-top product-image" alt="Illustration of teapot" fetchpriority="auto">
                             <span class="product-category">Serving</span>
                         </div>
                         <div class="card-body d-flex flex-column">
                             <h2 class="h4 product-title">Teapot</h2>
                             <p class="product-description small">A statement piece for serving tea at the table.</p>
-                            <p class="product-volume small"><span>Volume</span><strong>Ask the store</strong></p>
+                            <p class="product-volume small"><span>Volume</span><strong>≈ 1.2 L</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">144,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about teapot">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-teapot" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-teapot" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="tableware" data-price="under" id="product-bowl">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-bowl">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/bowl.png" class="card-img-top product-image" alt="Illustration of bowl" width="1024" height="1024" loading="lazy">
@@ -165,16 +161,15 @@
                         <div class="card-body d-flex flex-column">
                             <h2 class="h4 product-title">Bowl</h2>
                             <p class="product-description small">A versatile bowl for serving food at the table.</p>
-                            <p class="product-volume small"><span>Volume</span><strong>Ask the store</strong></p>
+                            <p class="product-volume small"><span>Volume</span><strong>≈ 600 ml</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">100,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about bowl">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-bowl" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-bowl" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="accessories" data-price="under" id="product-jewelry-box">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-jewelry-box">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/jewelry-box.png" class="card-img-top product-image" alt="Illustration of jewelry box" width="1024" height="1024" loading="lazy">
@@ -186,13 +181,12 @@
                             <p class="product-volume small"><span>Volume</span><strong>Not applicable</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">38,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about jewelry box">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-jewelry-box" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-jewelry-box" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="serving" data-price="under" id="product-pitcher">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-pitcher">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/pitcher.png" class="card-img-top product-image" alt="Illustration of pitcher" width="1024" height="1024" loading="lazy">
@@ -201,16 +195,15 @@
                         <div class="card-body d-flex flex-column">
                             <h2 class="h4 product-title">Pitcher</h2>
                             <p class="product-description small">A handled vessel for pouring drinks.</p>
-                            <p class="product-volume small"><span>Volume</span><strong>Ask the store</strong></p>
+                            <p class="product-volume small"><span>Volume</span><strong>≈ 1.5 L</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">80,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about pitcher">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-pitcher" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-pitcher" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="tableware" data-price="under" id="product-saucer">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-saucer">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/saucer.png" class="card-img-top product-image" alt="Illustration of saucer" width="1024" height="1024" loading="lazy">
@@ -222,13 +215,12 @@
                             <p class="product-volume small"><span>Volume</span><strong>Not applicable</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">58,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about saucer">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-saucer" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-saucer" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="serving" data-price="under" id="product-decanter">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-decanter">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/decanter.png" class="card-img-top product-image" alt="Illustration of decanter" width="1024" height="1024" loading="lazy">
@@ -237,16 +229,15 @@
                         <div class="card-body d-flex flex-column">
                             <h2 class="h4 product-title">Decanter</h2>
                             <p class="product-description small">A vessel for presenting and pouring drinks.</p>
-                            <p class="product-volume small"><span>Volume</span><strong>Ask the store</strong></p>
+                            <p class="product-volume small"><span>Volume</span><strong>≈ 1 L</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">85,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about decanter">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-decanter" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-decanter" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="tableware" data-price="under" id="product-caviar-dish">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-caviar-dish">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/caviar-dish.png" class="card-img-top product-image" alt="Illustration of caviar dish" width="1024" height="1024" loading="lazy">
@@ -255,12 +246,11 @@
                         <div class="card-body d-flex flex-column">
                             <h2 class="h4 product-title">Caviar dish</h2>
                             <p class="product-description small">A small dish for presenting a shared serving.</p>
-                            <p class="product-volume small"><span>Volume</span><strong>Ask the store</strong></p>
+                            <p class="product-volume small"><span>Volume</span><strong>≈ 250 ml</strong></p>
                             <div class="mt-auto pt-3 d-flex align-items-center justify-content-between gap-2">
                                 <span class="product-price">65,000 ₸</span>
-                                <a class="product-enquiry" href="tel:+77003933327" aria-label="Ask Noble about caviar dish">Enquire <span aria-hidden="true">↗</span></a>
                             </div>
-                            <button type="button" id="add-caviar-dish" class="btn btn-outline-secondary btn-sm mt-3" disabled title="Cart functionality is not enabled yet">Add to cart</button>
+                            <button type="button" id="add-caviar-dish" class="btn btn-outline-secondary btn-sm mt-3" disabled>Add to cart</button>
                         </div>
                     </div>
                 </article>
@@ -268,9 +258,9 @@
 
             </div>
         </form>
-        <aside class="catalog-note mt-4 pt-3 border-top" aria-label="Catalogue information">
-            <p class="small mb-2">Images are AI-generated illustrations inspired by the project photographs, not photographs of the exact items. Prices come from the existing project catalogue and may have changed. Ask Noble to confirm capacity, appearance and availability before buying.</p>
-            <a href="care.html">Care and storage</a><span aria-hidden="true"> · </span><a href="page2.html#store-address">Find the store</a>
+        <aside class="catalog-note mt-4 pt-3 border-top">
+            <p class="small mb-2">Images are AI-generated illustrations inspired by the project photographs, not photographs of the exact items. Prices come from the existing project catalogue and may have changed. Volumes marked with ≈ are estimates. Confirm product details and availability with Noble before buying.</p>
+            <a href="care.html">Care and storage</a><span> · </span><a href="page2.html#store-address">Find the store</a>
         </aside>
     </main>
     <footer class="container py-4 mt-5 border-top">
