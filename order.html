@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="My Orders at Noble.">
+    <meta name="author" content="Arsen Ibatullin">
+    <title>My Orders | Noble</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <!-- Bootstrap 5.3.3: shared project grid, navbar, spacing, buttons and responsive behaviour. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/arsen.css">
+</head>
+<body class="arsen-page order-page">
+    <!-- Author: Arsen Ibatullin -->
+    <!-- container-fluid keeps the shared navigation bar full width. -->
+    <header class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+            <div class="container profile-navigation">
+                <a class="navbar-brand" href="indexx.html">Noble</a>
+                <!-- Always-visible navigation uses Bootstrap CSS only, including on phones. -->
+                <div class="navbar-collapse" id="order-navigation">
+                    <ul class="navbar-nav flex-row flex-wrap gap-2 ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="indexx.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="page-1.html">Products</a></li>
+                        <li class="nav-item"><a class="nav-link" href="collections.html">Collections</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gift-guide.html">Gift Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="care.html">Care and Storage</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="order.html" aria-current="page">My Orders</a></li>
+                        <li class="nav-item"><a class="nav-link" href="page2.html">Contact</a></li>
+
+                    </ul>
+                </div>
+                <div class="navigation-actions">
+                    <a class="profile-link" href="cart.html" aria-label="Shopping cart" title="Cart">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                            <path d="M2 3h3l3 12h11l3-9H6"></path>
+                            <circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle>
+                        </svg>
+                    </a>
+                    <a class="profile-link" href="register.html" aria-label="Register a profile" title="Register">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
+                    </svg>
+                </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- container keeps the reading content comfortably narrow on wide screens. -->
+    <main id="main-content" class="container py-4">
+    <p class="small text-muted mb-1">Noble — Tableware Store</p>
+    <h1 class="page-title mb-3">My Orders</h1>
+    <p id="orders-help" class="lead">Your order history will appear here when ordering is enabled. No orders are created or saved in this HTML/CSS version.</p>
+    <div id="orders-empty" class="border rounded p-4">
+        <h2 class="h4">No orders yet</h2>
+        <p>Choose your pieces in the catalogue, review your cart, then place your order.</p>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="page-1.html" class="btn btn-outline-secondary">Explore products</a>
+            <a href="cart.html" class="btn btn-outline-secondary">Open cart</a>
+        </div>
+    </div>
+    <div id="orders-list" aria-live="polite"></div>
+    <p id="orders-message" class="mt-3" role="status"></p>
+    <template id="order-template">
+        <article class="border rounded p-4 mb-4">
+            <div class="d-flex flex-wrap justify-content-between gap-2 mb-3">
+                <h2 class="h4 order-number mb-0"></h2>
+                <span class="badge text-bg-secondary">Local order</span>
+            </div>
+            <p class="small">Placed: <time class="order-date"></time></p>
+            <ul class="order-items ps-4"></ul>
+            <p class="fw-semibold mt-3">Total: <span class="order-total"></span></p>
+            <p class="small mb-0">This order is recorded on this device only. No payment was collected and no request was sent to the store.</p>
+        </article>
+    </template>
+</main>
+    <footer class="container py-4 mt-5 border-top">
+        <address id="store-address" class="mb-2">
+            Noble, Mandilik El 42, Astana, Kazakhstan<br>
+            Phone: <a href="tel:+77003933327">+7 700 393 33 27</a>
+        </address>
+        <p>Opening hours listed in the project: 10:00–20:00. Call before travelling.</p>
+        <p><small>&copy; 2026 Noble educational project.</small></p>
+    </footer>
+</body>
+</html>

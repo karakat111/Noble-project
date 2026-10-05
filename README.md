@@ -22,13 +22,13 @@ documented so far, rather than a final allocation of two pages per student.
 | File | Purpose |
 | --- | --- |
 | `indexx.html` | Introduction to Noble, store photographs, and basic contact information. |
-| `page-1.html` | Product catalogue, recorded prices, categories, photographs, and an employee quote. |
+| `page-1.html` | Ten product cards, recorded prices, AI concept images, and disabled category/price controls. |
 | `page2.html` | Contact information and a demonstration enquiry form. |
-| `colophon.html` | Background on how the original project was created. |
+| `register.html` | Profile registration layout; account creation is not enabled. |
 | `collections.html` | Tea and coffee pieces, table settings, and decorative accessories grouped by use. |
 | `gift-guide.html` | Gift ideas by occasion and a demonstration gift enquiry form. |
 | `care.html` | Care checks, storage guidance, manufacturer references, and questions to ask before buying. |
-| `visit.html` | Store location information, a visit checklist, and questions to ask in person. |
+| `order.html` | Order history layout, empty state and prepared order template. |
 
 Every page includes navigation to all eight pages. Some pages also use internal
 links to jump to sections. The collection groupings are editorial categories,
@@ -41,11 +41,11 @@ Noble-project/
 ├── indexx.html
 ├── page-1.html
 ├── page2.html
-├── colophon.html
+├── register.html
 ├── collections.html
 ├── gift-guide.html
 ├── care.html
-├── visit.html
+├── order.html
 ├── images.jpg/             — store and product photographs
 ├── tag_checklist (2).md     — original HTML tag checklist
 ├── AI_log (1).md            — AI usage log
@@ -80,7 +80,7 @@ validation and GET form submission. Submitted values appear in the page URL;
 there is no backend to process or store a request.
 
 These forms do not contact Noble, reserve goods, or book visits. Use fictional
-contact details when testing. The current `visit.html` contains no visit form.
+contact details when testing. The current `order.html` contains no visit form.
 
 ## Content and sources
 
@@ -107,7 +107,7 @@ Before the next submission:
   its original statement that no page code or text was AI-written is now outdated.
 - Reconcile author comments and author metadata on the newer pages so they
   accurately describe contributions and assistance.
-- Remove the stale visit-planner link and form references in `visit.html`, or
+- Remove the stale visit-planner link and form references in `order.html`, or
   implement the intended section; the form was removed from the current file.
 
 The original README describes a separately maintained Assignment 1 report about
@@ -128,3 +128,37 @@ git pull origin main
 Coordinate edits to shared navigation because adding a page affects every HTML
 file. Each participant should use their own Git identity and account. CSS styling
 and the accompanying Assignment 2 materials are the next stage of development.
+
+## Registration page
+
+Colophon has been replaced by `register.html`. The profile icon at the right of
+navigation on every page opens the registration form. It contains name, email,
+password and confirmation fields, a native reset button, and prepared status
+containers. No JavaScript or backend is present. Create account is disabled and
+no registration data is sent or stored. Sample credentials only should be used.
+
+AI assistance on 5 October 2026: Codex generated the registration HTML, shared
+profile navigation and related CSS at the student's request.
+
+
+## Catalogue update
+
+The product page now has ten responsive cards with short descriptions, recorded
+prices and a volume row. Unknown capacities say Ask the store; non-vessels say
+Not applicable. Category and price controls are disabled previews. CSS filtering logic has been removed;
+all ten products remain visible.
+
+Images in `images.jpg/catalog/` were generated with AI at the student's request
+and are labelled as illustrations on the page. They are not verified product
+photographs and do not satisfy the midterm requirement for original photographs.
+The exact prompts and provenance are in `catalog-image-notes.md`.
+
+## Cart and orders without JavaScript
+
+The former Visit page is replaced by `order.html`. `cart.html` is accessible beside
+the profile icon on every page. Add to cart and Place order are disabled; no items,
+orders or account data are stored or submitted. The empty states, item/order templates,
+quantity controls and feedback containers are ready for a later JavaScript assignment.
+The catalogue's CSS filtering rules have been removed. All website pages contain no
+script tags, inline event handlers or JavaScript URLs. Form fields and reset buttons
+retain native HTML behaviour. Generated HTML/CSS changes were made with Codex assistance.

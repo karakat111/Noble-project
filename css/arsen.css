@@ -53,14 +53,6 @@
     font-style: italic;
 }
 
-.colophon-page kbd {
-    padding: 2px 6px;
-    background: var(--color-sage-dark);
-    color: var(--color-cream);
-    border: 1px solid var(--color-sage-dark);
-    border-radius: 4px;
-}
-
 /* Prepared states for the care checklist and personal visit planner. */
 .arsen-page .state-hidden {
     display: none;
@@ -98,4 +90,8 @@
 
 .arsen-page main ul {
     padding-left: 24px;
+}
+
+.register-page .registration-panel {
+    background-color: var(--color-bg-panel);
 }

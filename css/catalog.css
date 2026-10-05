@@ -1,0 +1,26 @@
+/* Catalogue appearance; Bootstrap still controls the responsive card grid. */
+.catalog-page .catalog-eyebrow { color: var(--color-walnut); font-size: 11px; letter-spacing: 2px; }
+.catalog-page .catalog-intro { padding: 28px 0 12px; max-width: 720px; }
+.catalog-page .catalog-intro .page-title { font-size: 46px; }
+.catalog-page .catalog-intro .lead { font-size: 16px; }
+.catalog-toolbar { border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 20px 0; }
+.catalog-toolbar fieldset { position: relative; }
+.catalog-toolbar .btn-check { top: 0; left: 0; }
+.catalog-toolbar .filter-chip { border: 1px solid var(--color-border); border-radius: 24px; padding: 8px 16px; color: var(--color-sage-dark); margin: 0 4px 6px 0; font-size: 13px; }
+.catalog-toolbar .btn-check:checked + .filter-chip { background: var(--color-sage-dark); color: var(--color-cream); border-color: var(--color-sage-dark); }
+.catalog-toolbar .btn-check:focus-visible + .filter-chip { outline: 2px solid var(--color-walnut); outline-offset: 3px; }
+.catalog-toolbar .filter-reset { color: var(--color-walnut); text-decoration: underline; font-size: 13px; }
+.product-card { border: 1px solid var(--color-border); background: var(--color-cream); border-radius: 12px; overflow: hidden; }
+.product-image-wrap { position: relative; background: #f5f1e8; }
+.catalog-page .product-image { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; }
+.product-category { position: absolute; left: 12px; top: 12px; background: var(--color-cream); border-radius: 20px; padding: 5px 10px; font-size: 10px; color: var(--color-sage-dark); }
+.catalog-page .product-title { font-size: 25px; margin-bottom: 8px; }
+.product-description { min-height: 42px; color: var(--color-walnut-dark); }
+.product-volume { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding: 12px 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); margin-bottom: 0; }
+.product-volume strong { font-weight: 500; }
+.product-price { font-size: 16px; font-weight: 600; color: var(--color-sage-dark); }
+.product-enquiry { font-size: 12px; text-decoration: underline; }
+.catalog-note { color: var(--color-walnut-dark); }
+@media (max-width: 575.98px) {
+    .catalog-page .catalog-intro .page-title { font-size: 36px; }
+}
