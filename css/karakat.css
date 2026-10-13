@@ -120,3 +120,142 @@
 .form-select.state-success {
   border-color: var(--color-sage-dark);
 }
+/* Contact confirmation — Noble style */
+
+#contact-confirmation.contact-success {
+display: block;
+position: relative;
+margin-top: 24px;
+padding: 28px 30px 28px 88px;
+background-color: #F5F1E8;
+color: #4B5D3A;
+border: 1px solid #D6DCCB;
+border-radius: 8px;
+font-family: "Work Sans", sans-serif;
+font-size: 14px;
+line-height: 1.7;
+box-shadow: 0 4px 16px rgba(75, 93, 58, 0.06);
+}
+
+/* Decorative checkmark */
+#contact-confirmation.contact-success::before {
+content: "✓";
+position: absolute;
+left: 25px;
+top: 50%;
+transform: translateY(-50%);
+display: flex;
+align-items: center;
+justify-content: center;
+width: 44px;
+height: 44px;
+border-radius: 50%;
+background-color: #4B5D3A;
+color: #F5F1E8;
+font-size: 24px;
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+#contact-confirmation.contact-success {
+padding: 75px 20px 22px;
+}
+
+
+#contact-confirmation.contact-success::before {
+    top: 18px;
+    left: 20px;
+    transform: none;
+}
+
+
+}
+/* Gift Guide success message */
+#confirmation.state-success {
+display: block;
+position: relative;
+margin-top: 24px;
+padding: 28px 30px 28px 88px;
+background-color: #F5F1E8;
+color: #4B5D3A;
+border: 1px solid #D6DCCB;
+border-radius: 8px;
+font-family: "Work Sans", sans-serif;
+font-size: 14px;
+line-height: 1.8;
+box-shadow: 0 4px 16px rgba(75, 93, 58, 0.06);
+}
+
+#confirmation.state-success::before {
+content: "✓";
+position: absolute;
+left: 25px;
+top: 50%;
+transform: translateY(-50%);
+display: flex;
+align-items: center;
+justify-content: center;
+width: 44px;
+height: 44px;
+border-radius: 50%;
+background-color: #4B5D3A;
+color: #F5F1E8;
+font-size: 24px;
+}
+
+@media (max-width: 576px) {
+#confirmation.state-success {
+padding: 75px 20px 22px;
+}
+
+
+#confirmation.state-success::before {
+    top: 18px;
+    left: 20px;
+    transform: none;
+}
+
+
+}
+/* Collections product cards */
+.collection-card {
+padding: 24px;
+background-color: #F5F1E8;
+border: 1px solid #D6DCCB;
+border-radius: 8px;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.collection-card:hover {
+transform: translateY(-4px);
+box-shadow: 0 8px 20px rgba(75, 93, 58, 0.10);
+}
+
+.collection-card-title {
+margin-bottom: 14px;
+color: #4B5D3A;
+font-family: "Cormorant Garamond", serif;
+font-size: 24px;
+}
+
+.collection-card-price {
+margin-bottom: 12px;
+color: #A85C32;
+font-size: 16px;
+font-weight: 600;
+}
+
+.collection-card-stock {
+margin-bottom: 0;
+font-size: 13px;
+}
+
+.collection-card-stock.in-stock {
+color: #4B5D3A;
+}
+
+.collection-card-stock.out-of-stock {
+color: #A85C32;
+}
+
+

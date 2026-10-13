@@ -98,6 +98,10 @@
         </section>
       </div>
     </div>
+    <section class="bg-panel p-4 rounded border border-brand mb-5">
+      <h2 class="h4 text-walnut">Featured Gift Idea</h2>
+      <div id="featured-occasion"></div>
+    </section>
 
     <section id="gift-plan" class="mb-5">
       <h2 class="h4 text-walnut">Plan Your Choice</h2>
@@ -167,6 +171,9 @@
               <label for="budget" class="form-label">Total budget in KZT</label>
               <input type="number" class="form-control" id="budget" name="budget-kzt" min="0" step="1">
             </div>
+            <div class="col-12">
+              <p id="budget-per-item" class="small text-sage-dark mb-0"></p>
+            </div>
             <div class="col-12 col-md-6">
               <label for="date" class="form-label">Date of the occasion</label>
               <input type="date" class="form-control" id="date" name="occasion-date">
@@ -189,6 +196,7 @@
         <button id="gift-reset" type="reset" class="btn btn-outline-primary">Reset form</button>
         <button id="gift-preview" type="button" class="btn btn-primary btn-sm" disabled> Preview</button>
         </div>
+        <div id="confirmation" class="state-hidden mt-4"></div>
       </form>
     </section>
   </main>
@@ -201,5 +209,7 @@
     <p class="mb-1">Opening hours listed in the project: 10:00–20:00.</p>
     <p class="small text-muted mb-0">&copy; 2026 Noble educational project.</p>
   </footer>
+  <script src="js/main.js" defer></script>
+<script src="js/gift-guide.js" defer></script>
 </body>
 </html>
