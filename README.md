@@ -3,7 +3,57 @@
 An educational project for the **Introduction to Web Technologies** course,
 featuring the Noble tableware store in Astana. The project began with Assignment 1
 (HTML Basics) and now contains eight linked pages as a foundation for Assignment 2
-(CSS). The current version uses plain HTML, without CSS or JavaScript.
+(CSS). The current learning version includes Bootstrap styling and JavaScript.
+
+## Assignment 4–5 learning implementation — 15 October 2026
+
+This section supersedes the historical descriptions of disabled controls below.
+Codex generated this implementation at the student's explicit request. The
+assignment prohibits AI-written code and documentation: this is a learning
+reference, not a claim of compliant independent coursework.
+
+### Functionality Plan
+
+| Page | Visitor goal | Function | Expected result | Page owner and implementation |
+| --- | --- | --- | --- | --- |
+| Care | Check preparation before using an item | Checkbox progress and reset | Completed count, percentage and clear completion feedback | Arsen's page; AI-generated example |
+| Cart | Review selected pieces | Quantity editing, remove, clear and recalculation | Valid quantities 1–99 and accurate subtotals/total | Arsen's page; AI-generated example |
+| Cart | Finish a demonstration checkout | Review, cancel, confirm and temporary reference | Explicit demo summary, emptied cart and local history | Arsen's page; AI-generated example |
+| Register | Check sample registration details | Five-field validation and password checklist | Field errors, first-error focus or a demo summary | Arsen's page; AI-generated example |
+| Register | Check a typed password | Independent accessible show/hide controls | Each password field toggles separately | Arsen's page; AI-generated example |
+| Catalogue integration | Choose items for the cart | Search, category and price filters; add | Matching count, empty/reset feedback, shared cart | Supporting integration; AI-generated example |
+| My Orders integration | Review the demo just completed | Render local demo history | Latest 30 demo entries or an empty state | Supporting integration; AI-generated example |
+| All pages | Know cart size while browsing | Shared cart badge and cross-tab updates | Same quantity count across the site | Shared integration; AI-generated example |
+
+Run through one local HTTP origin using your IDE's preview server, or run
+`python -m http.server 8000 --bind 127.0.0.1` from the project directory and
+open `http://127.0.0.1:8000/indexx.html`. Direct file URLs have inconsistent
+browser-storage behaviour and are not the tested workflow.
+
+The existing `js/main.js` provides shared form helpers. `js/shop.js` provides
+ten product objects copied from the current catalogue, cart operations,
+totals, browser storage and the shared badge. Page-specific scripts use these
+APIs. All newly connected scripts use `defer` and strict mode.
+The historical `js/base.js` is not connected; its password behaviour is
+replaced by `js/register.js`.
+
+Only script links were added to HTML; CSS was not changed. New interface
+elements are created by DOM methods and use existing Bootstrap/project
+classes. No midterm tag was present in the local tag listing, so a comparison
+against the required midterm baseline could not be verified.
+
+Cart/history use browser localStorage under `noble-demo-shop-v1`.
+Only product IDs, quantities, dates and demo references are saved.
+Registration details and passwords are not saved, logged, sent or placed
+in a URL. Passwords are cleared after successful demonstration validation.
+If browser storage is unavailable, a message explains that cart changes last
+only on the current page. Clearing browser storage removes demo history.
+Catalogue prices are the project's recorded prices, not a current quotation.
+
+See `javascript-checklist.md` for exact code locations and verification.
+Other members' features, price datasets, midterm provenance, evidence, personal
+defence and the required commit history still need team review. No commits,
+tags or pushes were created by this implementation; no work dates are fabricated.
 
 ## Contributors
 
