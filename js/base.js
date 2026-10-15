@@ -1,21 +1,30 @@
-const showPasswordButton = document.querySelector("#show-passwords");
-const Password = document.querySelector("#register-password");
-const passwordConfirm = document.querySelector("#register-confirm");
+const password = document.querySelector("#register-password");
+const passwordConfirmation = document.querySelector("#register-confirm");
+const passwordButton = document.querySelector("#toggle-password");
+const confirmationButton = document.querySelector("#toggle-confirmation");
 
-function ShowPassword() {
-    const areHidden = Password.type === "password";
+function togglePassword(input, button) {
+    const passwordIsHidden = input.type === "password";
+    const buttonText = button.querySelector(".visually-hidden");
 
-    if (areHidden) {
-        Password.type = "text";
-        passwordConfirm.type = "text";
-        showPasswordButton.textContent = "Hide passwords";
+    if (passwordIsHidden) {
+        input.type = "text";
+        buttonText.textContent = "Hide password";
     } else {
-        Password.type = "password";
-        passwordConfirm.type = "password";
-        showPasswordButton.textContent = "Show passwords";
+        input.type = "password";
+        buttonText.textContent = "Show password";
     }
 }
 
-showPasswordButton.addEventListener("click", ShowPassword);
+function toggleFirstPassword() {
+    togglePassword(password, passwordButton);
+}
+
+function toggleConfirmationPassword() {
+    togglePassword(passwordConfirmation, confirmationButton);
+}
+
+passwordButton.addEventListener("click", toggleFirstPassword);
+confirmationButton.addEventListener("click", toggleConfirmationPassword);
 
 

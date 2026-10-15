@@ -95,3 +95,31 @@
 .register-page .registration-panel {
     background-color: var(--color-bg-panel);
 }
+
+.register-page .password-field {
+    position: relative;
+}
+
+.register-page .password-field .form-control {
+    padding-right: 48px;
+}
+
+.register-page .password-toggle {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    color: var(--color-sage-dark);
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+.register-page .password-toggle:hover,
+.register-page .password-toggle:focus {
+    color: var(--color-terracotta);
+}
