@@ -6,7 +6,7 @@ const success = document.querySelector('#care-success');
 
 function calculateProgress(inputs) {
     const completed = inputs.filter(input => input.checked).length;
-    return { completed, total: inputs.length, percent: Math.round(completed / inputs.length * 100) };
+    return { completed: completed, total: inputs.length, percent: Math.round(completed / inputs.length * 100) };
 }
 
 function updateProgress() {
