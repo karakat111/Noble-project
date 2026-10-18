@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/karakat.css">
     <link rel="stylesheet" href="css/turar.css">
     <link rel="stylesheet" href="css/catalog.css">
+    <script src="js/student-shop.js" defer></script>
+    <script src="js/products.js" defer></script>
 </head>
 
 <body class="catalog-page">
@@ -59,32 +61,26 @@
         </div>
         <form class="catalog-filter-form" id="catalog-filters">
             <div class="catalog-toolbar mb-4" id="categories">
-                <p id="filter-help" class="small">Filters are not active yet. All 10 products are displayed.</p>
-                <fieldset class="category-filters" disabled>
+                <p id="filter-help" class="small" role="status" aria-live="polite">All 10 products are displayed. Enable JavaScript to use filters.</p>
+                <fieldset class="category-filters">
                     <legend class="small fw-semibold mb-2">Category</legend>
-                    <input class="btn-check" type="radio" name="category" id="filter-all" value="all" checked>
-                    <label class="btn filter-chip" for="filter-all">All pieces · 10</label>
-                    <input class="btn-check" type="radio" name="category" id="filter-tableware" value="tableware" >
-                    <label class="btn filter-chip" for="filter-tableware">Tableware · 5</label>
-                    <input class="btn-check" type="radio" name="category" id="filter-serving" value="serving" >
-                    <label class="btn filter-chip" for="filter-serving">Serving · 3</label>
-                    <input class="btn-check" type="radio" name="category" id="filter-accessories" value="accessories" >
-                    <label class="btn filter-chip" for="filter-accessories">Accessories · 2</label>
+                    <button class="btn filter-chip" type="button" id="filter-all" data-filter="category" value="all" aria-pressed="true">All pieces · 10</button>
+                    <button class="btn filter-chip" type="button" id="filter-tableware" data-filter="category" value="tableware" aria-pressed="false">Tableware · 5</button>
+                    <button class="btn filter-chip" type="button" id="filter-serving" data-filter="category" value="serving" aria-pressed="false">Serving · 3</button>
+                    <button class="btn filter-chip" type="button" id="filter-accessories" data-filter="category" value="accessories" aria-pressed="false">Accessories · 2</button>
                 </fieldset>
-                <fieldset class="price-filters mt-3" disabled>
+                <fieldset class="price-filters mt-3">
                     <legend class="small fw-semibold mb-2">Price</legend>
-                    <input class="btn-check" type="radio" name="price" id="price-any" value="any" checked>
-                    <label class="btn filter-chip" for="price-any">Any price</label>
-                    <input class="btn-check" type="radio" name="price" id="price-under" value="under" >
-                    <label class="btn filter-chip" for="price-under">Up to 100,000 ₸</label>
-                    <input class="btn-check" type="radio" name="price" id="price-over" value="over" >
-                    <label class="btn filter-chip" for="price-over">Above 100,000 ₸</label>
+                    <button class="btn filter-chip" type="button" id="price-any" data-filter="price" value="any" aria-pressed="true">Any price</button>
+                    <button class="btn filter-chip" type="button" id="price-under" data-filter="price" value="under" aria-pressed="false">Up to 100,000 ₸</button>
+                    <button class="btn filter-chip" type="button" id="price-over" data-filter="price" value="over" aria-pressed="false">Above 100,000 ₸</button>
                     <button class="btn filter-reset" id="filters-reset" type="reset">Reset filters</button>
                 </fieldset>
             </div>
+            <p id="filter-empty" class="py-3" hidden>No products match your selected filters.</p>
             <div id="price-table" class="catalog-results">
                 <div class="row g-4 product-grid" id="catalog-results">
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" data-category="tableware" data-price="120000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/mug.png" class="card-img-top product-image" alt="Illustration of mug" width="1024" height="1024" fetchpriority="auto">
@@ -101,7 +97,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-caviar-cup">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-caviar-cup" data-category="tableware" data-price="220000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/caviar-cup.png" class="card-img-top product-image" alt="Illustration of caviar cup" width="1024" height="1024" fetchpriority="auto">
@@ -118,7 +114,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-candle-holder">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-candle-holder" data-category="accessories" data-price="78000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/candle-holder.png" class="card-img-top product-image" alt="Illustration of lithophane candle holder" width="1024" height="1024" fetchpriority="auto">
@@ -135,7 +131,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-teapot">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-teapot" data-category="serving" data-price="144000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/teapot.png" class="card-img-top product-image" alt="Illustration of teapot" fetchpriority="auto">
@@ -152,7 +148,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-bowl">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-bowl" data-category="tableware" data-price="100000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/bowl.png" class="card-img-top product-image" alt="Illustration of bowl" width="1024" height="1024" loading="lazy">
@@ -169,7 +165,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-jewelry-box">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-jewelry-box" data-category="accessories" data-price="38000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/jewelry-box.png" class="card-img-top product-image" alt="Illustration of jewelry box" width="1024" height="1024" loading="lazy">
@@ -186,7 +182,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-pitcher">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-pitcher" data-category="serving" data-price="80000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/pitcher.png" class="card-img-top product-image" alt="Illustration of pitcher" width="1024" height="1024" loading="lazy">
@@ -203,7 +199,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-saucer">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-saucer" data-category="tableware" data-price="58000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/saucer.png" class="card-img-top product-image" alt="Illustration of saucer" width="1024" height="1024" loading="lazy">
@@ -220,7 +216,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-decanter">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-decanter" data-category="serving" data-price="85000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/decanter.png" class="card-img-top product-image" alt="Illustration of decanter" width="1024" height="1024" loading="lazy">
@@ -237,7 +233,7 @@
                         </div>
                     </div>
                 </article>
-                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-caviar-dish">
+                <article class="product-item col-12 col-sm-6 col-lg-4 col-xl-3" id="product-caviar-dish" data-category="tableware" data-price="65000">
                     <div class="card product-card h-100">
                         <div class="product-image-wrap">
                             <img src="images.jpg/catalog/caviar-dish.png" class="card-img-top product-image" alt="Illustration of caviar dish" width="1024" height="1024" loading="lazy">

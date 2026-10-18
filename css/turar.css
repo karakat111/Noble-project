@@ -14,3 +14,10 @@
     height: 320px;
     object-fit: cover;
 }
+
+/* Filter buttons use the existing catalogue selected chip colors. */
+.catalog-toolbar .filter-chip[aria-pressed="true"] {
+    background: var(--color-sage-dark);
+    color: var(--color-cream);
+    border-color: var(--color-sage-dark);
+}
