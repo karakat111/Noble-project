@@ -54,67 +54,52 @@
     </header>
     <!-- container keeps the reading content comfortably narrow on wide screens. -->
     <main id="main-content" class="container py-4">
-    <p class="small text-muted mb-1">Noble — Tableware Store</p>
-    <h1 class="page-title mb-3">Your Cart</h1>
-    <p id="cart-help" class="lead">Choose products and review your quantities. This practice cart resets when you reload or leave the page.</p>
-    <div class="row g-4">
-        <section class="col-12 col-lg-8">
-            <h2 id="cart-items-heading" class="h4 mb-3">Selected pieces</h2>
-            <label for="cart-product" class="form-label">Choose a product</label>
-            <select id="cart-product" class="form-select mb-2">
-                <option value="mug">Mug — 120,000 ₸</option>
-                <option value="caviar-cup">Caviar cup — 220,000 ₸</option>
-                <option value="candle-holder">Lithophane candle holder — 78,000 ₸</option>
-                <option value="teapot">Teapot — 144,000 ₸</option>
-                <option value="bowl">Bowl — 100,000 ₸</option>
-                <option value="jewelry-box">Jewelry box — 38,000 ₸</option>
-                <option value="pitcher">Pitcher — 80,000 ₸</option>
-                <option value="saucer">Saucer — 58,000 ₸</option>
-                <option value="decanter">Decanter — 85,000 ₸</option>
-                <option value="caviar-dish">Caviar dish — 65,000 ₸</option>
-            </select>
-            <button id="add-to-cart" type="button" class="btn btn-secondary mb-3">Add to cart</button>
-            <div id="cart-empty" class="border rounded p-4">
-                <p class="mb-3">Your cart is empty.</p>
-                <a class="btn btn-outline-secondary" href="page-1.html">Explore products</a>
-            </div>
-            <div id="cart-items"></div>
-            <button id="clear-cart" type="button" class="btn btn-outline-secondary mb-3" disabled>Clear cart</button>
-            <p id="cart-message" class="mt-3" role="status"></p>
-        </section>
-        <section class="col-12 col-lg-4">
-            <div class="border rounded p-4 bg-light">
-                <h2 class="h4 mb-3" id="order-summary-heading">Order summary</h2>
-                <dl class="row mb-3">
-                    <dt class="col-7">Items</dt><dd class="col-5 text-end" id="cart-item-count">0</dd>
-                    <dt class="col-7">Total</dt><dd class="col-5 text-end" id="cart-total">0 ₸</dd>
-                </dl>
-                <p class="small" id="checkout-help">Prices are recorded project prices. Demo checkout sends nothing to Noble and collects no payment.</p>
-                <button type="button" class="btn btn-secondary w-100" id="place-order" disabled>Complete demo order</button>
-            </div>
-        </section>
-    </div>
-    <p id="checkout-error" class="state-error state-hidden mt-3" role="alert">Enter a whole quantity from 1 to 99. The total uses the last valid quantities until you correct the fields.</p>
-    <div id="checkout-success" class="state-success state-hidden mt-3" role="status">
-        <p id="checkout-success-text"></p>
-    </div>
-    <template id="cart-item-template">
-        <article class="cart-item border rounded p-3 mb-3">
-            <div class="row g-3 align-items-center">
-                <div class="col-4 col-sm-3"><img class="img-fluid rounded cart-item-image" src="images.jpg/catalog/mug.png" alt=""></div>
-                <div class="col-8 col-sm-9">
-                    <h3 class="h5 cart-item-name"></h3>
-                    <p class="cart-item-price small"></p>
-                    <div class="d-flex flex-wrap align-items-center gap-2">
-                        <label class="cart-quantity-label">Quantity <input class="form-control cart-quantity" type="number" min="1" max="99" step="1" value="1"></label>
+        <p class="small text-muted mb-1">Noble — Tableware Store</p>
+        <h1 class="page-title mb-3">Your Cart</h1>
+        <p class="lead">Choose a product and add it to your cart. Each click adds one piece. This practice cart resets when you reload the page.</p>
+        <div class="row g-4">
+            <section class="col-12 col-lg-8">
+                <h2 class="h4 mb-3">Selected pieces</h2>
+                <label for="cart-product" class="form-label">Choose a product</label>
+                <select id="cart-product" class="form-select mb-2">
+                    <option value="mug" data-price="120000">Mug</option>
+                    <option value="caviar-cup" data-price="220000">Caviar cup</option>
+                    <option value="candle-holder" data-price="78000">Lithophane candle holder</option>
+                    <option value="teapot" data-price="144000">Teapot</option>
+                    <option value="bowl" data-price="100000">Bowl</option>
+                    <option value="jewelry-box" data-price="38000">Jewelry box</option>
+                    <option value="pitcher" data-price="80000">Pitcher</option>
+                    <option value="saucer" data-price="58000">Saucer</option>
+                    <option value="decanter" data-price="85000">Decanter</option>
+                    <option value="caviar-dish" data-price="65000">Caviar dish</option>
+                </select>
+                <button id="add-to-cart" type="button" class="btn btn-secondary mb-3">Add to cart</button>
+                <div id="cart-items"></div>
+                <p id="cart-empty">Your cart is empty.</p>
+                <template id="cart-item-template">
+                    <article class="cart-item border rounded p-3 mb-3">
+                        <h3 class="h5 cart-name"></h3>
+                        <p><span class="cart-price"></span> ₸ each</p>
+                        <label>Quantity
+                            <input class="form-control cart-quantity mb-2" type="number" min="1" step="1" value="1" required>
+                        </label>
                         <button type="button" class="btn btn-outline-secondary btn-sm cart-remove">Remove</button>
-                    </div>
-                    <p class="cart-item-subtotal fw-semibold mt-2 mb-0"></p>
+                    </article>
+                </template>
+            </section>
+            <section class="col-12 col-lg-4">
+                <div class="border rounded p-4 bg-light">
+                    <h2 class="h4 mb-3">Order summary</h2>
+                    <p>Items: <span id="cart-item-count">0</span></p>
+                    <p>Total: <span id="cart-total">0 ₸</span></p>
+                    <p class="small">Recorded project prices. This demo sends no order and collects no payment.</p>
+                    <button type="button" id="place-order" class="btn btn-secondary w-100" disabled>Complete order</button>
                 </div>
-            </div>
-        </article>
-    </template>
-</main>
+            </section>
+        </div>
+        <p id="checkout-error" class="state-error state-hidden mt-3" role="alert">Enter a positive whole quantity for every item. The total is unavailable until all quantities are valid.</p>
+        <p id="cart-message" class="mt-3" role="status"></p>
+    </main>
     <footer class="container py-4 mt-5 border-top">
         <address id="store-address" class="mb-2">
             Noble, Mandilik El 42, Astana, Kazakhstan<br>
@@ -125,3 +110,5 @@
     </footer>
 </body>
 </html>
+
+
