@@ -12,11 +12,6 @@ $(function () {
     const message = $('#cart-message');
     const orderButton = $('#place-order');
 
-    select.empty();
-    $.each(products, function (index, product) {
-        $('<option>').val(index).text(product[0]).appendTo(select);
-    });
-
     function updateTotal() {
         let sum = 0;
         let count = 0;
@@ -44,7 +39,9 @@ $(function () {
     }
 
     function addProduct() {
-        const product = products[Number(select.val())];
+        // HTML options and this array use the same order (starting at index 0).
+        const index = select.prop('selectedIndex');
+        const product = products[index];
         // Card markup lives only in this script; its data comes from the array above.
         const row = $('<article class="cart-item border rounded p-3 mb-3">' +
             '<h3 class="h5 cart-name"></h3>' +
