@@ -1,5 +1,56 @@
 # Noble — Tableware Store Website
 
+## Current jQuery implementation — 30 October 2026
+
+This section supersedes the older JavaScript behaviour descriptions below.
+Updated pages: cart, care and register. Each loads jQuery 3.7.1 full from the
+official CDN before its existing separate page script. An internet connection
+is required for the CDN. No plugins or new CSS rules are used.
+
+- Cart: choose a product, add a card, change quantities, remove cards, see totals
+  and complete a demo order. Products come from an array; card markup is built
+  only in js/cart.js. Repeated additions create separate cards. Cart state lasts
+  until reload; checkout shows a message and does not send or store an order.
+- Care: checkbox count, percentage, selected-row styling, completion effect and reset.
+- Register: name, email, phone, password and confirmation validation with messages
+  next to each field; errors clear while editing; independent password toggles.
+  Phone and error elements are created in jQuery, respecting the HTML freeze.
+  On success all inputs are cleared. No credentials are stored or transmitted.
+- js/old-js-version.js preserves the three previous scripts in uncalled functions.
+  It is for comparison only and is not linked to a page.
+
+Requirement examples:
+- ID/class/tag/attribute selectors and :checked / :not() are in the three scripts.
+- .find(), .closest(), .parent(), .siblings(), .each() and $(this) are used.
+- Chains of 3+ methods and plain-JS comparisons are explained in code comments.
+- .text() handles text, .html() only trusted fixed success markup, .val() inputs,
+  .attr() attributes, .prop() checked/disabled states.
+- All event handlers use .on(): click, input, change, submit and reset.
+  Cart remove/input handlers delegate from the existing #cart-items.
+- Effects: slideDown for added cards/completion, slideUp with a removal callback,
+  fadeIn for valid registration and fadeOut when clearing it.
+- Form validation trims values, checks required fields, email, phone format,
+  password lengths and equality. Native constraint attributes are preserved;
+  noValidate enables all-field inline feedback instead of stopping at one bubble.
+  Real server-side validation would still be required.
+
+Existing HTML changes are limited to script connections and removal of the
+obsolete cart template. New interface elements are constructed in JavaScript.
+Existing CSS and other pages were not rewritten. No new CSS rules were added.
+
+
+Official references: https://api.jquery.com/on/ and https://api.jquery.com/prop/
+
+Verification on 30 October 2026: JavaScript syntax checks passed. Browser checks
+covered adding two cart products, quantity validation, delegated removal and
+demo checkout; all three care checks, rapid checkbox changes and reset; five
+empty registration errors, invalid email/phone/password confirmation, live
+correction, independent password visibility and successful form clearing.
+No console errors were observed on these three pages or during load-only checks
+of home, catalogue, collections, gift guide, orders and contact. Other members'
+interactive features were not functionally tested. This is not a complete
+midterm-baseline or coursework-authorship audit.
+
 An educational project for the **Introduction to Web Technologies** course,
 featuring the Noble tableware store in Astana. The project began with Assignment 1
 (HTML Basics) and now contains eight linked pages as a foundation for Assignment 2
@@ -212,3 +263,4 @@ quantity controls and feedback containers are ready for a later JavaScript assig
 The catalogue's CSS filtering rules have been removed. All website pages contain no
 script tags, inline event handlers or JavaScript URLs. Form fields and reset buttons
 retain native HTML behaviour. Generated HTML/CSS changes were made with Codex assistance.
+
