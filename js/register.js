@@ -12,20 +12,22 @@ $(function () {
     // New HTML must be created in code under the assignment's HTML/CSS freeze.
     const phoneGroup = $('<div class="mb-3"></div>');
     $('<label class="form-label" for="register-phone">Phone number</label>').appendTo(phoneGroup);
-    $('<input class="form-control" id="register-phone" name="phone" type="tel" autocomplete="tel" maxlength="25" required>').appendTo(phoneGroup);
+    $('<input class="form-control" id="register-phone" name="phone" type="tel" autocomplete="tel" placeholder="+77001234567" maxlength="16" required>').appendTo(phoneGroup);
     $('#register-email').parent().after(phoneGroup);
     const fields = form.find('input');
     fields.each(function () {
         const field = $(this);
         const id = field.attr('id') + '-error';
-        const anchor = field.parent().hasClass('password-field') ? field.parent() : field;
+        let anchor = field;
+        if (field.parent().hasClass('password-field')) {
+            anchor = field.parent();
+        }
         $('<p class="field-error state-error state-hidden small mt-2"></p>').attr('id', id).appendTo(anchor.parent());
         field.attr('aria-describedby', id);
     });
     // Keep required/type/minlength attributes as baseline constraints. Disable only
     // browser popups so submit can report every field error next to its field.
     form.prop('noValidate', true);
-    let submitted = false;
 
     function validateField(field) {
         const value = field.val().trim();
@@ -36,9 +38,8 @@ $(function () {
             return 'Enter a valid email address.';
         }
         if (id === 'register-phone') {
-            const digits = value.replace(/\D/g, '');
-            if (!/^\+?[0-9 ()-]+$/.test(value) || digits.length < 7 || digits.length > 15) {
-                return 'Use 7–15 digits; spaces, brackets, hyphens and a leading + are allowed.';
+            if (!/^\+[0-9]{7,15}$/.test(value)) {
+                return 'Use + followed by 7–15 digits, for example +77001234567.';
             }
         }
         if ((id === 'register-password' || id === 'register-confirm') && value.length < 8) {
@@ -52,7 +53,10 @@ $(function () {
 
     function showError(field) {
         const text = validateField(field);
-        const anchor = field.parent().hasClass('password-field') ? field.parent() : field;
+        let anchor = field;
+        if (field.parent().hasClass('password-field')) {
+            anchor = field.parent();
+        }
         anchor.siblings('.field-error').text(text).toggleClass('state-hidden', text === '');
         field.toggleClass('is-invalid', text !== '').attr('aria-invalid', String(text !== ''));
         return text === '';
@@ -61,18 +65,22 @@ $(function () {
     function handleEdit() {
         success.stop(true, true).addClass('state-hidden');
         status.text('No account has been created.');
-        if (submitted || $(this).hasClass('is-invalid')) {
-            showError($(this));
-            if ($(this).attr('id') === 'register-password') showError(confirmation);
+        showError($(this));
+        if ($(this).attr('id') === 'register-password' && confirmation.val() !== '') {
+            showError(confirmation);
         }
     }
 
     function togglePassword() {
         const button = $(this);
         const input = button.closest('.password-field').find('input');
-        const show = input.attr('type') === 'password';
-        input.attr('type', show ? 'text' : 'password');
-        button.attr('aria-pressed', String(show)).find('span').text(show ? 'Hide password' : 'Show password');
+        if (input.attr('type') === 'password') {
+            input.attr('type', 'text');
+            button.attr('aria-pressed', 'true').find('span').text('Hide password');
+        } else {
+            input.attr('type', 'password');
+            button.attr('aria-pressed', 'false').find('span').text('Show password');
+        }
     }
 
     function clearFields() {
@@ -81,13 +89,11 @@ $(function () {
         form.find('.field-error').text('').addClass('state-hidden');
         password.add(confirmation).attr('type', 'password');
         form.find('.password-toggle').attr('aria-pressed', 'false').find('span').text('Show password');
-        submitted = false;
     }
 
     function submitForm(event) {
         // Otherwise the POST form would navigate/send these sample details.
         event.preventDefault();
-        submitted = true;
         success.stop(true, true).addClass('state-hidden');
         let valid = true;
         fields.each(function () {
@@ -97,7 +103,6 @@ $(function () {
         });
         if (!valid) {
             status.text('Correct the fields marked below.');
-            form.find('input.is-invalid').first().trigger('focus');
             return;
         }
         // Browser checks can be bypassed; a real server must validate again.
@@ -112,9 +117,7 @@ $(function () {
         // Prevent the later native reset; clearFields performs our complete reset.
         event.preventDefault();
         clearFields();
-        success.stop(true, true).fadeOut(150, function () {
-            $(this).addClass('state-hidden');
-        });
+        success.stop(true, true).addClass('state-hidden');
         status.text('Form cleared. No account has been created.');
     }
 

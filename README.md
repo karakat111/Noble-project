@@ -28,9 +28,11 @@ Requirement examples:
 - All event handlers use .on(): click, input, change, submit and reset.
   Cart remove/input handlers delegate from the existing #cart-items.
 - Effects: slideDown for added cards/completion, slideUp with a removal callback,
-  fadeIn for valid registration and fadeOut when clearing it.
+  fadeIn for valid registration. Clearing hides its message immediately.
 - Form validation trims values, checks required fields, email, phone format,
-  password lengths and equality. Native constraint attributes are preserved;
+  password lengths and equality. Phone format is + followed by 7–15 digits,
+  without spaces or brackets. Errors update immediately while editing.
+  Native constraint attributes are preserved;
   noValidate enables all-field inline feedback instead of stopping at one bubble.
   Real server-side validation would still be required.
 
@@ -263,4 +265,5 @@ quantity controls and feedback containers are ready for a later JavaScript assig
 The catalogue's CSS filtering rules have been removed. All website pages contain no
 script tags, inline event handlers or JavaScript URLs. Form fields and reset buttons
 retain native HTML behaviour. Generated HTML/CSS changes were made with Codex assistance.
+
 
