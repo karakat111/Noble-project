@@ -28,3 +28,10 @@ No server-side authentication, real order, payment, Git commit or tag was create
 4. Advice on which photographs would be worth taking for the project
 
 
+
+
+Follow-up: at the user’s request, Codex simplified register.js by removing the
+submitted flag, automatic error focus and the reset animation. Phone input now
+accepts + followed by 7–15 digits. Conditional expressions were expanded into
+ordinary if/else blocks. Field validation and error messages remain.
+

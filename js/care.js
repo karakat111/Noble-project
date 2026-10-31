@@ -1,30 +1,48 @@
-const form = document.querySelector('#care-checklist-form');
-const checks = Array.from(form.querySelectorAll('input[type="checkbox"]'));
-const progress = document.querySelector('#care-progress');
-const success = document.querySelector('#care-success');
+// jQuery 3.7.1 full build includes effects. Ready waits for the checklist HTML.
+$(function () {
+    // Rewrite 2: .find(), :checked, .prop() and .each() replace querySelectorAll,
+    // array filtering and input.checked. Counting checked boxes is shorter in jQuery.
+    const form = $('#care-checklist-form');
+    const checks = form.find('input[type="checkbox"]');
+    const progress = $('#care-progress');
+    const success = $('#care-success');
 
+    function updateProgress() {
+        success.stop(true, true);
+        const completed = checks.filter(':checked').length;
+        const percent = Math.round(completed / checks.length * 100);
+        progress.text(completed + ' of ' + checks.length + ' checks completed (' + percent + '%).');
+        checks.each(function () {
+            // .prop('checked') reads the live checkbox state; .attr('checked')
+            // describes the initial HTML attribute and does not track user clicks.
+            $(this).closest('.form-check').toggleClass('state-selected', $(this).prop('checked'));
+        });
+        if (completed === checks.length && success.hasClass('state-hidden')) {
+            success.stop(true, true).removeClass('state-hidden').slideUp(0).slideDown(200);
+        } else if (completed !== checks.length && !success.hasClass('state-hidden')) {
+            success.stop(true, true).slideUp(200, function () {
+                $(this).addClass('state-hidden');
+            });
+        }
+    }
 
-function calculateProgress(inputs) {
-    const completed = inputs.filter(input => input.checked).length;
-    return { completed: completed, total: inputs.length, percent: Math.round(completed / inputs.length * 100) };
-}
+    function resetChecklist(event) {
+        // Without preventDefault(), the browser resets after this handler, so the
+        // progress calculation would still see the old values during the handler.
+        event.preventDefault();
+        checks.prop('checked', false);
+        updateProgress();
+        progress.append(' Checklist cleared.');
+    }
 
-function updateProgress() {
-    const result = calculateProgress(checks);
-    progress.textContent = result.completed + ' of ' + result.total + ' checks completed (' + result.percent + '%).';
-    success.classList.toggle('state-hidden', result.completed !== result.total);
-    checks.forEach(input => input.closest('.form-check').classList.toggle('state-selected', input.checked));
-}
+    function preventSubmit(event) {
+        // A checklist has nothing to send; otherwise the form would navigate.
+        event.preventDefault();
+    }
 
-function resetChecklist(event) {
-    event.preventDefault();
-    checks.forEach(input => { input.checked = false; });
+    form.on('change', 'input[type="checkbox"]', updateProgress);
+    form.on('reset', resetChecklist);
+    form.on('submit', preventSubmit);
     updateProgress();
-    progress.textContent += ' Checklist cleared.';
-}
-
-form.addEventListener('change', updateProgress);
-form.addEventListener('reset', resetChecklist);
-form.addEventListener('submit', event => event.preventDefault());
-updateProgress();
+});
 
