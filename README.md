@@ -1,5 +1,34 @@
 # Noble — Tableware Store Website
 
+## Student A jQuery learning example — 2 November 2026
+
+Codex generated the current jQuery migrations for Turar's Home, Product Catalog
+and Orders features after the user explicitly asked for a complete example. The
+official assignment says submitted JavaScript must be student authored, so this
+code is a disclosed learning reference and must not be represented as Turar's
+independent implementation.
+
+- Product Catalog keeps the original category and price combinations, count,
+  empty state and reset behaviour using jQuery selection, iteration, properties,
+  classes and events.
+- Home builds product discovery and a six-field demonstration enquiry in code.
+  It validates name, email, phone, product, quantity and budget, including the
+  product-price calculation. Nothing is sent, stored or purchased.
+- Orders reads `noble-demo-shop-v1`, rejects malformed records and builds cards
+  from validated arrays. Detail toggles use delegated events. The current Cart
+  page still does not save completed orders, so end-to-end checkout integration
+  remains a team dependency.
+- `js/old-js-version.js` remains unlinked and preserves the previous native
+  implementations for comparison. No CSS rules or teammate files were changed.
+
+The example uses jQuery 3.7.1 from the CDN, so an internet connection is needed.
+On 2 November 2026, an automated Edge run completed 65 checks: all 12 Catalog
+category/price combinations and counts, reset and keyboard activation; Home
+discovery, empty and invalid submissions, individual error clearing, valid
+submission and reset; Orders empty, malformed, valid, mixed and refreshed
+states, totals and delegated keyboard toggle; no horizontal overflow at 375,
+768 and 1440 pixels; and no uncaught page errors.
+
 ## Current jQuery implementation — 30 October 2026
 
 This section supersedes the older JavaScript behaviour descriptions below.

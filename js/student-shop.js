@@ -24,13 +24,6 @@ const StudentShop = (() => {
         return value.toLocaleString('en-US') + ' ₸';
     }
 
-    function element(tag, text = '', classes = '') {
-        const node = document.createElement(tag);
-        node.textContent = text;
-        if (classes) node.classList.add(...classes.split(' '));
-        return node;
-    }
-
     function filterProducts(criteria) {
         const query = criteria.query.trim().toLowerCase();
         return products.filter(product =>
@@ -60,5 +53,5 @@ const StudentShop = (() => {
         }), { quantity: 0, price: 0 });
     }
 
-    return { products, findProduct, money, element, filterProducts, sortProducts, randomProduct, totals };
+    return { products, findProduct, money, filterProducts, sortProducts, randomProduct, totals };
 })();

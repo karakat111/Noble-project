@@ -1,52 +1,65 @@
 "use strict";
 
-const filterForm = document.querySelector("#catalog-filters");
-const filterButtons = [...filterForm.querySelectorAll("[data-filter]")];
-const products = [...filterForm.querySelectorAll(".product-item")];
-const filterStatus = document.querySelector("#filter-help");
-const emptyMessage = document.querySelector("#filter-empty");
-const selected = { category: "all", price: "any" };
+// jQuery 3.7.1 must load first. ready() replaces waiting for DOMContentLoaded.
+// Compared with the old version, $(), find(), each() and on() replace native DOM selection, loops and listeners.
+$(document).ready(function () {
+    const $filterForm = $("#catalog-filters");
+    const $filterButtons = $filterForm.find("button[data-filter]:not(:disabled)");
+    const $products = $filterForm.find(".product-item");
+    const $filterStatus = $("#filter-help");
+    const $emptyMessage = $("#filter-empty");
+    const selected = { category: "all", price: "any" };
 
-function applyFilters() {
-    let visibleCount = 0;
+    function applyFilters() {
+        let visibleCount = 0;
 
-    products.forEach((product) => {
-        const price = Number(product.dataset.price);
-        const matchesCategory = selected.category === "all" ||
-            product.dataset.category === selected.category;
-        const matchesPrice = selected.price === "any" ||
-            (selected.price === "under" && price <= 100000) ||
-            (selected.price === "over" && price > 100000);
+        $products.each(function () {
+            const $product = $(this);
+            const price = Number($product.attr("data-price"));
+            const matchesCategory = selected.category === "all" ||
+                $product.attr("data-category") === selected.category;
+            const matchesPrice = selected.price === "any" ||
+                (selected.price === "under" && price <= 100000) ||
+                (selected.price === "over" && price > 100000);
+            const visible = matchesCategory && matchesPrice;
 
-        // Both filters must match. Hide the whole column so the grid has no gaps.
-        const visible = matchesCategory && matchesPrice;
-        product.hidden = !visible;
-        product.classList.toggle("d-none", !visible);
-        if (visible) visibleCount += 1;
-    });
+            $product.prop("hidden", !visible).toggleClass("d-none", !visible);
+            if (visible) visibleCount += 1;
+        });
 
-    filterButtons.forEach((button) => {
-        button.setAttribute("aria-pressed",
-            String(selected[button.dataset.filter] === button.value));
-    });
-    emptyMessage.hidden = visibleCount !== 0;
-    filterStatus.textContent = `Showing ${visibleCount} of ${products.length} products.`;
-}
+        $filterButtons.each(function () {
+            const $button = $(this);
+            const group = $button.attr("data-filter");
+            const isSelected = selected[group] === $button.val();
 
-filterButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-        // Changing one group preserves the other group's selection.
-        selected[button.dataset.filter] = button.value;
+            $button.attr("aria-pressed", String(isSelected));
+            if (isSelected && !$button.hasClass("fw-semibold")) {
+                $button.addClass("fw-semibold");
+            } else if (!isSelected && $button.hasClass("fw-semibold")) {
+                $button.removeClass("fw-semibold");
+            }
+        });
+
+        $emptyMessage.prop("hidden", visibleCount !== 0);
+        $filterStatus.text(`Showing ${visibleCount} of ${$products.length} products.`);
+    }
+
+    $filterButtons.on("click", function () {
+        const $button = $(this);
+        selected[$button.attr("data-filter")] = $button.val();
         applyFilters();
     });
-});
 
-filterForm.addEventListener("reset", () => {
-    selected.category = "all";
-    selected.price = "any";
+    $filterForm.on("reset", function () {
+        selected.category = "all";
+        selected.price = "any";
+        applyFilters();
+    });
+
+    $filterForm.on("submit", function (event) {
+        // Without preventDefault(), the form would reload the page and lose the chosen filters.
+        event.preventDefault();
+    });
+
     applyFilters();
 });
-
-// Filtering stays on this page without submitting the form or reloading.
-filterForm.addEventListener("submit", (event) => event.preventDefault());
-applyFilters();

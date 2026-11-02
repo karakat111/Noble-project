@@ -1,100 +1,154 @@
 'use strict';
 
-(() => {
-    if (document.querySelector('#product-discovery')) return;
-    const { products, findProduct, money, element, randomProduct } = StudentShop;
-    const main = document.querySelector('main');
-    const discovery = element('section', '', 'mt-5 border-top pt-4');
-    discovery.id = 'product-discovery';
-    const result = element('div', '', 'mb-3');
-    result.setAttribute('aria-live', 'polite');
-    const discover = element('button', 'Discover another piece', 'btn btn-outline-secondary');
-    discover.type = 'button';
+// jQuery 3.7.1 replaces createElement, textContent, classList and addEventListener from the old Home feature.
+// The form is created in code so the HTML freeze is respected.
+$(document).ready(function () {
+    const { products, findProduct, money, randomProduct } = StudentShop;
+    const $main = $('main');
     let previousId = '';
 
-    function showProduct() {
+    const $discovery = $('<section>', {
+        id: 'product-discovery',
+        'class': 'mt-5 border-top pt-4'
+    });
+    const $discoveryResult = $('<div>', {
+        id: 'discovery-result',
+        'class': 'mb-3',
+        'aria-live': 'polite'
+    });
+    const $discoverButton = $('<button>', {
+        id: 'discover-product',
+        type: 'button',
+        'class': 'btn btn-outline-secondary',
+        text: 'Discover another piece'
+    });
+
+    $discovery.append(
+        $('<h2>').text('Discover a piece'),
+        $discoveryResult,
+        $discoverButton
+    ).appendTo($main);
+
+    function fillDiscovery($result, product) {
+        const $link = $('<a>', {
+            'class': 'btn btn-outline-secondary',
+            href: 'page-1.html?product=' + encodeURIComponent(product.id) + '#catalog-results',
+            text: 'Explore this product'
+        });
+        $result.empty().append(
+            $('<h3>', { 'class': 'h4' }).text(product.name),
+            $('<p>').text(`${product.category} · ${money(product.price)}`),
+            $link
+        );
+    }
+
+    function showProduct($result, animate) {
         const product = randomProduct(previousId);
         previousId = product.id;
-        for (const child of [...result.children]) child.remove();
-        const link = element('a', 'Explore this product', 'btn btn-outline-secondary');
-        link.href = 'page-1.html?product=' + encodeURIComponent(product.id) + '#catalog-results';
-        result.append(element('h3', product.name, 'h4'),
-            element('p', `${product.category} · ${money(product.price)}`), link);
+        if (!animate) {
+            fillDiscovery($result, product);
+            return;
+        }
+        $result.stop(true, true).fadeOut(150, function () {
+            fillDiscovery($(this), product);
+            $(this).fadeIn(200);
+        });
     }
 
-    discovery.append(element('h2', 'Discover a piece'), result, discover);
-    discover.addEventListener('click', showProduct);
-    main.append(discovery);
-    showProduct();
+    showProduct($discoveryResult, false);
 
-    const section = element('section', '', 'mt-5 border-top pt-4');
-    section.id = 'product-enquiry';
-    section.append(element('h2', 'Demonstration product enquiry'),
-        element('p', 'Practice planning an enquiry. Nothing is sent or saved, and no purchase or payment takes place.'));
-    const form = element('form', '', 'row g-3');
-    form.id = 'enquiry-form';
-    form.noValidate = true;
+    // Delegation is attached to main because the discovery button was created after the original HTML loaded.
+    $main.on('click', '#discover-product', function () {
+        showProduct($(this).siblings('#discovery-result'), true);
+    });
+
+    const $section = $('<section>', {
+        id: 'product-enquiry',
+        'class': 'mt-5 border-top pt-4'
+    });
+    // html() is safe here because this is fixed trusted markup, never visitor input.
+    $section.html('<h2>Demonstration product enquiry</h2><p>Practice planning an enquiry. Nothing is sent or saved, and no purchase or payment takes place.</p>');
+    const $form = $('<form>', {
+        id: 'enquiry-form',
+        'class': 'row g-3',
+        novalidate: 'novalidate'
+    });
     const fields = {};
     const definitions = [
-        ['name', 'Your name', 'text'], ['email', 'Email', 'email'],
-        ['product', 'Product', 'select'], ['quantity', 'Quantity (1–99)', 'number'],
-        ['budget', 'Total budget (₸)', 'number']
+        { key: 'name', label: 'Your name', type: 'text', autocomplete: 'name' },
+        { key: 'email', label: 'Email', type: 'email', autocomplete: 'email' },
+        { key: 'phone', label: 'Phone', type: 'tel', autocomplete: 'tel' },
+        { key: 'product', label: 'Product', type: 'select' },
+        { key: 'quantity', label: 'Quantity (1–99)', type: 'number' },
+        { key: 'budget', label: 'Total budget (₸)', type: 'number' }
     ];
-    for (const [key, title, type] of definitions) {
-        const wrapper = element('div', '', 'col-12 col-md-6');
-        const label = element('label', title, 'form-label');
-        const input = element(type === 'select' ? 'select' : 'input', '',
-            type === 'select' ? 'form-select' : 'form-control');
-        input.id = 'enquiry-' + key;
-        input.name = key;
-        input.required = true;
-        label.htmlFor = input.id;
-        if (type !== 'select') input.type = type;
-        if (key === 'name' || key === 'email') {
-            input.autocomplete = key;
-            input.maxLength = key === 'name' ? 100 : 254;
-        }
-        if (key === 'quantity') { input.min = '1'; input.max = '99'; input.step = '1'; }
-        if (key === 'budget') { input.min = '1'; input.step = '1'; }
-        const error = element('p', '', 'invalid-feedback');
-        error.id = input.id + '-error';
-        input.setAttribute('aria-describedby', error.id);
-        wrapper.append(label, input, error);
-        form.append(wrapper);
-        fields[key] = { input, error };
+
+    definitions.forEach(function (definition) {
+        const id = 'enquiry-' + definition.key;
+        const $wrapper = $('<div>', { 'class': 'col-12 col-md-6' });
+        const $label = $('<label>', { 'class': 'form-label', for: id }).text(definition.label);
+        const $field = definition.type === 'select'
+            ? $('<select>', { 'class': 'form-select' })
+            : $('<input>', { 'class': 'form-control', type: definition.type });
+        const $error = $('<p>', { id: id + '-error', 'class': 'invalid-feedback' });
+
+        $field.attr({ id: id, name: definition.key, 'aria-describedby': $error.attr('id') })
+            .prop('required', true);
+        if (definition.autocomplete) $field.attr('autocomplete', definition.autocomplete);
+        if (definition.key === 'name') $field.attr('maxlength', '100');
+        if (definition.key === 'email') $field.attr('maxlength', '254');
+        if (definition.key === 'phone') $field.attr('maxlength', '20');
+        if (definition.key === 'quantity') $field.attr({ min: '1', max: '99', step: '1' });
+        if (definition.key === 'budget') $field.attr({ min: '1', step: '1' });
+
+        $wrapper.append($label, $field, $error).appendTo($form);
+        fields[definition.key] = $field;
+    });
+
+    fields.product.append($('<option>', { value: '', text: 'Choose a product' }));
+    products.forEach(function (product) {
+        $('<option>', {
+            value: product.id,
+            text: `${product.name} — ${money(product.price)}`
+        }).appendTo(fields.product);
+    });
+
+    const requested = new URLSearchParams(window.location.search).get('product');
+    if (findProduct(requested)) fields.product.val(requested);
+
+    const $actions = $('<div>', { 'class': 'col-12 d-flex flex-wrap gap-2' });
+    $actions.append(
+        $('<button>', { type: 'submit', 'class': 'btn btn-secondary', text: 'Check demonstration enquiry' }),
+        $('<button>', { type: 'reset', 'class': 'btn btn-outline-secondary', text: 'Clear enquiry' })
+    );
+    const $status = $('<p>', {
+        id: 'enquiry-status',
+        'class': 'col-12 text-break',
+        role: 'status'
+    }).hide();
+    $form.append($actions, $status);
+    $section.append($form).appendTo($main);
+
+    function valuesFromForm() {
+        const values = {};
+        $.each(fields, function (key, $field) {
+            values[key] = $.trim(String($field.val() || ''));
+        });
+        return values;
     }
-    const placeholder = element('option', 'Choose a product');
-    placeholder.value = '';
-    fields.product.input.append(placeholder);
-    for (const product of products) {
-        const option = element('option', `${product.name} — ${money(product.price)}`);
-        option.value = product.id;
-        fields.product.input.append(option);
-    }
-    const requested = new URLSearchParams(location.search).get('product');
-    if (findProduct(requested)) fields.product.input.value = requested;
-    const actions = element('div', '', 'col-12 d-flex flex-wrap gap-2');
-    const submit = element('button', 'Check demonstration enquiry', 'btn btn-secondary');
-    submit.type = 'submit';
-    const reset = element('button', 'Clear enquiry', 'btn btn-outline-secondary');
-    reset.type = 'reset';
-    actions.append(submit, reset);
-    const status = element('p', '', 'col-12 text-break');
-    status.id = 'enquiry-status';
-    status.setAttribute('role', 'status');
-    form.append(actions, status);
-    section.append(form);
-    main.append(section);
 
     function validate(values) {
         const errors = {};
         const product = findProduct(values.product);
         const quantity = Number(values.quantity);
         const budget = Number(values.budget);
-        if (values.name.trim().length < 2 || values.name.trim().length > 100)
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        const phonePattern = /^\+?[0-9\s()-]{10,18}$/;
+
+        if (values.name.length < 2 || values.name.length > 100)
             errors.name = 'Enter a name between 2 and 100 characters.';
-        if (!values.email.trim() || !fields.email.input.validity.valid)
-            errors.email = 'Enter a valid email address.';
+        if (!emailPattern.test(values.email)) errors.email = 'Enter a valid email address.';
+        if (!phonePattern.test(values.phone)) errors.phone = 'Enter a valid phone number using 10–18 digits and common separators.';
         if (!product) errors.product = 'Choose a product from the catalogue.';
         if (!Number.isInteger(quantity) || quantity < 1 || quantity > 99)
             errors.quantity = 'Enter a whole quantity from 1 to 99.';
@@ -105,36 +159,63 @@
         return errors;
     }
 
-    function clearFeedback() {
-        for (const field of Object.values(fields)) {
-            field.error.textContent = '';
-            field.input.classList.remove('is-invalid');
-            field.input.removeAttribute('aria-invalid');
-        }
-        status.textContent = '';
+    function showError($field, message) {
+        $field.addClass('is-invalid').attr('aria-invalid', 'true');
+        $field.siblings('.invalid-feedback').stop(true, true).text(message).show();
     }
 
-    form.addEventListener('submit', event => {
+    function clearField($field) {
+        if ($field.hasClass('is-invalid')) $field.removeClass('is-invalid');
+        $field.removeAttr('aria-invalid');
+        // parent() finds the field wrapper and find() locates only this field's message.
+        // Clearing is immediate so several corrected fields cannot make the submit button move during a click.
+        $field.parent().find('.invalid-feedback').stop(true, true).hide().text('');
+    }
+
+    function clearAllErrors() {
+        $form.find('input, select').each(function () {
+            clearField($(this));
+        });
+    }
+
+    $form.on('input change', 'input, select', function () {
+        const $field = $(this);
+        const key = String($field.attr('name'));
+        const errors = validate(valuesFromForm());
+        if (!errors[key]) clearField($field);
+        if ($status.is(':visible')) $status.stop(true, true).fadeOut(120);
+    });
+
+    $form.on('submit', function (event) {
+        // Without preventDefault(), the browser would navigate or reload before jQuery could show all errors.
         event.preventDefault();
-        clearFeedback();
-        const values = Object.fromEntries(Object.entries(fields).map(([key, field]) => [key, field.input.value]));
+        clearAllErrors();
+        const values = valuesFromForm();
         const errors = validate(values);
-        for (const [key, message] of Object.entries(errors)) {
-            fields[key].error.textContent = message;
-            fields[key].input.classList.add('is-invalid');
-            fields[key].input.setAttribute('aria-invalid', 'true');
-        }
-        const first = Object.keys(errors)[0];
-        if (first) {
-            status.textContent = 'Please correct the marked fields.';
-            fields[first].input.focus();
+
+        $.each(errors, function (key, message) {
+            showError(fields[key], message);
+        });
+
+        const firstError = Object.keys(errors)[0];
+        if (firstError) {
+            fields[firstError].trigger('focus');
+            $status.stop(true, true).text('Please correct the marked fields.').show();
             return;
         }
+
         const product = findProduct(values.product);
-        status.textContent = `Demo enquiry checked for ${values.name.trim()}: ${values.quantity} × ${product.name}, ` +
-            `estimated total ${money(product.price * Number(values.quantity))}. Nothing was sent or saved; no purchase or payment occurred.`;
+        const summary = `${values.name}: ${values.quantity} × ${product.name}, estimated total ` +
+            `${money(product.price * Number(values.quantity))}. Nothing was sent or saved; no purchase or payment occurred.`;
+        $form.trigger('reset');
+        $status.html('<strong>Enquiry checked.</strong> ')
+            .append($('<span>').text(summary))
+            .stop(true, true).slideDown(250);
+        // Browser validation helps visitors, but a real server must validate again because client code can be bypassed.
     });
-    form.addEventListener('input', clearFeedback);
-    form.addEventListener('change', clearFeedback);
-    form.addEventListener('reset', clearFeedback);
-})();
+
+    $form.on('reset', function () {
+        clearAllErrors();
+        $status.stop(true, true).hide().empty();
+    });
+});

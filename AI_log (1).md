@@ -1,5 +1,16 @@
 # AI Log — Use of AI in the Noble Project
 
+## 2 November 2026 — Student A Assignment 6 jQuery learning example
+
+Turar asked Codex to implement the complete Assignment 6 example after several
+tutoring and review steps. Codex rewrote `js/products.js`, `js/home.js` and
+`js/orders.js` with jQuery, added dynamic Home validation and delegated Orders
+controls, tested the result, and updated this disclosure and README.
+
+This is AI-generated learning code. The official assignment permits explanation
+but prohibits AI-written submitted JavaScript. It must not be presented as
+independent student work. No real order, payment or enquiry is sent.
+
 Correction: the original statement that AI only explained concepts is no longer
 accurate. AI has also generated code and project content as documented below
 and in README. Do not present this work as independently written.
