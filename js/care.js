@@ -7,11 +7,43 @@ $(function () {
     const progress = $('#care-progress');
     const success = $('#care-success');
 
+    const storageKey = 'noble-care-checklist-v1';
+    const storageNote = $('#care-checklist .fine-print');
+
+    function saveChecks() {
+        const saved = [];
+        checks.each(function () {
+            if ($(this).prop('checked')) saved.push(this.id);
+        });
+        try {
+            localStorage.setItem(storageKey, JSON.stringify(saved));
+            storageNote.text('Your checks are saved in this browser. Reset clears them.');
+        } catch {
+            storageNote.text('Storage is unavailable. Your checks last only on this page.');
+        }
+    }
+
+    function restoreChecks() {
+        try {
+            const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
+            if (!Array.isArray(saved) || !saved.every(function (id) {
+                return checks.filter(function () { return this.id === id; }).length === 1;
+            })) {
+                storageNote.text('Saved checks could not be read. Start again or press Reset.');
+                return;
+            }
+            checks.each(function () { $(this).prop('checked', saved.includes(this.id)); });
+            storageNote.text('Your checks are saved in this browser. Reset clears them.');
+        } catch {
+            storageNote.text('Saved checks could not be read. Your checklist still works on this page.');
+        }
+    }
+
     function updateProgress() {
         success.stop(true, true);
         const completed = checks.filter(':checked').length;
         const percent = Math.round(completed / checks.length * 100);
-        progress.text(completed + ' of ' + checks.length + ' checks completed (' + percent + '%).');
+        progress.text(completed + ' of ' + checks.length + ' complete · ' + percent + '%');
         checks.each(function () {
             // .prop('checked') reads the live checkbox state; .attr('checked')
             // describes the initial HTML attribute and does not track user clicks.
@@ -32,6 +64,7 @@ $(function () {
         event.preventDefault();
         checks.prop('checked', false);
         updateProgress();
+        saveChecks();
         progress.append(' Checklist cleared.');
     }
 
@@ -40,9 +73,12 @@ $(function () {
         event.preventDefault();
     }
 
-    form.on('change', 'input[type="checkbox"]', updateProgress);
+    form.on('change', 'input[type="checkbox"]', function () {
+        updateProgress();
+        saveChecks();
+    });
     form.on('reset', resetChecklist);
     form.on('submit', preventSubmit);
+    restoreChecks();
     updateProgress();
 });
-

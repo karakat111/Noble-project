@@ -1,3 +1,57 @@
+# Endterm update — Arsen's three pages — 3 November 2026
+
+This section supersedes the older descriptions below for Cart, Care and Register.
+Page owner: Arsen Ibatullin. Implementation: Codex-generated at Arsen's request;
+not independently student-authored coursework. Other members' pages are unchanged.
+
+| Page / file | Technology | Added since the jQuery assignment |
+| --- | --- | --- |
+| Cart / js/cart.js | Plain JavaScript only | Product objects, chooser and cards built in a loop; duplicate products combine; per-line subtotals and quantity errors (1–99); checkout creates an itemised receipt, clears the cart and prevents a second checkout of the same items. |
+| Care / js/care.js | jQuery | Checklist persists in this browser; reload restores progress; Reset clears saved checks; malformed or unavailable storage has visible fallback feedback. |
+| Register / js/register.js | jQuery | Live password-length advice; first-invalid-field focus; confirmation includes the validated name/email/phone using safe text insertion. Exact password matching preserves spaces. |
+
+Cart still has an unused jQuery CDN link in its existing HTML, but its feature
+does not call jQuery or depend on it. Care and Register keep their separate
+ready-wrapped jQuery files. Existing slide and fade effects remain.
+No HTML or CSS was changed by this endterm step; new content is created in JS.
+
+Requirement map:
+- Arrays/objects and loops: Cart products, cart state, chooser, cards, receipt.
+- Functions with parameters and returns used in multiple places: findProduct,
+  formatPrice, validQuantity, calculateTotal.
+- Conditions/calculations: quantities, merged items, per-line totals, grand total,
+  empty/invalid states; Care percentage and Register password advice.
+- Events: click/input in Cart; change/submit/reset in Care and Register.
+  Cart uses event.target + closest with delegated handlers on #cart-items.
+- Validation: all five Register fields, email/phone format, length limits,
+  exact password confirmation, live inline errors, preventDefault, valid-only result.
+- jQuery: tag/class/ID/attribute/:checked selectors; closest/find/siblings/this;
+  chained methods; checklist slideDown/slideUp and registration fadeIn.
+
+Limitations and submission work:
+- Cart receipt is local to the current page; reload clears it. It is NOT saved in
+  My Orders, and catalogue-to-cart/history integration remains a team dependency.
+- Registration is a local validation demo, not authentication. No credentials or
+  contact details are stored or transmitted. Care stores only checkbox IDs.
+- The previous design refresh changed HTML/CSS after midterm. That conflicts with
+  the endterm freeze. No local midterm tag was available for a baseline comparison.
+- The assignment forbids AI-written code. This is disclosed learning/reference
+  work; do not describe it as compliant independent authorship.
+- Existing prices/photos are retained, not independently reverified. Catalog
+  illustrations are AI assets, not the own photographs requested by the brief.
+- Team/device review at least two days before the deadline, W3C validation,
+  repository-wide checks, authentic commit history (4 commits across 3 days per
+  team member), and final endterm tag still need completion by the team.
+  No commit, tag or push was made here. There is no required written report.
+
+Run through one local HTTP server; jQuery pages need access to the CDN.
+Test: empty cart; add twice; quantity 0/decimal/100 then correct; remove last
+item; checkout receipt and empty cart. Care: complete, reload, reset, reload.
+Register: empty/invalid inputs, mismatched passwords, correct inputs, toggle
+each eye button, successful receipt and reset. Check a narrow phone width.
+
+---
+
 # Noble — Tableware Store Website
 
 ## Student A jQuery learning example — 2 November 2026
@@ -295,4 +349,4 @@ The catalogue's CSS filtering rules have been removed. All website pages contain
 script tags, inline event handlers or JavaScript URLs. Form fields and reset buttons
 retain native HTML behaviour. Generated HTML/CSS changes were made with Codex assistance.
 
-
+Verification (3 November 2026): node syntax and git whitespace checks passed. Browser checks covered duplicate merging, totals (2 mugs + teapot = 384,000 KZT), invalid 0/1.5/100 quantities, correction/removal, receipt + empty cart, care persistence/reset across reload, five empty form errors, invalid email/phone/mismatched passwords, independent password toggle, successful trimmed confirmation and reset. No console errors observed; all three pages checked at 390px. Cart invalid-state wrapping was corrected. W3C and whole-team acceptance checks were not performed.
