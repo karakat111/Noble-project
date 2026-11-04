@@ -26,9 +26,7 @@ $(function () {
     function restoreChecks() {
         try {
             const saved = JSON.parse(localStorage.getItem(storageKey) || '[]');
-            if (!Array.isArray(saved) || !saved.every(function (id) {
-                return checks.filter(function () { return this.id === id; }).length === 1;
-            })) {
+            if (!Array.isArray(saved)) {
                 storageNote.text('Saved checks could not be read. Start again or press Reset.');
                 return;
             }

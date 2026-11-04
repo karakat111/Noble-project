@@ -10,7 +10,6 @@ $(function () {
     const status = $('#register-status');
     const strength = $('<p class="small mt-2 mb-0" role="status"></p>');
     $('#register-password-help').after(strength);
-    password.attr('aria-describedby', 'register-password-help');
 
     function showPasswordAdvice() {
         const value = password.val();
@@ -25,11 +24,6 @@ $(function () {
         }
     }
 
-    // New HTML must be created in code under the assignment's HTML/CSS freeze.
-    const phoneGroup = $('<div class="mb-3"></div>');
-    $('<label class="form-label" for="register-phone">Phone number</label>').appendTo(phoneGroup);
-    $('<input class="form-control" id="register-phone" name="phone" type="tel" autocomplete="tel" placeholder="+77001234567" maxlength="16" required>').appendTo(phoneGroup);
-    $('#register-email').parent().after(phoneGroup);
     const fields = form.find('input');
     fields.each(function () {
         const field = $(this);
