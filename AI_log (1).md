@@ -46,3 +46,93 @@ submitted flag, automatic error focus and the reset animation. Phone input now
 accepts + followed by 7–15 digits. Conditional expressions were expanded into
 ordinary if/else blocks. Field validation and error messages remain.
 
+Тогда тебе дадут маленькую задачу прямо в твоём коде. Выучи шаблоны ниже: почти всё решается ими. Документацию jQuery и w3schools на защите смотреть можно.
+
+**1. Поменять или добавить эффект**
+```js
+$('#box').fadeIn(400);            // плавно показать
+$('#box').slideToggle(300);       // открыть или закрыть
+$('#box').fadeOut(300, function () {
+  $(this).remove();               // callback: после окончания
+});
+```
+
+**2. Добавить поле в валидацию** (например, возраст от 18)
+```js
+const age = Number($('#age').val());
+if (age < 18) {
+  AppUtils.showError($('#age'), 'You must be at least 18.');
+}
+```
+Ещё вариант: сообщение не короче 10 символов.
+```js
+if ($('#message').val().length < 10) {
+  AppUtils.showError($('#message'), 'Message is too short.');
+}
+```
+
+**3. Добавить ещё один элемент в массив** (товар или повод)
+```js
+{ id: 7, name: 'Tea Spoon', category: 'tea-coffee', price: 1500, inStock: true, imageAlt: 'Tea spoon' }
+```
+Записать через запятую после последнего объекта.
+
+**4. Кнопка, которая добавляет ещё одну карточку или пункт**
+```js
+$('<button>', { type: 'button', text: 'Add item' }).appendTo('body');
+
+$('body').on('click', 'button', function () {
+  $('<p>', { text: 'New item' }).appendTo('#list');
+});
+```
+Кнопка создаётся кодом, поэтому обработчик делегированный. Это и есть ответ на вопрос «почему».
+
+**5. Добавить метод в цепочку**
+```js
+$box.text('Hi').addClass('active').hide().fadeIn(300);
+```
+К любой цепочке можно дописать ещё один метод через точку.
+
+**6. Простые обработчики событий**
+```js
+$('#btn').on('click', function () {
+  $(this).toggleClass('active');
+});
+
+$('#name').on('input', function () {
+  $('#preview').text($(this).val());
+});
+
+$('#form').on('submit', function (event) {
+  event.preventDefault();
+});
+```
+
+**7. Прочитать или изменить значения**
+```js
+$('#name').val();                // взять
+$('#name').val('Anna');          // записать
+$('#agree').prop('checked');     // true или false
+$('#phone').prop('required', true);
+$('a').attr('href', '/new');
+$('#out').text('Done');
+```
+
+**8. Выбрать нужные элементы**
+```js
+$('input[type="text"]');         // по атрибуту
+$('li:first');                   // первый
+$('input:checked');              // отмеченные
+$('li:not(.done)');              // все, кроме с классом done
+$(this).closest('.card');        // карточка, в которой кнопка
+$(this).siblings();              // соседи
+```
+
+**Как действовать, если растерялась:**
+1. Скажи вслух, что хочешь сделать и какой метод для этого нужен.
+2. Найди в своём коде похожее место и скопируй оттуда.
+3. Открой документацию (api.jquery.com), если забыла название или синтаксис.
+4. Проверь в браузере: обнови страницу и посмотри консоль.
+
+Хочешь, дам пять таких задач по очереди, а ты напишешь решения, и я проверю?
+
