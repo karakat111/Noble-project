@@ -143,12 +143,14 @@ $(document).ready(function () {
         const quantity = Number(values.quantity);
         const budget = Number(values.budget);
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-        const phonePattern = /^\+?[0-9\s()-]{10,18}$/;
+        const phonePattern = /^\+?[0-9\s()-]+$/;
+        const phoneDigits = values.phone.replace(/\D/g, '');
 
         if (values.name.length < 2 || values.name.length > 100)
             errors.name = 'Enter a name between 2 and 100 characters.';
         if (!emailPattern.test(values.email)) errors.email = 'Enter a valid email address.';
-        if (!phonePattern.test(values.phone)) errors.phone = 'Enter a valid phone number using 10–18 digits and common separators.';
+        if (!phonePattern.test(values.phone) || phoneDigits.length < 10 || phoneDigits.length > 15)
+            errors.phone = 'Enter 10–15 digits, optionally with +, spaces, parentheses or hyphens.';
         if (!product) errors.product = 'Choose a product from the catalogue.';
         if (!Number.isInteger(quantity) || quantity < 1 || quantity > 99)
             errors.quantity = 'Enter a whole quantity from 1 to 99.';
@@ -169,7 +171,7 @@ $(document).ready(function () {
         $field.removeAttr('aria-invalid');
         // parent() finds the field wrapper and find() locates only this field's message.
         // Clearing is immediate so several corrected fields cannot make the submit button move during a click.
-        $field.parent().find('.invalid-feedback').stop(true, true).hide().text('');
+        $field.closest('.col-12').find('.invalid-feedback').stop(true, true).hide().text('');
     }
 
     function clearAllErrors() {
@@ -183,6 +185,12 @@ $(document).ready(function () {
         const key = String($field.attr('name'));
         const errors = validate(valuesFromForm());
         if (!errors[key]) clearField($field);
+        else if ($field.hasClass('is-invalid')) showError($field, errors[key]);
+        // Product and quantity also determine whether the total budget is sufficient.
+        if ((key === 'product' || key === 'quantity') && fields.budget.hasClass('is-invalid')) {
+            if (errors.budget) showError(fields.budget, errors.budget);
+            else clearField(fields.budget);
+        }
         if ($status.is(':visible')) $status.stop(true, true).fadeOut(120);
     });
 

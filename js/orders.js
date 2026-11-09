@@ -1,23 +1,64 @@
 'use strict';
 
-// jQuery 3.7.1 replaces native querying, cloning, class changes and event listeners from the old Orders feature.
-$(document).ready(function () {
+// Orders uses native DOM APIs and delegated events.
+document.addEventListener('DOMContentLoaded', function () {
     const { findProduct, money, totals } = StudentShop;
     const storageKey = 'noble-demo-shop-v1';
-    const $list = $('#orders-list');
-    const $empty = $('#orders-empty');
-    const $message = $('#orders-message');
-    const $refresh = $('<button>', {
-        id: 'orders-refresh',
-        type: 'button',
-        'class': 'btn btn-outline-secondary mb-3',
-        text: 'Refresh order history'
+    const list = document.querySelector('#orders-list');
+    const empty = document.querySelector('#orders-empty');
+    const message = document.querySelector('#orders-message');
+    const help = document.querySelector('#orders-help');
+    const refreshButton = document.createElement('button');
+    refreshButton.id = 'orders-refresh';
+    refreshButton.type = 'button';
+    refreshButton.className = 'btn btn-outline-secondary mb-3';
+    refreshButton.textContent = 'Refresh order history';
+    list.before(refreshButton);
+    message.setAttribute('role', 'status');
+    help.textContent = 'Completed demonstration orders saved in this browser. No real payment or purchase occurs.';
+    empty.querySelector('p').textContent = 'No demonstration orders are saved. Choose products and complete your demonstration order in Cart.';
+    const recovery = createElement('div', 'mb-3');
+    const download = createElement('button', 'btn btn-outline-secondary me-2', 'Download saved data');
+    const reset = createElement('button', 'btn btn-outline-secondary', 'Reset damaged history');
+    download.type = reset.type = 'button';
+    recovery.append(download, reset);
+    recovery.hidden = true;
+    message.after(recovery);
+    let damagedRaw = null;
+
+    download.addEventListener('click', function () {
+        if (damagedRaw === null) return;
+        const url = URL.createObjectURL(new Blob([damagedRaw], { type: 'application/json' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'noble-history-backup.json';
+        document.body.append(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
     });
 
-    $refresh.insertBefore($list);
-    $message.attr('role', 'status');
-    $('#orders-help').text('Demonstration history saved on this browser. The current Cart page does not save completed orders yet. No real payment or purchase occurs.');
-    $empty.find('p:first').text('No demonstration orders are saved. Explore the products; saving completed orders from Cart still requires team integration.');
+    reset.addEventListener('click', function () {
+        if (damagedRaw === null || !window.confirm('Reset all saved order history? A local backup will be kept. Download a copy first if needed.')) return;
+        try {
+            if (localStorage.getItem(storageKey) !== damagedRaw) {
+                refreshOrders();
+                message.textContent = 'Saved data changed. Review the refreshed history before resetting.';
+                return;
+            }
+            let state;
+            try { state = JSON.parse(damagedRaw); } catch { state = null; }
+            if (!state || typeof state !== 'object' || Array.isArray(state)) state = {};
+            state.orders = [];
+            localStorage.setItem(storageKey + '-backup-' + Date.now(), damagedRaw);
+            localStorage.setItem(storageKey, JSON.stringify(state));
+            refreshOrders();
+            message.textContent = 'History reset. A copy of the previous data remains in browser storage.';
+            refreshButton.focus();
+        } catch {
+            message.textContent = 'Reset could not be completed. Your history was not cleared. Download a copy and check browser storage.';
+        }
+    });
 
     function validateOrder(order) {
         if (!order || typeof order.reference !== 'string' ||
@@ -26,21 +67,33 @@ $(document).ready(function () {
             !Array.isArray(order.items) || order.items.length === 0 || order.items.length > 10) return null;
         const items = [];
         const ids = new Set();
+        let totalQuantity = 0;
+        let orderTotal = 0;
         order.items.forEach(function (item) {
             const product = item && findProduct(item.id);
-            const valid = product && !ids.has(item.id) && Number.isInteger(item.quantity) &&
-                item.quantity >= 1 && item.quantity <= 99 && Number.isSafeInteger(product.price) && product.price >= 0 &&
+            const savedName = item && typeof item.name === 'string' && item.name.trim();
+            const name = savedName || (product && product.name);
+            const unitPrice = item && (item.unitPrice ?? item.price ?? (product && product.price));
+            const valid = item && typeof item.id === 'string' && name && !ids.has(item.id) && Number.isInteger(item.quantity) &&
+                item.quantity >= 1 && item.quantity <= 99 && Number.isSafeInteger(unitPrice) && unitPrice >= 0 &&
                 (!('price' in item) || (Number.isSafeInteger(item.price) && item.price >= 0)) &&
                 (!('unitPrice' in item) || (Number.isSafeInteger(item.unitPrice) && item.unitPrice >= 0));
             if (!valid) return;
+            const subtotal = unitPrice * item.quantity;
+            const nextQuantity = totalQuantity + item.quantity;
+            const nextTotal = orderTotal + subtotal;
+            if (!Number.isSafeInteger(subtotal) || !Number.isSafeInteger(nextQuantity) || !Number.isSafeInteger(nextTotal)) return;
             ids.add(item.id);
-            items.push({ name: product.name, quantity: item.quantity, unitPrice: product.price });
+            items.push({ name: name, quantity: item.quantity, unitPrice: unitPrice });
+            totalQuantity = nextQuantity;
+            orderTotal = nextTotal;
         });
         if (items.length !== order.items.length) return null;
-        return { reference: order.reference, date: order.date, items: items };
+        return { reference: order.reference, date: order.date, items: items, totalQuantity: totalQuantity, total: orderTotal };
     }
 
     function readOrders() {
+        damagedRaw = null;
         let raw;
         try {
             raw = window.localStorage.getItem(storageKey);
@@ -63,94 +116,94 @@ $(document).ready(function () {
                 references.add(order.reference);
                 orders.push(order);
             });
+            if (rejected) damagedRaw = raw;
             return {
                 orders: orders,
                 error: rejected ? `${rejected} invalid or duplicate order record(s) were not displayed. Saved data was not changed.` : ''
             };
         } catch {
-            return { orders: [], error: 'Saved history is malformed. It has not been changed. Ask the team to repair the data, then refresh.' };
+            damagedRaw = raw;
+            return { orders: [], error: 'Saved history is malformed. Download a copy or use Reset damaged history to start again.' };
         }
+    }
+
+    function createElement(tag, classes, text = '') {
+        const element = document.createElement(tag);
+        element.className = classes;
+        element.textContent = text;
+        return element;
     }
 
     function buildOrderCard(order) {
         const summary = totals(order.items);
-        const $card = $('<article>', { 'class': 'order-card border rounded p-4 mb-4' });
-        const $heading = $('<div>', { 'class': 'd-flex flex-wrap justify-content-between gap-2 mb-3' });
-        const $details = $('<div>', { 'class': 'order-details' });
-        const $items = $('<ul>', { 'class': 'order-items ps-4' });
-
-        $heading.append(
-            $('<h2>', { 'class': 'h4 order-number mb-0' }).text(order.reference),
-            $('<span>', { 'class': 'badge text-bg-secondary' }).text('Demonstration only')
+        const card = createElement('article', 'order-card border rounded p-4 mb-4');
+        const heading = createElement('div', 'd-flex flex-wrap justify-content-between gap-2 mb-3');
+        const details = createElement('div', 'order-details');
+        const items = createElement('ul', 'order-items ps-4');
+        heading.append(
+            createElement('h2', 'h4 order-number mb-0', order.reference),
+            createElement('span', 'badge text-bg-secondary', 'Demonstration only')
         );
-        order.items.forEach(function (item) {
-            $('<li>').text(`${item.name}: ${item.quantity} × ${money(item.unitPrice)} = ${money(item.unitPrice * item.quantity)}`)
-                .appendTo($items);
-        });
-        const $time = $('<time>', { 'class': 'order-date' })
-            .attr('datetime', new Date(order.date).toISOString())
-            .text(new Date(order.date).toLocaleString());
-        $details.append(
-            $('<p>', { 'class': 'small' }).append('Placed: ', $time),
-            $items,
-            $('<p>', { 'class': 'mt-3' }).text(`Total quantity: ${summary.quantity}`),
-            $('<p>', { 'class': 'fw-semibold mt-3' }).text(`Total: ${money(summary.price)}`),
-            $('<p>', { 'class': 'small mb-0' }).text('This demonstration order is recorded on this device only. No payment was collected and no request was sent to the store.'),
-            $('<p>', { 'class': 'small mt-2 mb-0' }).text('Totals use current recorded catalogue prices; the v1 history does not store price snapshots.')
+        for (const item of order.items) {
+            items.append(createElement('li', '',
+                `${item.name}: ${item.quantity} × ${money(item.unitPrice)} = ${money(item.unitPrice * item.quantity)}`));
+        }
+        const time = createElement('time', 'order-date', new Date(order.date).toLocaleString());
+        time.dateTime = new Date(order.date).toISOString();
+        const date = createElement('p', 'small');
+        date.append('Placed: ', time);
+        details.append(
+            date, items,
+            createElement('p', 'mt-3', `Total quantity: ${summary.quantity}`),
+            createElement('p', 'fw-semibold mt-3', `Total: ${money(summary.price)}`),
+            createElement('p', 'small mb-0', 'This demonstration order is recorded on this device only. No payment was collected and no request was sent to the store.'),
+            createElement('p', 'small mt-2 mb-0', 'Totals use saved unit prices when available. Older records use catalogue prices.')
         );
-        $card.append(
-            $heading,
-            $('<button>', {
-                type: 'button',
-                'class': 'order-toggle btn btn-outline-secondary btn-sm mb-3',
-                'aria-expanded': 'true',
-                text: 'Hide order details'
-            }),
-            $details
-        );
-        return $card;
+        const toggle = createElement('button', 'order-toggle btn btn-outline-secondary btn-sm mb-3', 'Hide order details');
+        toggle.type = 'button';
+        toggle.setAttribute('aria-expanded', 'true');
+        card.append(heading, toggle, details);
+        return card;
     }
 
     function renderOrders(result) {
-        $list.empty();
-        result.orders.forEach(function (order) {
-            buildOrderCard(order).appendTo($list);
-        });
-        $empty.prop('hidden', result.orders.length !== 0 || Boolean(result.error));
-        $message.toggleClass('state-error', Boolean(result.error))
-            .text(result.error || `${result.orders.length} demonstration order(s) loaded. No payment was collected.`);
-    }
-
-    function refreshOrders(animate) {
-        const result = readOrders();
-        if (!animate) {
-            renderOrders(result);
-            return;
+        recovery.hidden = damagedRaw === null;
+        list.replaceChildren();
+        for (const order of result.orders) {
+            list.append(buildOrderCard(order));
         }
-        $list.stop(true, true).fadeOut(150, function () {
-            renderOrders(result);
-            $(this).fadeIn(200);
-        });
+        empty.hidden = result.orders.length !== 0 || Boolean(result.error);
+        message.classList.toggle('state-error', Boolean(result.error));
+        message.textContent = result.error ||
+            `${result.orders.length} demonstration order(s) loaded. No payment was collected.`;
     }
 
-    $refresh.on('click', function () {
-        refreshOrders(true);
+    function refreshOrders() {
+        renderOrders(readOrders());
+    }
+
+    refreshButton.addEventListener('click', refreshOrders);
+
+    // One listener handles all current and future details buttons.
+    list.addEventListener('click', function (event) {
+        if (!(event.target instanceof Element)) return;
+        const button = event.target.closest('.order-toggle');
+        if (!button || !list.contains(button)) return;
+        const details = button.closest('.order-card').querySelector('.order-details');
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        details.hidden = expanded;
+        button.setAttribute('aria-expanded', String(!expanded));
+        button.textContent = expanded ? 'Show order details' : 'Hide order details';
     });
 
-    // Delegation lets the existing list handle toggle buttons that are created later for every saved order.
-    $list.on('click', '.order-toggle', function () {
-        const $button = $(this);
-        const expanded = $button.attr('aria-expanded') === 'true';
-        // This chain finds the containing card, locates its details, stops queued effects and toggles visibility.
-        $button.closest('.order-card').find('.order-details').stop(true, true).slideToggle(200);
-        $button.attr('aria-expanded', String(!expanded))
-            .text(expanded ? 'Show order details' : 'Hide order details');
+    window.addEventListener('storage', function (event) {
+        if (event.key !== storageKey && event.key !== null) return;
+        try {
+            if (event.storageArea === window.localStorage) refreshOrders();
+        } catch {
+            refreshOrders();
+        }
     });
 
-    $(window).on('storage', function (event) {
-        const originalEvent = event.originalEvent;
-        if (originalEvent.key === storageKey || originalEvent.key === null) refreshOrders(true);
-    });
-
-    refreshOrders(false);
+    refreshOrders();
 });

@@ -9,6 +9,18 @@ $(document).ready(function () {
     const $filterStatus = $("#filter-help");
     const $emptyMessage = $("#filter-empty");
     const selected = { category: "all", price: "any" };
+    const $search = $('<input>', {
+        id: 'catalog-search', type: 'search', 'class': 'form-control mb-3',
+        placeholder: 'Search products', 'aria-label': 'Search products by name'
+    });
+    $search.insertBefore($('#catalog-results'));
+    $filterStatus.attr('role', 'status');
+    $products.find('button[id^="add-"]').prop('disabled', false);
+    $filterForm.on('click', 'button[id^="add-"]', function () {
+        const id = $(this).attr('id').slice(4);
+        window.location.assign('cart.html?product=' + encodeURIComponent(id));
+    });
+    let requested = new URLSearchParams(window.location.search).get('product');
 
     function applyFilters() {
         let visibleCount = 0;
@@ -21,7 +33,11 @@ $(document).ready(function () {
             const matchesPrice = selected.price === "any" ||
                 (selected.price === "under" && price <= 100000) ||
                 (selected.price === "over" && price > 100000);
-            const visible = matchesCategory && matchesPrice;
+            const query = String($search.val()).trim().toLowerCase();
+            const name = $product.find('h2, h3').first().text().toLowerCase();
+            const productId = $product.find('button[id^="add-"]').attr('id').slice(4);
+            const matchesRequested = requested === null || productId === requested;
+            const visible = matchesCategory && matchesPrice && name.includes(query) && matchesRequested;
 
             $product.prop("hidden", !visible).toggleClass("d-none", !visible);
             if (visible) visibleCount += 1;
@@ -47,12 +63,20 @@ $(document).ready(function () {
     $filterButtons.on("click", function () {
         const $button = $(this);
         selected[$button.attr("data-filter")] = $button.val();
+        requested = null;
         applyFilters();
     });
 
     $filterForm.on("reset", function () {
+        requested = null;
+        $search.val('');
         selected.category = "all";
         selected.price = "any";
+        applyFilters();
+    });
+
+    $search.on('input', function () {
+        requested = null;
         applyFilters();
     });
 

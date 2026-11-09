@@ -54,46 +54,60 @@ each eye button, successful receipt and reset. Check a narrow phone width.
 
 # Noble — Tableware Store Website
 
-## Student A jQuery learning example — 2 November 2026
+## Turar local Endterm update — 9 November 2026
 
-Codex generated the current jQuery migrations for Turar's Home, Product Catalog
-and Orders features after the user explicitly asked for a complete example. The
-official assignment says submitted JavaScript must be student authored, so this
-code is a disclosed learning reference and must not be represented as Turar's
-independent implementation.
+Final integration pass: Orders no longer loads jQuery; its rendering, Refresh,
+delegated detail controls and recovery UI run on native DOM APIs. An isolated
+Edge journey passed exact Catalog selection, Cart query handling, checkout
+persistence, Orders display and reload, empty history, recovery download/reset,
+Home-to-Catalog selection, internal links and local network/error checks (11/11).
+The tested local Cart writes orders, although that teammate-owned implementation
+still omits saved product names. `js/shop.js` would also discard name and price
+snapshots if used to normalize the same storage. Teammate coordination is still
+needed before those files can guarantee historical names after catalogue changes.
 
-- Product Catalog keeps the original category and price combinations, count,
-  empty state and reset behaviour using jQuery selection, iteration, properties,
-  classes and events.
-- Home builds product discovery and a six-field demonstration enquiry in code.
-  It validates name, email, phone, product, quantity and budget, including the
-  product-price calculation. Nothing is sent, stored or purchased.
-- Orders reads `noble-demo-shop-v1`, rejects malformed records and builds cards
-  from validated arrays. Detail toggles use delegated events. The current Cart
-  page still does not save completed orders, so end-to-end checkout integration
-  remains a team dependency.
-- `js/old-js-version.js` remains unlinked and preserves the previous native
-  implementations for comparison. No CSS rules or teammate files were changed.
+Browser verification on 9 November used isolated headless Microsoft Edge:
+12 Catalog category/price combinations, search/reset/empty results, exact product
+selection, Home empty/invalid/valid submissions and reset, Orders empty history,
+refresh/details/reload and cancellation of damaged-history reset passed.
+All three pages passed horizontal-overflow checks at 375, 768 and 1440 pixels.
+No uncaught page JavaScript errors were observed in these scenarios. On
+9 November, the official W3C Nu validator returned zero messages for
+`indexx.html`, `page-1.html` and `order.html`. A manual visual review is still
+recommended before the final demonstration.
 
-The example uses jQuery 3.7.1 from the CDN, so an internet connection is needed.
-On 2 November 2026, an automated Edge run completed 65 checks: all 12 Catalog
-category/price combinations and counts, reset and keyboard activation; Home
-discovery, empty and invalid submissions, individual error clearing, valid
-submission and reset; Orders empty, malformed, valid, mixed and refreshed
-states, totals and delegated keyboard toggle; no horizontal overflow at 375,
-768 and 1440 pixels; and no uncaught page errors.
+This section supersedes the Student A implementation status below. Orders now
+uses native DOM APIs and delegated events; Home and Catalog use jQuery. New local
+work includes exact product selection, search, safe order totals, historical
+price/name support and user-controlled damaged-history recovery with backup.
+AI generated and debugged this learning implementation; it is not independently
+student-authored coursework.
 
-## Current jQuery implementation — 30 October 2026
+Current local Cart contains a tested order-storage writer. Its records include
+`unitPrice` but omit saved names. Teammate contract: store under
+`noble-demo-shop-v1` an object with `orders`, preserving other properties. Each order
+needs a unique `DEMO-...` reference, ISO date, and items with `id`, `name`, integer
+quantity 1–99 and nonnegative safe-integer `unitPrice`. Preserve snapshots when
+normalizing or rewriting storage; `js/shop.js` currently strips these fields.
+Cart should accept `?product=<catalog-id>` and provide navigation to `order.html`.
+Acceptance case: complete two mugs at 120000 KZT each, reload Orders and verify
+quantity 2 and total 240000 KZT, including after the catalogue changes.
+
+AI assistance disclosure: Codex generated and debugged the Home, Catalog and
+Orders learning implementations at the user's request. The official assignment
+requires student-authored JavaScript, so this work must not be represented as
+independent coursework. `js/old-js-version.js` remains unlinked for comparison.
+
+## Historical team jQuery snapshot — 30 October 2026
 
 This section supersedes the older JavaScript behaviour descriptions below.
 Updated pages: cart, care and register. Each loads jQuery 3.7.1 full from the
 official CDN before its existing separate page script. An internet connection
 is required for the CDN. No plugins or new CSS rules are used.
 
-- Cart: choose a product, add a card, change quantities, remove cards, see totals
-  and complete a demo order. Products come from an array; card markup is built
-  only in js/cart.js. Repeated additions create separate cards. Cart state lasts
-  until reload; checkout shows a message and does not send or store an order.
+- Cart at that stage: choose a product, add a card, change quantities, remove
+  cards and see totals. Later Endterm work added local demo-order persistence;
+  the current status is documented at the top of this README.
 - Care: checkbox count, percentage, selected-row styling, completion effect and reset.
 - Register: name, email, phone, password and confirmation validation with messages
   next to each field; errors clear while editing; independent password toggles.
@@ -141,7 +155,7 @@ featuring the Noble tableware store in Astana. The project began with Assignment
 (HTML Basics) and now contains eight linked pages as a foundation for Assignment 2
 (CSS). The current learning version includes Bootstrap styling and JavaScript.
 
-## Assignment 4–5 learning implementation — 15 October 2026
+## Historical Assignment 4–5 learning implementation — 15 October 2026
 
 This section supersedes the historical descriptions of disabled controls below.
 Codex generated this implementation at the student's explicit request. The
@@ -178,8 +192,9 @@ elements are created by DOM methods and use existing Bootstrap/project
 classes. No midterm tag was present in the local tag listing, so a comparison
 against the required midterm baseline could not be verified.
 
-Cart/history use browser localStorage under `noble-demo-shop-v1`.
-Only product IDs, quantities, dates and demo references are saved.
+At that stage, Cart/history used browser localStorage under
+`noble-demo-shop-v1` and saved only product IDs, quantities, dates and demo
+references. The current Endterm storage status is documented at the top.
 Registration details and passwords are not saved, logged, sent or placed
 in a URL. Passwords are cleared after successful demonstration validation.
 If browser storage is unavailable, a message explains that cart changes last
@@ -327,26 +342,10 @@ AI assistance on 5 October 2026: Codex generated the registration HTML, shared
 profile navigation and related CSS at the student's request.
 
 
-## Catalogue update
-
-The product page now has ten responsive cards with short descriptions, recorded
-prices and a volume row. Unknown capacities say Ask the store; non-vessels say
-Not applicable. Category and price controls are disabled previews. CSS filtering logic has been removed;
-all ten products remain visible.
+## Catalogue image provenance
 
 Images in `images.jpg/catalog/` were generated with AI at the student's request
 and are labelled as illustrations on the page. They are not verified product
-photographs and do not satisfy the midterm requirement for original photographs.
-The exact prompts and provenance are in `catalog-image-notes.md`.
-
-## Cart and orders without JavaScript
-
-The former Visit page is replaced by `order.html`. `cart.html` is accessible beside
-the profile icon on every page. Add to cart and Place order are disabled; no items,
-orders or account data are stored or submitted. The empty states, item/order templates,
-quantity controls and feedback containers are ready for a later JavaScript assignment.
-The catalogue's CSS filtering rules have been removed. All website pages contain no
-script tags, inline event handlers or JavaScript URLs. Form fields and reset buttons
-retain native HTML behaviour. Generated HTML/CSS changes were made with Codex assistance.
+photographs. Exact prompts and provenance are in `catalog-image-notes.md`.
 
 Verification (3 November 2026): node syntax and git whitespace checks passed. Browser checks covered duplicate merging, totals (2 mugs + teapot = 384,000 KZT), invalid 0/1.5/100 quantities, correction/removal, receipt + empty cart, care persistence/reset across reload, five empty form errors, invalid email/phone/mismatched passwords, independent password toggle, successful trimmed confirmation and reset. No console errors observed; all three pages checked at 390px. Cart invalid-state wrapping was corrected. W3C and whole-team acceptance checks were not performed.
