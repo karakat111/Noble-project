@@ -80,10 +80,7 @@ $(document).ready(function () {
         { key: 'phone', label: 'Phone', type: 'tel', autocomplete: 'tel' },
         { key: 'product', label: 'Product', type: 'select' },
         { key: 'quantity', label: 'Quantity (1–99)', type: 'number' },
-        { key: 'budget', label: 'Total budget (₸)', type: 'number' }
-    ];
-
-
+        { key: 'budget', label: 'Total budget (₸)
     });
 
     fields.product.append($('<option>', { value: '', text: 'Choose a product' }));
