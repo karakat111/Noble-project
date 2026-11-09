@@ -17,6 +17,9 @@ $(function () {
     return;
   }
 
+  // Our submit handler displays validation errors beside the fields.
+  $form.prop('noValidate', true);
+
   // Gift ideas
   const giftIdeas = {
     wedding: 'Serving pieces, dinner sets or decorative accessories.',
@@ -97,6 +100,8 @@ $(function () {
 
     clearErrors();
 
+    $confirmation.stop(true, true).addClass('state-hidden').text('');
+
     // Remove unnecessary spaces
     $form.find('input[type="text"], textarea').each(function () {
       $(this).val($(this).val().trim());
@@ -171,26 +176,24 @@ $(function () {
       return;
     }
 
-    // Show success message
+    // Reset first: the reset handler clears any previous confirmation.
+    $form[0].reset();
+    updateBudget();
+    updateFeaturedIdea();
+
+    // Show success only after reset has finished.
     $confirmation
       .stop(true, true)
       .text(
         'Thank you, ' + name +
-        '! Your gift enquiry was completed successfully. ' +
-        'Reference number: ' + generateReference() + '.'
+        '! Your demo gift enquiry is complete. ' +
+        'Reference number: ' + generateReference() + '. Nothing was sent to the store.'
       )
       .removeClass('state-hidden')
       .addClass('contact-success')
       .hide()
       .fadeIn(400);
 
-    // Reset form after successful submission
-    $form[0].reset();
-
-    updateBudget();
-    updateFeaturedIdea();
-
-    clearErrors();
   });
 
   // Clear errors when user changes a field
@@ -210,8 +213,11 @@ $(function () {
       .text('')
       .removeAttr('style');
 
-    updateBudget();
-    updateFeaturedIdea();
+    // Native reset restores values after this event handler returns.
+    setTimeout(function () {
+      updateBudget();
+      updateFeaturedIdea();
+    }, 0);
   });
 
   // Initial page state

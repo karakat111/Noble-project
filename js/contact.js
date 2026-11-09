@@ -45,6 +45,8 @@ $(function () {
     return;
   }
 
+  $form.prop('noValidate', true);
+
   const $confirmation = $('#contact-confirmation');
   const $hint = $('#topic-hint');
   const $phone = $('#phone');
@@ -78,9 +80,10 @@ $(function () {
     event.preventDefault();
 
     AppUtils.clearErrors($form);
+    $confirmation.stop(true, true).addClass('state-hidden').text('');
 
     $form.find(
-      'input:not([type="radio"]):not([type="checkbox"]), textarea'
+      'input[type="text"], input[type="email"], input[type="tel"], textarea'
     ).each(function () {
       $(this).val($(this).val().trim());
     });
@@ -130,27 +133,21 @@ $(function () {
       return;
     }
 
+    // Reset before showing the new confirmation.
+    $form[0].reset();
+    $topic.trigger('change');
+
     $confirmation
       .stop(true, true)
       .text(
         'Thank you, ' + name +
         '! Your demo reference number is ' +
-        AppUtils.generateReference()
+        AppUtils.generateReference() + '. Nothing was sent to the store.'
       )
       .removeClass('state-hidden')
       .addClass('contact-success')
       .hide()
-      .fadeIn(400)
-      .delay(6000)
-      .fadeOut(600, function () {
-        $(this)
-          .addClass('state-hidden')
-          .removeClass('contact-success')
-          .removeAttr('style');
-      });
-
-    $form.trigger('reset');
-    $topic.trigger('change');
+      .fadeIn(400);
   });
 
   $email.on('input', function () {
@@ -193,4 +190,13 @@ $(function () {
       AppUtils.clearError($(this));
     }
   );
+
+  $form.on('reset', function () {
+    AppUtils.clearErrors($form);
+    $confirmation.stop(true, true).addClass('state-hidden')
+      .removeClass('contact-success').text('').removeAttr('style');
+    setTimeout(function () {
+      $topic.trigger('change');
+    }, 0);
+  });
 });
