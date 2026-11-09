@@ -166,6 +166,8 @@ padding: 75px 20px 22px;
     top: 18px;
     left: 20px;
     transform: none;
+  
+
 }
 
 
@@ -184,6 +186,7 @@ font-family: "Work Sans", sans-serif;
 font-size: 14px;
 line-height: 1.8;
 box-shadow: 0 4px 16px rgba(75, 93, 58, 0.06);
+
 }
 
 #confirmation.state-success::before {
@@ -202,6 +205,7 @@ background-color: #4B5D3A;
 color: #F5F1E8;
 font-size: 24px;
 }
+
 
 @media (max-width: 576px) {
 #confirmation.state-success {
@@ -257,5 +261,3 @@ color: #4B5D3A;
 .collection-card-stock.out-of-stock {
 color: #A85C32;
 }
-
-
