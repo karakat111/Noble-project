@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const empty = document.querySelector('#orders-empty');
     const message = document.querySelector('#orders-message');
     const help = document.querySelector('#orders-help');
-    const refreshButton = document.createElement('button');
     refreshButton.id = 'orders-refresh';
     refreshButton.type = 'button';
     refreshButton.className = 'btn btn-outline-secondary mb-3';
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const recovery = createElement('div', 'mb-3');
     const download = createElement('button', 'btn btn-outline-secondary me-2', 'Download saved data');
     const reset = createElement('button', 'btn btn-outline-secondary', 'Reset damaged history');
-    download.type = reset.type = 'button';
     recovery.append(download, reset);
     recovery.hidden = true;
     message.after(recovery);
