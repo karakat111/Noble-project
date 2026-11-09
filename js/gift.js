@@ -1,209 +1,220 @@
+
 $(function () {
-  const occasions = [
-    { id: 1, title: 'Wedding', description: 'Elegant sets for newlyweds.', priceRangeKZT: '15 000 - 60 000', imageTag: 'wedding' },
-    { id: 2, title: 'Housewarming', description: 'Practical pieces for a new home.', priceRangeKZT: '8 000 - 30 000', imageTag: 'home' },
-    { id: 3, title: 'Birthday', description: 'Small personal gifts.', priceRangeKZT: '5 000 - 20 000', imageTag: 'birthday' },
-    { id: 4, title: 'Nauryz', description: 'Festive table settings.', priceRangeKZT: '10 000 - 40 000', imageTag: 'nauryz' },
-    { id: 5, title: 'Corporate', description: 'Branded tea and coffee sets.', priceRangeKZT: '7 000 - 35 000', imageTag: 'corporate' },
-    { id: 6, title: 'Anniversary', description: 'Pairs and matching sets.', priceRangeKZT: '12 000 - 50 000', imageTag: 'anniversary' }
-  ];
-
+  // Get HTML elements
   const $form = $('#gift-form');
-  if ($form.length === 0) return;
-
+  const $name = $('#name');
+  const $email = $('#email');
+  const $phone = $('#phone');
   const $occasion = $('#occasion');
+  const $quantity = $('#quantity');
+  const $budget = $('#budget');
+  const $budgetPerItem = $('#budget-per-item');
   const $confirmation = $('#confirmation');
   const $featured = $('#featured-occasion');
-  const $perItem = $('#budget-per-item');
-  const $preview = $('#gift-preview');
-  let currentIndex = -1;
 
-  // Rebuild occasion options
-  $occasion.find('option').filter(function () {
-    return $(this).val() !== '';
-  }).remove();
-
-  $.each(occasions, function (index, item) {
-    $('<option>', {
-      value: item.imageTag,
-      text: item.title
-    }).appendTo($occasion);
-  });
-
-  function calculateBudgetPerItem(budget, quantity) {
-    if (quantity <= 0) return null;
-    return budget / quantity;
+  // Stop if the form does not exist
+  if ($form.length === 0) {
+    return;
   }
 
-  function createOccasionCard(item) {
-    return $('<div>', { 'class': 'featured-card' }).append(
-      $('<h3>').text(item.title),
-      $('<p>').text(item.description + ' (' + item.priceRangeKZT + ' KZT)'),
-      $('<button>', {
-        type: 'button',
-        text: 'Choose this occasion',
-        'data-action': 'choose',
-        'data-tag': item.imageTag,
-        'class': 'btn btn-outline-primary me-2'
-      }),
-      $('<button>', {
-        type: 'button',
-        text: 'Another idea',
-        'data-action': 'shuffle',
-        'class': 'btn btn-outline-secondary'
-      })
-    );
-  }
+  // Gift ideas
+  const giftIdeas = {
+    wedding: 'Serving pieces, dinner sets or decorative accessories.',
+    home: 'A useful tableware piece or a beautiful dinner set.',
+    birthday: 'A coffee mug, tea set or decorative vase.',
+    nauryz: 'A tea set or elegant table accessories.',
+    corporate: 'Matching mugs, serving sets or gift collections.',
+    anniversary: 'A porcelain set or elegant decorative pieces.'
+  };
 
-  function renderFeatured() {
-    let index = Math.floor(Math.random() * occasions.length);
+  // Show a featured gift idea
+  function updateFeaturedIdea() {
+    const occasion = $occasion.val();
+    const idea = giftIdeas[occasion];
 
-    if (index === currentIndex) {
-      index = (index + 1) % occasions.length;
+    if (idea) {
+      $featured.text(idea);
+    } else {
+      $featured.text(
+        'Choose an occasion to see a gift idea.'
+      );
     }
-
-    currentIndex = index;
-
-    createOccasionCard(occasions[index])
-      .hide()
-      .appendTo($featured.empty())
-      .fadeIn(250);
   }
 
-  function updateBudgetPerItem() {
-    const budget = Number($('#budget').val());
-    const quantity = Number($('#quantity').val());
-    const result = calculateBudgetPerItem(budget, quantity);
+  // Calculate budget per gift
+  function updateBudget() {
+    const quantity = Number($quantity.val());
+    const budget = Number($budget.val());
 
-    if (result === null || budget <= 0) {
-      $perItem.text('');
-      return;
+    if (
+      $budget.val() !== '' &&
+      quantity > 0 &&
+      budget >= 0
+    ) {
+      const perItem = budget / quantity;
+
+      $budgetPerItem.text(
+        'Budget per gift: ' +
+        perItem.toLocaleString('en-US') +
+        ' ₸'
+      );
+    } else {
+      $budgetPerItem.text('');
     }
-
-    $perItem.text(
-      'About ' + Math.round(result).toLocaleString('en-US') + ' KZT per item.'
-    );
   }
 
-  // Preview button
-  function showPreview() {
-    const selected = occasions.find(function (item) {
-      return item.imageTag === $occasion.val();
-    });
+  // Show validation error
+  function showError($field, message) {
+    $field.addClass('is-invalid');
 
-    const quantity = Number($('#quantity').val());
-    const budget = Number($('#budget').val());
-    const perItem = calculateBudgetPerItem(budget, quantity);
-
-    const summary = [
-      'Gift request preview',
-      'Occasion: ' + (selected ? selected.title : 'Not selected'),
-      'Number of gifts: ' + (quantity > 0 ? quantity : 'Not entered'),
-      'Budget per item: ' + (
-        perItem !== null && budget > 0
-          ? Math.round(perItem).toLocaleString('en-US') + ' KZT'
-          : 'Not available'
-      )
-    ].join(' | ');
-
-    $confirmation.stop(true, true)
-      .text(summary)
-      .attr('role', 'status')
-      .removeClass('state-hidden state-success')
-      .hide()
-      .fadeIn(250);
+    $('<div>', {
+      class: 'gift-error text-danger small mt-1',
+      text: message
+    }).insertAfter($field);
   }
 
-  $featured.on('click', '[data-action]', function () {
-    const $button = $(this);
+  // Clear validation errors
+  function clearErrors() {
+    $form.find('.gift-error').remove();
+    $form.find('.is-invalid').removeClass('is-invalid');
+  }
 
-    if ($button.data('action') === 'shuffle') {
-      renderFeatured();
-      return;
-    }
+  // Generate reference number
+  function generateReference() {
+    return 'GIFT-' + Math.floor(100000 + Math.random() * 900000);
+  }
 
-    const tag = $button.attr('data-tag');
-    const $card = $button.closest('.featured-card');
+  // Update featured idea when occasion changes
+  $occasion.on('change', updateFeaturedIdea);
 
-    if ($occasion.find('option').filter(function () {
-      return $(this).val() === tag;
-    }).length) {
-      $occasion.val(tag).trigger('change');
-      $card.find('p').text('Selected in the form below.');
-    }
-  });
+  // Update budget when quantity or budget changes
+  $quantity.on('input change', updateBudget);
+  $budget.on('input change', updateBudget);
 
-  $('#budget, #quantity').on('input', updateBudgetPerItem);
-
-  $preview.prop('disabled', false).on('click', showPreview);
-
-  $form.on('input change', 'input, select, textarea', function () {
-    AppUtils.clearError($(this));
-  });
-
-  // Form validation
+  // Form validation and submission
   $form.on('submit', function (event) {
     event.preventDefault();
-    AppUtils.clearErrors($form);
 
-    $form.find('input:not([type="radio"]):not([type="checkbox"]), textarea').each(function () {
+    clearErrors();
+
+    // Remove unnecessary spaces
+    $form.find('input[type="text"], textarea').each(function () {
       $(this).val($(this).val().trim());
     });
 
-    const $name = $('#name');
-    const $email = $('#email');
-    const $phone = $('#phone');
-    const $quantity = $('#quantity');
+    const name = $name.val();
+    const email = $email.val();
+    const phone = $phone.val().trim();
+    const occasion = $occasion.val();
+    const quantity = Number($quantity.val());
+    const budget = $budget.val();
 
-    const method = $form.find('input[name="contact-method"]:checked').val();
-    const phone = $phone.val();
+    let isValid = true;
 
-    if (!AppUtils.isRequired($name.val())) {
-      AppUtils.showError($name, 'Please enter your name.');
+    // Validate name
+    if (name === '') {
+      showError($name, 'Please enter your name.');
+      isValid = false;
     }
 
-    if (!AppUtils.isEmail($email.val())) {
-      AppUtils.showError($email, 'Please enter a valid email address.');
+    // Validate email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+      showError($email, 'Please enter a valid email address.');
+      isValid = false;
     }
 
-    if (!AppUtils.isRequired($occasion.val())) {
-      AppUtils.showError($occasion, 'Please choose an occasion.');
+    // Validate phone if phone contact is selected
+    const contactMethod =
+      $form.find('input[name="contact-method"]:checked').val();
+
+    if (contactMethod === 'phone' && phone === '') {
+      showError($phone, 'Please enter your phone number.');
+      isValid = false;
     }
 
-    if (method === 'phone' && !AppUtils.isRequired(phone)) {
-      AppUtils.showError($phone, 'Please enter your phone number.');
-    } else if (phone !== '' && !AppUtils.isPhone(phone)) {
-      AppUtils.showError($phone, 'Please enter a valid phone number.');
+    // Validate occasion
+    if (occasion === '') {
+      showError($occasion, 'Please choose an occasion.');
+      isValid = false;
     }
 
-    if ($occasion.val() === 'wedding' && Number($quantity.val()) < 2) {
-      AppUtils.showError($quantity, 'For a wedding, please order at least 2 items.');
+    // Validate quantity
+    if (
+      $quantity.val() === '' ||
+      !Number.isInteger(quantity) ||
+      quantity < 1
+    ) {
+      showError(
+        $quantity,
+        'Please enter a quantity of at least 1.'
+      );
+      isValid = false;
     }
 
-    if ($form.find('.state-error').length > 0) {
-      $form.find('.state-error:first').trigger('focus');
+    // Validate budget
+    if (
+      budget !== '' &&
+      (!Number.isFinite(Number(budget)) || Number(budget) < 0)
+    ) {
+      showError(
+        $budget,
+        'Please enter a valid budget.'
+      );
+      isValid = false;
+    }
+
+    // Stop if there are errors
+    if (!isValid) {
+      $form.find('.is-invalid:first').trigger('focus');
       return;
     }
 
-    $confirmation.stop(true, true)
+    // Show success message
+    $confirmation
+      .stop(true, true)
       .text(
-        'Thank you, ' + $name.val() +
-        '! Your gift request has been received. Reference number: ' +
-        AppUtils.generateReference() + '.'
+        'Thank you, ' + name +
+        '! Your gift enquiry was completed successfully. ' +
+        'Reference number: ' + generateReference() + '.'
       )
-      .attr('role', 'status')
       .removeClass('state-hidden')
-      .addClass('state-success')
+      .addClass('contact-success')
       .hide()
-      .fadeIn(300)
-      .delay(6000)
-      .fadeOut(600, function () {
-        $(this)
-          .addClass('state-hidden')
-          .removeClass('state-success')
-          .removeAttr('style');
-      });
+      .fadeIn(400);
+
+    // Reset form after successful submission
+    $form[0].reset();
+
+    updateBudget();
+    updateFeaturedIdea();
+
+    clearErrors();
   });
 
-  renderFeatured();
+  // Clear errors when user changes a field
+  $form.on('input change', 'input, select, textarea', function () {
+    $(this).removeClass('is-invalid');
+    $(this).next('.gift-error').remove();
+  });
+
+  // Reset button
+  $form.on('reset', function () {
+    clearErrors();
+
+    $confirmation
+      .stop(true, true)
+      .addClass('state-hidden')
+      .removeClass('contact-success')
+      .text('')
+      .removeAttr('style');
+
+    updateBudget();
+    updateFeaturedIdea();
+  });
+
+  // Initial page state
+  updateFeaturedIdea();
+  updateBudget();
 });
