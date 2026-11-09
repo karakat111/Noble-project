@@ -12,16 +12,11 @@ const products = [
     { id: 'caviar-dish', name: 'Caviar dish', price: 65000 }
 ];
 let cart = [];
-let orderNumber = 0;
 
 const items = document.querySelector('#cart-items');
 const select = document.querySelector('#cart-product');
 const message = document.querySelector('#cart-message');
 const orderButton = document.querySelector('#place-order');
-const receipt = document.createElement('section');
-receipt.className = 'state-success state-hidden mt-3';
-receipt.setAttribute('aria-label', 'Completed demo order');
-message.after(receipt);
 
 function findProduct(id) {
     return products.find(function (product) { return product.id === id; });
@@ -51,10 +46,6 @@ for (const product of products) {
     option.textContent = product.name + ' — ' + formatPrice(product.price);
     select.append(option);
 }
-document.querySelector('.order-panel .fine-print').textContent =
-    'Demo only: no payment or order is sent. Cart and receipt clear on reload.';
-document.querySelector('#checkout-error').textContent =
-    'Correct the highlighted quantities before checkout.';
 
 function updateTotal() {
     let count = 0;
@@ -87,13 +78,10 @@ function renderCart() {
             '<input class="form-control cart-quantity" type="number" min="1" max="99" step="1" required></label>' +
             '<button type="button" class="cart-remove">Remove</button></div>';
         row.querySelector('img').src = 'images.jpg/catalog/' + product.id + '.png';
-        row.querySelector('img').alt = 'Illustration of ' + product.name;
         row.querySelector('.cart-name').textContent = product.name;
         row.querySelector('.cart-unit-price').textContent = formatPrice(product.price) + ' each';
         row.querySelector('.cart-quantity').value = item.quantity;
-        row.querySelector('.cart-quantity').setAttribute('aria-label', 'Quantity of ' + product.name);
         row.querySelector('.cart-error').id = 'quantity-error-' + product.id;
-        row.querySelector('.cart-quantity').setAttribute('aria-describedby', 'quantity-error-' + product.id);
         updateRow(row, item);
         items.append(row);
     }
@@ -103,7 +91,6 @@ function renderCart() {
 function updateRow(row, item) {
     const valid = validQuantity(item.quantity);
     row.querySelector('.cart-quantity').classList.toggle('is-invalid', !valid);
-    row.querySelector('.cart-quantity').setAttribute('aria-invalid', String(!valid));
     row.querySelector('.cart-error').classList.toggle('state-hidden', valid);
     row.querySelector('.cart-subtotal').textContent = valid ?
         'Subtotal: ' + formatPrice(findProduct(item.id).price * item.quantity) : 'Subtotal: —';
@@ -143,37 +130,16 @@ function removeItem(event) {
     cart = cart.filter(function (item) { return item.id !== product.id; });
     renderCart();
     message.textContent = product.name + ' removed.';
-    document.querySelector('#add-to-cart').focus();
 }
 
 function placeOrder() {
     updateTotal();
     if (orderButton.disabled) return;
-    orderNumber += 1;
-    receipt.replaceChildren();
-    const heading = document.createElement('h3');
-    heading.className = 'h5';
-    heading.textContent = 'Demo order ' + orderNumber + ' completed';
-    const list = document.createElement('ul');
-    for (const item of cart) {
-        const product = findProduct(item.id);
-        const line = document.createElement('li');
-        line.textContent = product.name + ' × ' + item.quantity + ' — ' + formatPrice(product.price * item.quantity);
-        list.append(line);
-    }
-    const total = document.createElement('p');
-    total.className = 'fw-semibold';
-    total.textContent = 'Total: ' + formatPrice(calculateTotal(cart));
-    const note = document.createElement('p');
-    note.className = 'small mb-0';
-    note.textContent = 'Receipt for this page only. Not saved in My Orders. No payment or request was sent.';
-    receipt.append(heading, list, total, note);
-    receipt.classList.remove('state-hidden');
+    const total = calculateTotal(cart);
     cart = [];
     renderCart();
-    message.textContent = 'Demo order completed. Your cart is now empty.';
-    receipt.tabIndex = -1;
-    receipt.focus();
+    message.textContent = 'Demo order completed. Total: ' + formatPrice(total) +
+        '. Your cart is now empty. No payment or request was sent.';
 }
 
 document.querySelector('#add-to-cart').addEventListener('click', addProduct);

@@ -83,26 +83,7 @@ $(document).ready(function () {
         { key: 'budget', label: 'Total budget (₸)', type: 'number' }
     ];
 
-    definitions.forEach(function (definition) {
-        const id = 'enquiry-' + definition.key;
-        const $wrapper = $('<div>', { 'class': 'col-12 col-md-6' });
-        const $label = $('<label>', { 'class': 'form-label', for: id }).text(definition.label);
-        const $field = definition.type === 'select'
-            ? $('<select>', { 'class': 'form-select' })
-            : $('<input>', { 'class': 'form-control', type: definition.type });
-        const $error = $('<p>', { id: id + '-error', 'class': 'invalid-feedback' });
 
-        $field.attr({ id: id, name: definition.key, 'aria-describedby': $error.attr('id') })
-            .prop('required', true);
-        if (definition.autocomplete) $field.attr('autocomplete', definition.autocomplete);
-        if (definition.key === 'name') $field.attr('maxlength', '100');
-        if (definition.key === 'email') $field.attr('maxlength', '254');
-        if (definition.key === 'phone') $field.attr('maxlength', '20');
-        if (definition.key === 'quantity') $field.attr({ min: '1', max: '99', step: '1' });
-        if (definition.key === 'budget') $field.attr({ min: '1', step: '1' });
-
-        $wrapper.append($label, $field, $error).appendTo($form);
-        fields[definition.key] = $field;
     });
 
     fields.product.append($('<option>', { value: '', text: 'Choose a product' }));

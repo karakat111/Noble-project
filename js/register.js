@@ -33,7 +33,6 @@ $(function () {
             anchor = field.parent();
         }
         $('<p class="field-error state-error state-hidden small mt-2"></p>').attr('id', id).appendTo(anchor.parent());
-        field.attr('aria-describedby', id + (field.attr('id') === 'register-password' ? ' register-password-help' : ''));
     });
     // Keep required/type/minlength attributes as baseline constraints. Disable only
     // browser popups so submit can report every field error next to its field.
@@ -69,7 +68,7 @@ $(function () {
             anchor = field.parent();
         }
         anchor.siblings('.field-error').text(text).toggleClass('state-hidden', text === '');
-        field.toggleClass('is-invalid', text !== '').attr('aria-invalid', String(text !== ''));
+        field.toggleClass('is-invalid', text !== '');
         return text === '';
     }
 
@@ -88,20 +87,18 @@ $(function () {
         const input = button.closest('.password-field').find('input');
         if (input.attr('type') === 'password') {
             input.attr('type', 'text');
-            button.attr('aria-pressed', 'true').find('span').text('Hide password');
         } else {
             input.attr('type', 'password');
-            button.attr('aria-pressed', 'false').find('span').text('Show password');
         }
     }
 
     function clearFields() {
         // Clear values, remove error styling, and remove the invalid state in one chain.
         strength.text('');
-        fields.val('').removeClass('is-invalid').removeAttr('aria-invalid');
+        fields.val('').removeClass('is-invalid');
         form.find('.field-error').text('').addClass('state-hidden');
         password.add(confirmation).attr('type', 'password');
-        form.find('.password-toggle').attr('aria-pressed', 'false').find('span').text('Show password');
+        form.find('.password-toggle').find('span').text('Show password');
     }
 
     function submitForm(event) {
@@ -122,8 +119,7 @@ $(function () {
             form.find('.is-invalid').first().trigger('focus');
             return;
         }
-        // Browser checks can be bypassed; a real server must validate again.
-        // .html() parses this fixed markup; user-entered values always use .text().
+
         success.empty();
         $('<strong></strong>').text('Details checked for ' + $('#register-name').val() + '.').appendTo(success);
         $('<p class="mb-0"></p>').text('Email: ' + $('#register-email').val() + ' · Phone: ' + $('#register-phone').val()).appendTo(success);
@@ -141,7 +137,7 @@ $(function () {
         status.text('Form cleared.');
     }
 
-    form.find('.password-toggle').attr('aria-pressed', 'false').on('click', togglePassword);
+    form.find('.password-toggle').on('click', togglePassword);
     form.on('input change', 'input', handleEdit);
     form.on('submit', submitForm);
     form.on('reset', resetForm);

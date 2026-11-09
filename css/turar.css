@@ -1,4 +1,71 @@
 /* Branding comes from base.css and the team's existing karakat.css. */
+.home-page .home-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background: var(--color-bg-panel);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+}
+.home-page .home-hero-copy { padding: 48px; }
+.home-page .home-eyebrow {
+    color: var(--color-sage);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+.home-page .home-hero h1 {
+    font-family: var(--font-display);
+    color: var(--color-sage-dark);
+    font-size: 60px;
+    line-height: 1.05;
+    margin-bottom: 24px;
+}
+.home-page .home-description {
+    max-width: 380px;
+    color: var(--color-walnut);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+.home-page .home-catalog-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 24px;
+    background: var(--color-sage);
+    color: var(--color-cream);
+    border: 1px solid var(--color-sage);
+    border-radius: 4px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.home-page .home-catalog-link:hover {
+    background: var(--color-sage-dark);
+    border-color: var(--color-sage-dark);
+    color: var(--color-cream);
+}
+.home-page .home-location {
+    color: var(--color-walnut);
+    font-size: 11px;
+    margin: 16px 0 0;
+}
+.home-page .home-hero-image {
+    width: 100%;
+    height: 100%;
+    min-height: 470px;
+    object-fit: cover;
+}
+@media (max-width: 767px) {
+    .home-page .home-hero { grid-template-columns: 1fr; }
+    .home-page .home-hero-copy { padding: 32px 24px; }
+    .home-page .home-hero h1 { font-size: 44px; }
+    .home-page .home-hero-image { height: 280px; min-height: 0; }
+}
+
 :where(.home-page, .catalog-page) :is(a, button):focus-visible {
     outline: 2px solid var(--color-sage-dark);
     outline-offset: 3px;
