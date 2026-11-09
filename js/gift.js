@@ -1,6 +1,59 @@
-
 $(function () {
+  const occasions = [
+    { id: 1, title: 'Wedding', description: 'Elegant sets for newlyweds.', priceRangeKZT: '15 000 - 60 000', imageTag: 'wedding' },
+    { id: 2, title: 'Housewarming', description: 'Practical pieces for a new home.', priceRangeKZT: '8 000 - 30 000', imageTag: 'home' },
+    { id: 3, title: 'Birthday', description: 'Small personal gifts.', priceRangeKZT: '5 000 - 20 000', imageTag: 'birthday' },
+    { id: 4, title: 'Nauryz', description: 'Festive table settings.', priceRangeKZT: '10 000 - 40 000', imageTag: 'nauryz' },
+    { id: 5, title: 'Corporate', description: 'Branded tea and coffee sets.', priceRangeKZT: '7 000 - 35 000', imageTag: 'corporate' },
+    { id: 6, title: 'Anniversary', description: 'Pairs and matching sets.', priceRangeKZT: '12 000 - 50 000', imageTag: 'anniversary' }
+  ];
 
+  const $form = $('#gift-form');
+  if ($form.length === 0) return;
+
+  const $occasion = $('#occasion');
+  const $confirmation = $('#confirmation');
+  const $featured = $('#featured-occasion');
+  const $perItem = $('#budget-per-item');
+  const $preview = $('#gift-preview');
+  let currentIndex = -1;
+
+  // Rebuild occasion options
+  $occasion.find('option').filter(function () {
+    return $(this).val() !== '';
+  }).remove();
+
+  $.each(occasions, function (index, item) {
+    $('<option>', {
+      value: item.imageTag,
+      text: item.title
+    }).appendTo($occasion);
+  });
+
+  function calculateBudgetPerItem(budget, quantity) {
+    if (quantity <= 0) return null;
+    return budget / quantity;
+  }
+
+  function createOccasionCard(item) {
+    return $('<div>', { 'class': 'featured-card' }).append(
+      $('<h3>').text(item.title),
+      $('<p>').text(item.description + ' (' + item.priceRangeKZT + ' KZT)'),
+      $('<button>', {
+        type: 'button',
+        text: 'Choose this occasion',
+        'data-action': 'choose',
+        'data-tag': item.imageTag,
+        'class': 'btn btn-outline-primary me-2'
+      }),
+      $('<button>', {
+        type: 'button',
+        text: 'Another idea',
+        'data-action': 'shuffle',
+        'class': 'btn btn-outline-secondary'
+      })
+    );
+  }
 
   function renderFeatured() {
     let index = Math.floor(Math.random() * occasions.length);
@@ -20,71 +73,90 @@ $(function () {
   function updateBudgetPerItem() {
     const budget = Number($('#budget').val());
     const quantity = Number($('#quantity').val());
-
     const result = calculateBudgetPerItem(budget, quantity);
 
-    if (
-      result === null ||
-      !Number.isFinite(budget) ||
-      budget <= 0
-    ) {
+    if (result === null || budget <= 0) {
       $perItem.text('');
       return;
     }
 
-    $perItem.html(
-      'About <strong>' +
-      formatPrice(Math.round(result)) +
-      '</strong> per item.'
+    $perItem.text(
+      'About ' + Math.round(result).toLocaleString('en-US') + ' KZT per item.'
     );
+  }
+
+  // Preview button
+  function showPreview() {
+    const selected = occasions.find(function (item) {
+      return item.imageTag === $occasion.val();
+    });
+
+    const quantity = Number($('#quantity').val());
+    const budget = Number($('#budget').val());
+    const perItem = calculateBudgetPerItem(budget, quantity);
+
+    const summary = [
+      'Gift request preview',
+      'Occasion: ' + (selected ? selected.title : 'Not selected'),
+      'Number of gifts: ' + (quantity > 0 ? quantity : 'Not entered'),
+      'Budget per item: ' + (
+        perItem !== null && budget > 0
+          ? Math.round(perItem).toLocaleString('en-US') + ' KZT'
+          : 'Not available'
+      )
+    ].join(' | ');
+
+    $confirmation.stop(true, true)
+      .text(summary)
+      .attr('role', 'status')
+      .removeClass('state-hidden state-success')
+      .hide()
+      .fadeIn(250);
   }
 
   $featured.on('click', '[data-action]', function () {
     const $button = $(this);
-    const action = $button.data('action');
 
-    if (action === 'shuffle') {
+    if ($button.data('action') === 'shuffle') {
       renderFeatured();
       return;
     }
 
-    if (action === 'choose') {
-      const tag = $button.attr('data-tag');
-      const $card = $button.closest('.featured-card');
-      const $option = $('#occasion option[value="' + tag + '"]');
+    const tag = $button.attr('data-tag');
+    const $card = $button.closest('.featured-card');
 
-      if ($option.length > 0) {
-        $('#occasion').val(tag).trigger('change');
-        $card.find('p').text('Selected in the form below.');
-      }
+    if ($occasion.find('option').filter(function () {
+      return $(this).val() === tag;
+    }).length) {
+      $occasion.val(tag).trigger('change');
+      $card.find('p').text('Selected in the form below.');
     }
   });
 
   $('#budget, #quantity').on('input', updateBudgetPerItem);
 
+  $preview.prop('disabled', false).on('click', showPreview);
+
   $form.on('input change', 'input, select, textarea', function () {
     AppUtils.clearError($(this));
   });
 
+  // Form validation
   $form.on('submit', function (event) {
     event.preventDefault();
-
     AppUtils.clearErrors($form);
 
-    $form.find(
-      'input:not([type="radio"]):not([type="checkbox"]), textarea'
-    ).each(function () {
+    $form.find('input:not([type="radio"]):not([type="checkbox"]), textarea').each(function () {
       $(this).val($(this).val().trim());
     });
 
     const $name = $('#name');
     const $email = $('#email');
-    const $occasion = $('#occasion');
+    const $phone = $('#phone');
     const $quantity = $('#quantity');
-    const $budget = $('#budget');
 
-    const quantityValue = Number($quantity.val());
-    const budgetValue = Number($budget.val());
+    const method = $form.find('input[name="contact-method"]:checked').val();
+    const phone = $phone.val();
 
     if (!AppUtils.isRequired($name.val())) {
       AppUtils.showError($name, 'Please enter your name.');
@@ -94,42 +166,18 @@ $(function () {
       AppUtils.showError($email, 'Please enter a valid email address.');
     }
 
-    if ($occasion.val() === '') {
+    if (!AppUtils.isRequired($occasion.val())) {
       AppUtils.showError($occasion, 'Please choose an occasion.');
     }
 
-    const quantityValid =
-      AppUtils.isRequired($quantity.val()) &&
-      Number.isInteger(quantityValue) &&
-      quantityValue >= 1;
-
-    if (!quantityValid) {
-      AppUtils.showError(
-        $quantity,
-        'Please enter a whole number of at least 1.'
-      );
-    } else if (
-      $occasion.val() === 'wedding' &&
-      quantityValue < 2
-    ) {
-      AppUtils.showError(
-        $quantity,
-        'For a wedding, please order at least 2 items.'
-      );
+    if (method === 'phone' && !AppUtils.isRequired(phone)) {
+      AppUtils.showError($phone, 'Please enter your phone number.');
+    } else if (phone !== '' && !AppUtils.isPhone(phone)) {
+      AppUtils.showError($phone, 'Please enter a valid phone number.');
     }
 
-    if (
-      $budget.val() !== '' &&
-      (
-        !Number.isFinite(budgetValue) ||
-        budgetValue < 0 ||
-        !Number.isInteger(budgetValue)
-      )
-    ) {
-      AppUtils.showError(
-        $budget,
-        'Please enter a valid whole-number budget.'
-      );
+    if ($occasion.val() === 'wedding' && Number($quantity.val()) < 2) {
+      AppUtils.showError($quantity, 'For a wedding, please order at least 2 items.');
     }
 
     if ($form.find('.state-error').length > 0) {
@@ -137,20 +185,24 @@ $(function () {
       return;
     }
 
-    $confirmation
-      .stop(true, true)
+    $confirmation.stop(true, true)
       .text(
         'Thank you, ' + $name.val() +
-        '! Your gift request has been received. ' +
-        'Your reference number is ' +
-        AppUtils.generateReference() +
-        '. Our team would be happy to help you find the perfect gift.'
+        '! Your gift request has been received. Reference number: ' +
+        AppUtils.generateReference() + '.'
       )
       .attr('role', 'status')
       .removeClass('state-hidden')
       .addClass('state-success')
       .hide()
-      .fadeIn(300);
+      .fadeIn(300)
+      .delay(6000)
+      .fadeOut(600, function () {
+        $(this)
+          .addClass('state-hidden')
+          .removeClass('state-success')
+          .removeAttr('style');
+      });
   });
 
   renderFeatured();
