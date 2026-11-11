@@ -27,7 +27,6 @@
           <ul class="navbar-nav flex-row flex-wrap gap-2 ms-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link" href="indexx.html">Home</a></li>
             <li class="nav-item"><a class="nav-link" href="page-1.html">Products</a></li>
-            <li class="nav-item"><a class="nav-link" href="gift-guide.html">Gift Guide</a></li>
             <li class="nav-item"><a class="nav-link" href="care.html">Care and Storage</a></li>
             <li class="nav-item"><a class="nav-link" href="order.html">My Orders</a></li>
             <li class="nav-item"><a class="nav-link active" href="page2.html">Contact</a></li>
@@ -122,6 +121,40 @@
         <div class="form-check mt-3">
           <input class="form-check-input" type="checkbox" id="subscribe" name="subscribe">
           <label class="form-check-label" for="subscribe">Updates on new collections</label>
+        </div>
+
+        <!-- Gift fields: appear when topic = Gift advice -->
+        <div id="gift-fields" class="mt-4 state-hidden">
+          <p class="form-label mb-2">Gift details</p>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <label for="occasion" class="form-label">Occasion <span class="text-danger">*</span></label>
+              <select class="form-select" id="occasion" name="occasion">
+                <option value="">Choose an occasion</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="occasion-date" class="form-label">Date of the occasion</label>
+              <input type="date" class="form-control" id="occasion-date" name="occasion-date">
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="quantity" class="form-label">Number of gifts <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="quantity" name="quantity" min="1" step="1" placeholder="1">
+            </div>
+            <div class="col-12 col-md-6">
+              <label for="budget" class="form-label">Total budget (KZT)</label>
+              <input type="number" class="form-control" id="budget" name="budget-kzt" min="0" step="1" placeholder="Optional">
+            </div>
+            <div class="col-12">
+              <p id="budget-per-item" class="fine-print mb-0"></p>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="packaging" name="ask-about-packaging" value="yes">
+                <label class="form-check-label" for="packaging">Ask about gift packaging options</label>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="mt-4">
