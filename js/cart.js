@@ -1,20 +1,7 @@
 // Plain JavaScript: this feature does not use jQuery.
-const products = [
-    { id: 'mug', name: 'Mug', price: 120000 },
-    { id: 'caviar-cup', name: 'Caviar cup', price: 220000 },
-    { id: 'candle-holder', name: 'Lithophane candle holder', price: 78000 },
-    { id: 'teapot', name: 'Teapot', price: 144000 },
-    { id: 'bowl', name: 'Bowl', price: 100000 },
-    { id: 'jewelry-box', name: 'Jewelry box', price: 38000 },
-    { id: 'pitcher', name: 'Pitcher', price: 80000 },
-    { id: 'saucer', name: 'Saucer', price: 58000 },
-    { id: 'decanter', name: 'Decanter', price: 85000 },
-    { id: 'caviar-dish', name: 'Caviar dish', price: 65000 }
-];
 let cart = [];
 
 const items = document.querySelector('#cart-items');
-const select = document.querySelector('#cart-product');
 const message = document.querySelector('#cart-message');
 const orderButton = document.querySelector('#place-order');
 
@@ -36,15 +23,6 @@ function calculateTotal(list) {
         total += findProduct(item.id).price * item.quantity;
     }
     return total;
-}
-
-// Build the chooser from the same data as the cards.
-select.replaceChildren();
-for (const product of products) {
-    const option = document.createElement('option');
-    option.value = product.id;
-    option.textContent = product.name + ' — ' + formatPrice(product.price);
-    select.append(option);
 }
 
 function updateTotal() {
@@ -96,23 +74,6 @@ function updateRow(row, item) {
         'Subtotal: ' + formatPrice(findProduct(item.id).price * item.quantity) : 'Subtotal: —';
 }
 
-function addProduct() {
-    const product = findProduct(select.value);
-    if (!product) return;
-    const existing = cart.find(function (item) { return item.id === product.id; });
-    if (existing) {
-        if (!validQuantity(existing.quantity) || existing.quantity === 99) {
-            message.textContent = 'Check the quantity for ' + product.name + '. The maximum is 99.';
-            return;
-        }
-        existing.quantity += 1;
-    } else {
-        cart.push({ id: product.id, quantity: 1 });
-    }
-    renderCart();
-    message.textContent = product.name + ' added.';
-}
-
 function changeQuantity(event) {
     if (!event.target.matches('.cart-quantity')) return;
     const row = event.target.closest('.cart-item');
@@ -120,7 +81,11 @@ function changeQuantity(event) {
     item.quantity = Number(event.target.value);
     updateRow(row, item);
     updateTotal();
-    message.textContent = '';
+    if (cart.every(function (entry) { return validQuantity(entry.quantity); })) {
+        message.textContent = saveCart(cart) ? '' : 'Could not save changes. Allow browser storage and try again.';
+    } else {
+        message.textContent = 'Correct the quantity. Your last valid cart is still saved.';
+    }
 }
 
 function removeItem(event) {
@@ -129,22 +94,36 @@ function removeItem(event) {
     const product = findProduct(row.dataset.product);
     cart = cart.filter(function (item) { return item.id !== product.id; });
     renderCart();
-    message.textContent = product.name + ' removed.';
+    if (!cart.every(function (item) { return validQuantity(item.quantity); })) {
+        message.textContent = 'Correct the remaining quantities to save your changes.';
+        return;
+    }
+    message.textContent = saveCart(cart) ? product.name + ' removed.' :
+        'Could not save removal. Allow browser storage and try again.';
 }
 
 function placeOrder() {
     updateTotal();
     if (orderButton.disabled) return;
     const total = calculateTotal(cart);
+    const reference = saveOrder(cart);
+    if (!reference) {
+        message.textContent = 'Could not save the order. Your cart is unchanged. Check browser storage or the history message in My Orders.';
+        return;
+    }
     cart = [];
     renderCart();
-    message.textContent = 'Demo order completed. Total: ' + formatPrice(total) +
+    message.textContent = 'Order ' + reference + ' saved in My Orders. Total: ' + formatPrice(total) +
         '. Your cart is now empty. No payment or request was sent.';
 }
 
-document.querySelector('#add-to-cart').addEventListener('click', addProduct);
 // Delegation: the container handles cards created later by renderCart().
 items.addEventListener('click', removeItem);
 items.addEventListener('input', changeQuantity);
 orderButton.addEventListener('click', placeOrder);
+try {
+    cart = readCart();
+} catch {
+    message.textContent = 'Saved cart could not be read. If storage is available, adding a product in the catalogue starts a new cart.';
+}
 renderCart();

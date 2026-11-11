@@ -1,3 +1,34 @@
+/* Orders: a compact toolbar and a focused empty state. */
+.order-page #main-content { max-width: 1120px; padding-top: 48px !important; padding-bottom: 32px !important; }
+.order-page .orders-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 32px; }
+.order-page .orders-eyebrow { color: var(--color-sage); font-size: 11px; font-weight: 600; letter-spacing: 2px; margin-bottom: 10px; }
+.order-page .orders-toolbar h1 { font-size: 48px; font-style: normal; margin-bottom: 8px; }
+.order-page .orders-subtitle { color: var(--color-walnut); font-size: 14px; margin: 0; }
+.order-page .btn { font-size: 13px; padding: 12px 20px; border-radius: 4px; }
+.order-page .btn-outline-secondary { border-color: var(--color-border); color: var(--color-sage-dark); }
+.order-page .btn-outline-secondary:hover { background: var(--color-sage); border-color: var(--color-sage); color: var(--color-cream); }
+.order-page .orders-primary { background: var(--color-sage); color: var(--color-cream); border: 1px solid var(--color-sage); }
+.order-page .orders-primary:hover { background: var(--color-sage-dark); color: var(--color-cream); }
+.order-page .orders-empty { text-align: center; padding: 56px 24px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-bg-panel); }
+.order-page .orders-empty-icon { display: inline-block; color: var(--color-sage); font-size: 48px; margin-bottom: 12px; }
+.order-page .orders-empty h2 { font-size: 34px; margin-bottom: 12px; }
+.order-page .orders-empty p { max-width: 440px; margin: 0 auto 28px; color: var(--color-walnut); font-size: 14px; line-height: 1.8; }
+.order-page .orders-empty-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+.order-page #orders-message { font-size: 12px; color: var(--color-walnut); margin-top: 20px !important; }
+.order-page .order-card { background: var(--color-cream); border-color: var(--color-border) !important; border-radius: 8px !important; }
+.order-page .order-number { flex: 1 1 100%; font-size: 24px; }
+.order-page .order-card .badge { align-self: center; background: var(--color-bg-panel) !important; color: var(--color-sage-dark); padding: 8px 12px; font-weight: 500; }
+.order-page .order-toggle { margin-left: auto; margin-bottom: 0 !important; }
+.order-page .order-details { border-top: 1px solid var(--color-border); padding-top: 20px; font-size: 14px; }
+.order-page .order-items li { padding: 6px 0; }
+@media (max-width: 575px) {
+    .order-page .orders-toolbar { align-items: flex-start; flex-direction: column; gap: 16px; }
+    .order-page .orders-toolbar h1 { font-size: 40px; }
+    .order-page .orders-empty { padding: 36px 20px; }
+    .order-page .orders-empty-actions { flex-direction: column; }
+    .order-page .order-number { font-size: 20px; }
+}
+
 /* Shared navigation and title styling, matching the Collections, Contact and Gift Guide pages. */
 .arsen-page .navbar {
     background-color: var(--color-sage);

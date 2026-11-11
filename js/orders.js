@@ -8,14 +8,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const empty = document.querySelector('#orders-empty');
     const message = document.querySelector('#orders-message');
     const help = document.querySelector('#orders-help');
+    const refreshButton = document.createElement('button');
     refreshButton.id = 'orders-refresh';
     refreshButton.type = 'button';
-    refreshButton.className = 'btn btn-outline-secondary mb-3';
-    refreshButton.textContent = 'Refresh order history';
-    list.before(refreshButton);
+    refreshButton.className = 'btn btn-outline-secondary';
+    refreshButton.textContent = '↻ Refresh history';
+    document.querySelector('#orders-actions').append(refreshButton);
     message.setAttribute('role', 'status');
-    help.textContent = 'Completed demonstration orders saved in this browser. No real payment or purchase occurs.';
-    empty.querySelector('p').textContent = 'No demonstration orders are saved. Choose products and complete your demonstration order in Cart.';
+    if (help) help.textContent = 'Completed demonstration orders saved in this browser. No real payment or purchase occurs.';
+    empty.querySelector('p').textContent = 'Find something you love in the catalogue. Your completed orders will appear here.';
     const recovery = createElement('div', 'mb-3');
     const download = createElement('button', 'btn btn-outline-secondary me-2', 'Download saved data');
     const reset = createElement('button', 'btn btn-outline-secondary', 'Reset damaged history');
@@ -160,7 +161,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const toggle = createElement('button', 'order-toggle btn btn-outline-secondary btn-sm mb-3', 'Hide order details');
         toggle.type = 'button';
         toggle.setAttribute('aria-expanded', 'true');
-        card.append(heading, toggle, details);
+        heading.append(toggle);
+        card.append(heading, details);
         return card;
     }
 
@@ -173,7 +175,8 @@ document.addEventListener('DOMContentLoaded', function () {
         empty.hidden = result.orders.length !== 0 || Boolean(result.error);
         message.classList.toggle('state-error', Boolean(result.error));
         message.textContent = result.error ||
-            `${result.orders.length} demonstration order(s) loaded. No payment was collected.`;
+            (result.orders.length ? `${result.orders.length} saved order(s) · Stored in this browser. Demo only; no payment taken.` :
+                'Orders are stored in this browser. Demo only; no payment taken.');
     }
 
     function refreshOrders() {

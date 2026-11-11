@@ -11,16 +11,25 @@ $(function () {
     const strength = $('<p class="small mt-2 mb-0" role="status"></p>');
     $('#register-password-help').after(strength);
 
+    // One set of rules is used both while typing and when submitting.
+    function missingPasswordRules(value) {
+        const missing = [];
+        if (value.length < 8) missing.push('at least 8 characters');
+        if (!/[A-Z]/.test(value)) missing.push('an uppercase letter (A–Z)');
+        if (!/[a-z]/.test(value)) missing.push('a lowercase letter (a–z)');
+        if (!/[0-9]/.test(value)) missing.push('a number (0–9)');
+        return missing;
+    }
+
     function showPasswordAdvice() {
         const value = password.val();
-        if (value.trim() === '') {
+        const missing = missingPasswordRules(value);
+        if (value === '') {
             strength.text('');
-        } else if (value.length < 8) {
-            strength.text('Add ' + (8 - value.length) + ' more characters to reach the minimum.');
-        } else if (value.length < 12) {
-            strength.text('Minimum met. A longer, unique passphrase is recommended.');
+        } else if (missing.length > 0) {
+            strength.text('Still needed: ' + missing.join(', ') + '.');
         } else {
-            strength.text('Good length. Use a unique passphrase that you do not reuse.');
+            strength.text('All password requirements met. Use a unique password.');
         }
     }
 
@@ -52,8 +61,9 @@ $(function () {
                 return 'Use + followed by 7–15 digits, for example +77001234567.';
             }
         }
-        if ((id === 'register-password' || id === 'register-confirm') && value.length < 8) {
-            return 'Use at least 8 characters.';
+        if (id === 'register-password') {
+            const missing = missingPasswordRules(value);
+            if (missing.length > 0) return 'Include ' + missing.join(', ') + '.';
         }
         if (id === 'register-confirm' && value !== password.val()) {
             return 'Passwords must match.';

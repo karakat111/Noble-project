@@ -18,8 +18,31 @@ $(document).ready(function () {
     $products.find('button[id^="add-"]').prop('disabled', false);
     $filterForm.on('click', 'button[id^="add-"]', function () {
         const id = $(this).attr('id').slice(4);
-        window.location.assign('cart.html?product=' + encodeURIComponent(id));
+        const product = products.find(function (item) { return item.id === id; });
+        if (!product) return;
+        let cart;
+        try {
+            cart = readCart();
+        } catch {
+            cart = [];
+        }
+        const existing = cart.find(function (item) { return item.id === id; });
+        if (existing && existing.quantity === 99) {
+            $cartStatus.text('The maximum is 99 of this product. Change its quantity in your cart.');
+            return;
+        }
+        if (existing) existing.quantity += 1;
+        else cart.push({ id: id, quantity: 1 });
+        if (!saveCart(cart)) {
+            $cartStatus.text('Could not add the product. Allow browser storage and try again.');
+            return;
+        }
+        $cartStatus.text(product.name + ' added to your cart.');
+        $(this).text('Add another');
     });
+    const $cartStatus = $('<p class="small mt-3" role="status"></p>');
+    const $cartLink = $('<a class="btn btn-outline-secondary mb-3" href="cart.html">View cart →</a>');
+    $('#catalog-results').before($cartStatus, $cartLink);
     let requested = new URLSearchParams(window.location.search).get('product');
 
     function applyFilters() {
