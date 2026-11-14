@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&amp;family=Work+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/base.css?v=a11y3">
     <link rel="stylesheet" href="css/karakat.css">
     <link rel="stylesheet" href="css/turar.css">
-    <link rel="stylesheet" href="css/catalog.css">
+    <link rel="stylesheet" href="css/catalog.css?v=filters2">
     
 </head>
 
@@ -35,13 +35,13 @@
                     </ul>
                 </div>
                 <div class="navigation-actions">
-                    <a class="profile-link" href="cart.html">
+                    <a class="profile-link" href="cart.html" aria-label="Shopping cart">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                             <path d="M2 3h3l3 12h11l3-9H6"></path>
                             <circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle>
                         </svg>
                     </a>
-                    <a class="profile-link" href="register.html">
+                    <a class="profile-link" href="register.html" aria-label="Profile">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                         <circle cx="12" cy="8" r="4"></circle>
                         <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
@@ -256,17 +256,16 @@
             <a href="care.html">Care and storage</a><span> · </span><a href="page2.html#store-address">Find the store</a>
         </aside>
     </main>
-    <footer class="container py-4 mt-5 border-top">
-        <address id="store-address" class="mb-2">
-            Address: Mandilik El 42, Astana, Kazakhstan<br>
-            Phone: <a href="tel:+77003933327">7-700-393-3327</a>
-        </address>
-        <p class="mb-1">Confirm product details with the store before purchasing.</p>
-        <p class="small text-muted mb-0">&copy; 2026 Noble</p>
+    <footer class="noble-site-footer">
+        <div class="container noble-footer-content">
+            <a class="noble-footer-brand" href="indexx.html">Noble</a>
+            <address id="store-address">Mandilik El 42, Astana<br><a href="tel:+77003933327">+7 700 393 33 27</a></address>
+            <div class="noble-footer-links"><a href="page-1.html">Products</a><a href="care.html">Care guide</a><a href="page2.html">Contact</a><span>© 2026 Noble</span></div>
+        </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="js/cart-storage.js"></script>
-    <script src="js/products.js"></script>
+    <script src="js/products.js?v=2"></script>
 
 </body>
 </html>

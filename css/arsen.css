@@ -21,12 +21,27 @@
 .order-page .order-toggle { margin-left: auto; margin-bottom: 0 !important; }
 .order-page .order-details { border-top: 1px solid var(--color-border); padding-top: 20px; font-size: 14px; }
 .order-page .order-items li { padding: 6px 0; }
+.order-page .order-card { padding: 28px !important; box-shadow: 0 6px 20px rgba(51, 63, 38, .06); }
+.order-page .order-card-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 18px; margin-bottom: 20px; }
+.order-page .order-label { display: block; color: var(--color-walnut); font-size: 10px; font-weight: 600; letter-spacing: 1.4px; margin-bottom: 5px; }
+.order-page .order-number { color: var(--color-sage-dark); font-family: var(--font-display); font-size: 32px; margin: 0; }
+.order-page .order-toggle { margin: 0 !important; }
+.order-page .order-details { border-top: 1px solid var(--color-border); padding-top: 20px; }
+.order-page .order-details > p.small { color: var(--color-walnut); margin-bottom: 12px; }
+.order-page .order-items { list-style: none; padding: 0; margin: 0; }
+.order-page .order-items li { padding: 12px 0; border-bottom: 1px solid var(--color-border); }
+.order-page .order-quantity { color: var(--color-walnut); font-size: 13px; margin: 16px 0 6px; }
+.order-page .order-total { color: var(--color-sage-dark); font-size: 18px; font-weight: 600; margin: 0; }
+.order-page .order-note { color: var(--color-walnut); font-size: 12px; margin: 16px 0 0; }
 @media (max-width: 575px) {
     .order-page .orders-toolbar { align-items: flex-start; flex-direction: column; gap: 16px; }
     .order-page .orders-toolbar h1 { font-size: 40px; }
     .order-page .orders-empty { padding: 36px 20px; }
     .order-page .orders-empty-actions { flex-direction: column; }
     .order-page .order-number { font-size: 20px; }
+    .order-page .order-card { padding: 20px !important; }
+    .order-page .order-card-heading { align-items: flex-start; flex-direction: column; }
+    .order-page .order-toggle { margin-left: 0; }
 }
 
 /* Shared navigation and title styling, matching the Collections, Contact and Gift Guide pages. */

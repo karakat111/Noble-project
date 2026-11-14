@@ -42,6 +42,7 @@ $(function () {
             anchor = field.parent();
         }
         $('<p class="field-error state-error state-hidden small mt-2"></p>').attr('id', id).appendTo(anchor.parent());
+        field.attr('aria-describedby', id + (field.attr('id') === 'register-password' ? ' register-password-help' : ''));
     });
     // Keep required/type/minlength attributes as baseline constraints. Disable only
     // browser popups so submit can report every field error next to its field.
@@ -79,6 +80,7 @@ $(function () {
         }
         anchor.siblings('.field-error').text(text).toggleClass('state-hidden', text === '');
         field.toggleClass('is-invalid', text !== '');
+        field.attr('aria-invalid', text !== '' ? 'true' : 'false');
         return text === '';
     }
 
@@ -97,8 +99,10 @@ $(function () {
         const input = button.closest('.password-field').find('input');
         if (input.attr('type') === 'password') {
             input.attr('type', 'text');
+            button.find('span').text(input.is(confirmation) ? 'Hide password confirmation' : 'Hide password');
         } else {
             input.attr('type', 'password');
+            button.find('span').text(input.is(confirmation) ? 'Show password confirmation' : 'Show password');
         }
     }
 
@@ -106,9 +110,11 @@ $(function () {
         // Clear values, remove error styling, and remove the invalid state in one chain.
         strength.text('');
         fields.val('').removeClass('is-invalid');
+        fields.removeAttr('aria-invalid');
         form.find('.field-error').text('').addClass('state-hidden');
         password.add(confirmation).attr('type', 'password');
-        form.find('.password-toggle').find('span').text('Show password');
+        $('#toggle-password span').text('Show password');
+        $('#toggle-confirmation span').text('Show password confirmation');
     }
 
     function submitForm(event) {

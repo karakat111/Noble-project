@@ -126,6 +126,49 @@ a:focus {
 
 /* Footer */
 
+/* Visible keyboard focus throughout the site. */
+a:focus-visible, button:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--color-sage-dark) !important;
+  outline-offset: 3px !important;
+}
+.navbar a:focus-visible, .navbar button:focus-visible {
+  outline-color: var(--color-cream) !important;
+}
+
+.noble-site-footer {
+  width: 100%;
+  background: var(--color-sage);
+  border-top: 3px solid var(--color-sage-dark);
+  color: var(--color-cream);
+}
+.noble-site-footer .noble-footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+.noble-site-footer .noble-footer-brand {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-style: italic;
+  text-decoration: none;
+}
+.noble-site-footer address { margin: 0; line-height: 1.8; }
+.noble-site-footer .noble-footer-links { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.noble-site-footer a,
+.noble-site-footer a:visited { color: var(--color-cream); }
+.noble-site-footer a:hover,
+.noble-site-footer a:focus-visible { color: #fff; text-decoration: underline; }
+.noble-site-footer a:focus-visible { outline: 2px solid #fff !important; outline-offset: 4px !important; }
+@media (max-width: 575px) {
+  .noble-site-footer .noble-footer-content { align-items: flex-start; flex-direction: column; gap: 16px; }
+  .noble-site-footer .noble-footer-links { gap: 16px; }
+}
+
 .site-footer {
   background: var(--color-sage-dark);
   color: var(--color-cream);

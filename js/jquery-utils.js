@@ -16,11 +16,6 @@ const AppUtils = {
     return /^\+?[0-9\s()-]{10,18}$/.test(String(value).trim());
   },
 
-  generateReference: function () {
-    return 'REF-' + Date.now().toString(36).toUpperCase() +
-      Math.floor(Math.random() * 90 + 10);
-  },
-
   // Display an error message next to the field.
   showError: function ($field, message) {
     $field.addClass('state-error');

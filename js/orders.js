@@ -133,16 +133,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return element;
     }
 
-    function buildOrderCard(order) {
+    function buildOrderCard(order, number) {
         const summary = totals(order.items);
         const card = createElement('article', 'order-card border rounded p-4 mb-4');
-        const heading = createElement('div', 'd-flex flex-wrap justify-content-between gap-2 mb-3');
+        const heading = createElement('div', 'order-card-heading');
+        const title = createElement('div', 'order-heading-copy');
         const details = createElement('div', 'order-details');
-        const items = createElement('ul', 'order-items ps-4');
-        heading.append(
-            createElement('h2', 'h4 order-number mb-0', order.reference.replace(/^DEMO-/, 'ORDER-')),
-            createElement('span', 'badge text-bg-secondary', 'Order details')
-        );
+        const items = createElement('ul', 'order-items');
+        title.append(createElement('span', 'order-label', 'YOUR ORDER'),
+            createElement('h2', 'order-number', 'Order #' + number));
+        heading.append(title);
         for (const item of order.items) {
             items.append(createElement('li', '',
                 `${item.name}: ${item.quantity} × ${money(item.unitPrice)} = ${money(item.unitPrice * item.quantity)}`));
@@ -153,10 +153,9 @@ document.addEventListener('DOMContentLoaded', function () {
         date.append('Placed: ', time);
         details.append(
             date, items,
-            createElement('p', 'mt-3', `Total quantity: ${summary.quantity}`),
-            createElement('p', 'fw-semibold mt-3', `Total: ${money(summary.price)}`),
-            createElement('p', 'small mb-0', 'Order details are saved on this device.'),
-            createElement('p', 'small mt-2 mb-0', 'Totals use saved unit prices when available. Older records use catalogue prices.')
+            createElement('p', 'order-quantity', `Total pieces: ${summary.quantity}`),
+            createElement('p', 'order-total', `Total: ${money(summary.price)}`),
+            createElement('p', 'order-note', 'Saved on this device.')
         );
         const toggle = createElement('button', 'order-toggle btn btn-outline-secondary btn-sm mb-3', 'Hide order details');
         toggle.type = 'button';
@@ -169,9 +168,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderOrders(result) {
         recovery.hidden = damagedRaw === null;
         list.replaceChildren();
-        for (const order of result.orders) {
-            list.append(buildOrderCard(order));
-        }
+        result.orders.forEach(function (order, index) {
+            list.append(buildOrderCard(order, result.orders.length - index));
+        });
         empty.hidden = result.orders.length !== 0 || Boolean(result.error);
         message.classList.toggle('state-error', Boolean(result.error));
         message.textContent = result.error ||

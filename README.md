@@ -1,3 +1,7 @@
+# Current cleanup note
+
+The older sections below describe historical versions, not the current site. The unlinked files `js/home.js`, `js/old-js-version.js`, `js/base.js`, `js/main.js`, and `js/shop.js` were removed during final cleanup. The current cart uses `js/cart-storage.js` and `js/cart.js`; order history uses `js/student-shop.js` and `js/orders.js`. Registration checks details locally; contact and gift forms do not send messages. Order history is stored in the browser. AI generated and modified code in this project; consult the course AI policy and disclose this work honestly.
+
 # Endterm update — Arsen's three pages — 3 November 2026
 
 This section supersedes the older descriptions below for Cart, Care and Register.

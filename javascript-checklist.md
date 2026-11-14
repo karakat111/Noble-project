@@ -1,5 +1,7 @@
 # JavaScript learning implementation checklist
 
+This is a historical checklist, not a map of the current code. `js/shop.js` and `js/catalog.js` are not part of the current site. See the current cleanup note in README.md and inspect the connected scripts for current behaviour.
+
 This file was generated with AI assistance on 15 October 2026.
 It does not establish compliance with the assignment's AI prohibition.
 

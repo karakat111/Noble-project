@@ -24,28 +24,6 @@ const StudentShop = (() => {
         return value.toLocaleString('en-US') + ' ₸';
     }
 
-    function filterProducts(criteria) {
-        const query = criteria.query.trim().toLowerCase();
-        return products.filter(product =>
-            (criteria.category === 'all' || product.category === criteria.category) &&
-            (criteria.price === 'any' ||
-                (criteria.price === 'under' && product.price <= 100000) ||
-                (criteria.price === 'over' && product.price > 100000)) &&
-            (product.name + ' ' + product.category).toLowerCase().includes(query));
-    }
-
-    function sortProducts(items, direction) {
-        const result = [...items];
-        if (direction === 'low') result.sort((a, b) => a.price - b.price);
-        if (direction === 'high') result.sort((a, b) => b.price - a.price);
-        return result;
-    }
-
-    function randomProduct(previousId) {
-        const choices = products.filter(product => product.id !== previousId);
-        return choices[Math.floor(Math.random() * choices.length)];
-    }
-
     function totals(items) {
         return items.reduce((sum, item) => ({
             quantity: sum.quantity + item.quantity,
@@ -53,5 +31,5 @@ const StudentShop = (() => {
         }), { quantity: 0, price: 0 });
     }
 
-    return { products, findProduct, money, filterProducts, sortProducts, randomProduct, totals };
+    return { findProduct, money, totals };
 })();

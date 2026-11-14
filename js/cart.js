@@ -56,6 +56,7 @@ function renderCart() {
             '<input class="form-control cart-quantity" type="number" min="1" max="99" step="1" required></label>' +
             '<button type="button" class="cart-remove">Remove</button></div>';
         row.querySelector('img').src = 'images.jpg/catalog/' + product.id + '.png';
+        row.querySelector('img').alt = product.name;
         row.querySelector('.cart-name').textContent = product.name;
         row.querySelector('.cart-unit-price').textContent = formatPrice(product.price) + ' each';
         row.querySelector('.cart-quantity').value = item.quantity;
@@ -113,8 +114,8 @@ function placeOrder() {
     }
     cart = [];
     renderCart();
-    message.textContent = 'Order ' + reference + ' confirmed. Total: ' + formatPrice(total) +
-        '. Your cart is now empty.';
+    message.textContent = 'Your order was saved on this device. Total: ' + formatPrice(total) +
+        '. No order or payment was sent to the store.';
 }
 
 // Delegation: the container handles cards created later by renderCart().

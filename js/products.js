@@ -24,7 +24,8 @@ $(document).ready(function () {
         try {
             cart = readCart();
         } catch {
-            cart = [];
+            $cartStatus.text('Could not read the saved cart. Your data has not been changed.');
+            return;
         }
         const existing = cart.find(function (item) { return item.id === id; });
         if (existing && existing.quantity === 99) {

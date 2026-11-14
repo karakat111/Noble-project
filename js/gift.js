@@ -10,7 +10,6 @@ $(function () {
   const $budget = $('#budget');
   const $budgetPerItem = $('#budget-per-item');
   const $confirmation = $('#confirmation');
-  const $featured = $('#featured-occasion');
 
   // Stop if the form does not exist
   if ($form.length === 0) {
@@ -19,30 +18,6 @@ $(function () {
 
   // Our submit handler displays validation errors beside the fields.
   $form.prop('noValidate', true);
-
-  // Gift ideas
-  const giftIdeas = {
-    wedding: 'Serving pieces, dinner sets or decorative accessories.',
-    home: 'A useful tableware piece or a beautiful dinner set.',
-    birthday: 'A coffee mug, tea set or decorative vase.',
-    nauryz: 'A tea set or elegant table accessories.',
-    corporate: 'Matching mugs, serving sets or gift collections.',
-    anniversary: 'A porcelain set or elegant decorative pieces.'
-  };
-
-  // Show a featured gift idea
-  function updateFeaturedIdea() {
-    const occasion = $occasion.val();
-    const idea = giftIdeas[occasion];
-
-    if (idea) {
-      $featured.text(idea);
-    } else {
-      $featured.text(
-        'Choose an occasion to see a gift idea.'
-      );
-    }
-  }
 
   // Calculate budget per gift
   function updateBudget() {
@@ -81,14 +56,6 @@ $(function () {
     $form.find('.gift-error').remove();
     $form.find('.is-invalid').removeClass('is-invalid');
   }
-
-  // Generate reference number
-  function generateReference() {
-    return 'GIFT-' + Math.floor(100000 + Math.random() * 900000);
-  }
-
-  // Update featured idea when occasion changes
-  $occasion.on('change', updateFeaturedIdea);
 
   // Update budget when quantity or budget changes
   $quantity.on('input change', updateBudget);
@@ -179,15 +146,13 @@ $(function () {
     // Reset first: the reset handler clears any previous confirmation.
     $form[0].reset();
     updateBudget();
-    updateFeaturedIdea();
 
     // Show success only after reset has finished.
     $confirmation
       .stop(true, true)
       .text(
         'Thank you, ' + name +
-        '! Your gift enquiry is ready. ' +
-        'Reference number: ' + generateReference() + '.'
+        '. Your details were checked in this browser; no enquiry was sent to the store.'
       )
       .removeClass('state-hidden')
       .addClass('contact-success')
@@ -216,11 +181,9 @@ $(function () {
     // Native reset restores values after this event handler returns.
     setTimeout(function () {
       updateBudget();
-      updateFeaturedIdea();
     }, 0);
   });
 
   // Initial page state
-  updateFeaturedIdea();
   updateBudget();
 });
