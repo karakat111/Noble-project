@@ -113,8 +113,8 @@ function placeOrder() {
     }
     cart = [];
     renderCart();
-    message.textContent = 'Order ' + reference + ' saved in My Orders. Total: ' + formatPrice(total) +
-        '. Your cart is now empty. No payment or request was sent.';
+    message.textContent = 'Order ' + reference + ' confirmed. Total: ' + formatPrice(total) +
+        '. Your cart is now empty.';
 }
 
 // Delegation: the container handles cards created later by renderCart().

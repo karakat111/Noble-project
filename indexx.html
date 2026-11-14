@@ -16,9 +16,6 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/karakat.css">
     <link rel="stylesheet" href="css/turar.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-    <script src="js/student-shop.js" defer></script>
-    <script src="js/home.js" defer></script>
 </head>
 <body class="home-page">
 <!-- Author: TURAR DYUMBAYEV -->
@@ -54,50 +51,34 @@
         </nav>
     </header>
     <main class="container py-4">
-        <section class="home-hero mb-5" id="home-intro" aria-labelledby="home-heading">
+        <section class="home-hero" aria-labelledby="home-heading">
             <div class="home-hero-copy">
                 <p class="home-eyebrow">NOBLE · TABLEWARE &amp; GIFTS</p>
-                <h1 id="home-heading">A beautiful table.<br>Every day.</h1>
-                <p class="home-description">Discover porcelain, serving pieces and thoughtful gifts for everyday rituals and special occasions.</p>
-                <a class="btn home-catalog-link" href="page-1.html">Explore the catalogue <span aria-hidden="true">↗</span></a>
-                <p class="home-location">Discover our selection online or visit us in Astana.</p>
+                <h1 id="home-heading">Set the table<br>beautifully.</h1>
+                <p class="home-description">Thoughtful porcelain and serving pieces for everyday meals, meaningful gifts and long evenings at home.</p>
+                <div class="home-hero-actions">
+                    <a class="btn home-catalog-link" href="page-1.html">Shop the catalogue <span aria-hidden="true">→</span></a>
+                    <a class="home-text-link" href="page2.html">Visit our store</a>
+                </div>
+                <p class="home-location">Mandilik El 42 · Astana · Open daily 10:00–20:00</p>
             </div>
-            <img class="home-hero-image" src="images.jpg/noble-home-hero.png"
-                 alt="AI-generated illustration of ivory porcelain tableware with olive botanical details" width="1254" height="1254">
+            <img class="home-hero-image" src="images.jpg/noble-home-hero.png" alt="Ivory porcelain tableware with olive botanical details" width="1254" height="1254">
         </section>
 
-        <div class="row g-4">
-        <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
-    <img class="img-fluid rounded border border-brand" src="images.jpg/noble-fasad.jpg"
-         alt="Exterior facade of Noble store"
-         width="600"
-         height="400">
-    <figcaption class="small text-walnut fst-italic mt-2">Noble store facade</figcaption>
-</figure>
-            <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
-        <img class="img-fluid rounded border border-brand" src="images.jpg/noble-vitrina.jpg"
-             alt="Noble store display with tableware"
-             width="600"
-             height="400">
+        <section class="home-values" aria-label="Why choose Noble">
+            <article><span>01</span><h2>Made to be used</h2><p>Pieces selected for the moments that happen every day.</p></article>
+            <article><span>02</span><h2>Chosen with care</h2><p>Find a gift or a new favourite for your own table.</p></article>
+            <article><span>03</span><h2>Visit in Astana</h2><p>See the collection in person and ask our team for advice.</p></article>
+        </section>
 
-        <figcaption class="small text-walnut fst-italic mt-2">Noble store display with tableware</figcaption>
-    </figure>
-
-    <figure class="store-photo col-12 col-md-6 col-lg-4 mb-0">
-        <img class="img-fluid rounded border border-brand" src="images.jpg/photo_2026-09-09_20-44-36.jpg"
-             alt="Noble store interior"
-             width="600"
-             height="400">
-
-        <figcaption class="small text-walnut fst-italic mt-2">Noble store interior</figcaption>
-    </figure>
-
-            <p> The walls are adorned with mirrors and various beautiful medieval-style paintings. There are different shelves where everything is arranged beautifully, elegantly, and by theme; the tableware matches each other, meaning the pieces complement one another. The store has a wide variety of unique plates, glasses, and so on. What I liked most was the shelf with a mirror displaying cups and plates featuring floral patterns in a combination of blue, pink, and green. There’s also a glass shelf with a nautical theme, as well as various fruit-themed sets—like lemon sets—and the assortment includes sets with statues, animals, and items inspired by ancient times. Everything there looks expensive and luxurious.</p>
-            <p class="mb-0"> The consultants and salespeople are very knowledgeable—you can tell they’re professionals. Noble is a really cool place where you can admire and buy tableware, especially for those who love tableware or collect it.
-
-            </p>
-        </div>
-
+        <section class="home-gallery" aria-labelledby="gallery-heading">
+            <div class="home-section-heading"><p class="home-eyebrow">IN STORE</p><h2 id="gallery-heading">A closer look at Noble</h2></div>
+            <div class="row g-3">
+                <figure class="store-photo col-12 col-md-4 mb-0"><img class="img-fluid" src="images.jpg/noble-fasad.jpg" alt="Exterior facade of Noble store" width="600" height="400"><figcaption>Noble, Astana</figcaption></figure>
+                <figure class="store-photo col-12 col-md-4 mb-0"><img class="img-fluid" src="images.jpg/noble-vitrina.jpg" alt="Noble store display with tableware" width="600" height="400"><figcaption>Curated displays</figcaption></figure>
+                <figure class="store-photo col-12 col-md-4 mb-0"><img class="img-fluid" src="images.jpg/photo_2026-09-09_20-44-36.jpg" alt="Noble store interior" width="600" height="400"><figcaption>Details worth keeping</figcaption></figure>
+            </div>
+        </section>
     </main>
     <footer class="container py-4 mt-5 border-top">
         <address id="store-address" class="mb-2">

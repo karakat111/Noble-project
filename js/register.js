@@ -112,7 +112,7 @@ $(function () {
     }
 
     function submitForm(event) {
-        // Otherwise the POST form would navigate/send these sample details.
+        // Prevent a page reload while the form is checked in the browser.
         event.preventDefault();
         success.stop(true, true).addClass('state-hidden');
         let valid = true;
@@ -133,7 +133,7 @@ $(function () {
         success.empty();
         $('<strong></strong>').text('Details checked for ' + $('#register-name').val() + '.').appendTo(success);
         $('<p class="mb-0"></p>').text('Email: ' + $('#register-email').val() + ' · Phone: ' + $('#register-phone').val()).appendTo(success);
-        $('<p class="small mb-0"></p>').text('No account created. Nothing sent or saved. Passwords have been cleared.').appendTo(success);
+        $('<p class="small mb-0"></p>').text('Your password fields have been cleared for security.').appendTo(success);
         clearFields();
         success.removeClass('state-hidden').fadeOut(0).fadeIn(250);
         status.text('');

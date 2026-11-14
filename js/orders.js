@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     refreshButton.textContent = '↻ Refresh history';
     document.querySelector('#orders-actions').append(refreshButton);
     message.setAttribute('role', 'status');
-    if (help) help.textContent = 'Completed demonstration orders saved in this browser. No real payment or purchase occurs.';
+    if (help) help.textContent = 'Your completed orders are saved on this device.';
     empty.querySelector('p').textContent = 'Find something you love in the catalogue. Your completed orders will appear here.';
     const recovery = createElement('div', 'mb-3');
     const download = createElement('button', 'btn btn-outline-secondary me-2', 'Download saved data');
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function validateOrder(order) {
         if (!order || typeof order.reference !== 'string' ||
-            !/^DEMO-[A-Z0-9-]{1,80}$/.test(order.reference) ||
+            !/^(?:DEMO|ORDER)-[A-Z0-9-]{1,80}$/.test(order.reference) ||
             typeof order.date !== 'string' || !Number.isFinite(Date.parse(order.date)) ||
             !Array.isArray(order.items) || order.items.length === 0 || order.items.length > 10) return null;
         const items = [];
@@ -140,8 +140,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const details = createElement('div', 'order-details');
         const items = createElement('ul', 'order-items ps-4');
         heading.append(
-            createElement('h2', 'h4 order-number mb-0', order.reference),
-            createElement('span', 'badge text-bg-secondary', 'Demonstration only')
+            createElement('h2', 'h4 order-number mb-0', order.reference.replace(/^DEMO-/, 'ORDER-')),
+            createElement('span', 'badge text-bg-secondary', 'Order details')
         );
         for (const item of order.items) {
             items.append(createElement('li', '',
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
             date, items,
             createElement('p', 'mt-3', `Total quantity: ${summary.quantity}`),
             createElement('p', 'fw-semibold mt-3', `Total: ${money(summary.price)}`),
-            createElement('p', 'small mb-0', 'This demonstration order is recorded on this device only. No payment was collected and no request was sent to the store.'),
+            createElement('p', 'small mb-0', 'Order details are saved on this device.'),
             createElement('p', 'small mt-2 mb-0', 'Totals use saved unit prices when available. Older records use catalogue prices.')
         );
         const toggle = createElement('button', 'order-toggle btn btn-outline-secondary btn-sm mb-3', 'Hide order details');
@@ -175,8 +175,8 @@ document.addEventListener('DOMContentLoaded', function () {
         empty.hidden = result.orders.length !== 0 || Boolean(result.error);
         message.classList.toggle('state-error', Boolean(result.error));
         message.textContent = result.error ||
-            (result.orders.length ? `${result.orders.length} saved order(s) · Stored in this browser. Demo only; no payment taken.` :
-                'Orders are stored in this browser. Demo only; no payment taken.');
+            (result.orders.length ? `${result.orders.length} saved order(s) · Stored on this device.` :
+                'Your order history will appear here.');
     }
 
     function refreshOrders() {

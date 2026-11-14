@@ -143,7 +143,7 @@ $(function () {
       return;
     }
 
-    let successText = 'Thank you, ' + name + '! Your demo reference number is ' + AppUtils.generateReference() + '.';
+    let successText = 'Thank you, ' + name + '! Your reference number is ' + AppUtils.generateReference() + '.';
     if (isGiftTopic()) {
       const selected = occasions.find(function (item) {
         return item.imageTag === $occasion.val();

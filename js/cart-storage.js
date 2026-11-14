@@ -57,7 +57,7 @@ function saveOrder(list) {
         if (list.length === 0) return null;
         const state = readShopState();
         const order = {
-            reference: 'DEMO-' + crypto.randomUUID().toUpperCase(),
+            reference: 'ORDER-' + crypto.randomUUID().toUpperCase(),
             date: new Date().toISOString(),
             items: []
         };

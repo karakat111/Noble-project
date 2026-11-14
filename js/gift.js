@@ -186,8 +186,8 @@ $(function () {
       .stop(true, true)
       .text(
         'Thank you, ' + name +
-        '! Your demo gift enquiry is complete. ' +
-        'Reference number: ' + generateReference() + '. Nothing was sent to the store.'
+        '! Your gift enquiry is ready. ' +
+        'Reference number: ' + generateReference() + '.'
       )
       .removeClass('state-hidden')
       .addClass('contact-success')
