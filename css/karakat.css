@@ -27,23 +27,6 @@
   border-bottom: 2px solid var(--color-cream);
 }
 
-/* Brand buttons */
-.btn-primary {
-  --bs-btn-bg: var(--color-walnut);
-  --bs-btn-border-color: var(--color-walnut);
-  --bs-btn-hover-bg: var(--color-walnut-dark);
-  --bs-btn-hover-border-color: var(--color-walnut-dark);
-  --bs-btn-color: var(--color-cream);
-  --bs-btn-hover-color: var(--color-cream);
-}
-.btn-outline-primary {
-  --bs-btn-color: var(--color-walnut);
-  --bs-btn-border-color: var(--color-walnut);
-  --bs-btn-hover-bg: var(--color-terracotta);
-  --bs-btn-hover-border-color: var(--color-terracotta);
-  --bs-btn-hover-color: var(--color-cream);
-}
-
 /* Form focus ring in brand colour */
 .form-control:focus,
 .form-select:focus {
@@ -51,213 +34,67 @@
   box-shadow: 0 0 0 0.2rem rgba(168, 92, 50, 0.22);
 }
 
-/* Callout / alert left border in brand colour */
-.border-terracotta {
-  border-left-color: var(--color-terracotta);
-}
-
-/* Fixed phone strip (kept from original design) */
-.phone-strip {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 1030;
-  background: var(--color-sage);
-  border-radius: 999px;
-  padding: 0.65rem 1.25rem;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-}
-.phone-strip a {
-  color: var(--color-cream);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-decoration: none;
-}
-.phone-strip a:hover {
-  color: var(--color-terracotta);
-}
-
-/* Small brand helpers */
-.text-walnut { color: var(--color-walnut); }
+/* Brand helpers */
 .text-sage-dark { color: var(--color-sage-dark); }
 .bg-panel { background-color: var(--color-bg-panel); }
 .border-brand { border-color: var(--color-border); }
 
-/* Page titles keep original italic display look */
-.page-title {
-  font-family: var(--font-display);
-  font-style: italic;
-  color: var(--color-sage-dark);
-  font-size: 2.1rem;
-  font-weight: 600;
-}
-
-/* Interface states: switched on and off by JavaScript later */
+/* Interface states: switched on and off by JavaScript */
 .state-hidden {
   display: none;
 }
-.state-active {
-  background-color: var(--color-sage-dark);
-  color: var(--color-cream);
-}
-.state-selected {
-  outline: 2px solid var(--color-terracotta);
-  outline-offset: 2px;
-}
 .state-error {
   color: #a12b2b;
-  font-weight: 500;
-}
-.state-success {
-  color: var(--color-sage-dark);
   font-weight: 500;
 }
 .form-control.state-error,
 .form-select.state-error {
   border-color: #a12b2b;
 }
-.form-control.state-success,
-.form-select.state-success {
-  border-color: var(--color-sage-dark);
-}
-/* Contact confirmation — Noble style */
 
+/* Contact confirmation */
 #contact-confirmation.contact-success {
-display: block;
-position: relative;
-margin-top: 24px;
-padding: 28px 30px 28px 88px;
-background-color: #F5F1E8;
-color: #4B5D3A;
-border: 1px solid #D6DCCB;
-border-radius: 8px;
-font-family: "Work Sans", sans-serif;
-font-size: 14px;
-line-height: 1.7;
-box-shadow: 0 4px 16px rgba(75, 93, 58, 0.06);
+  display: block;
+  position: relative;
+  margin-top: 24px;
+  padding: 28px 30px 28px 88px;
+  background-color: #F5F1E8;
+  color: #4B5D3A;
+  border: 1px solid #D6DCCB;
+  border-radius: 8px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  box-shadow: 0 4px 16px rgba(75, 93, 58, 0.06);
 }
 
 /* Decorative checkmark */
 #contact-confirmation.contact-success::before {
-content: "✓";
-position: absolute;
-left: 25px;
-top: 50%;
-transform: translateY(-50%);
-display: flex;
-align-items: center;
-justify-content: center;
-width: 44px;
-height: 44px;
-border-radius: 50%;
-background-color: #4B5D3A;
-color: #F5F1E8;
-font-size: 24px;
+  content: "✓";
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #4B5D3A;
+  color: #F5F1E8;
+  font-size: 24px;
 }
 
 /* Mobile */
 @media (max-width: 576px) {
-#contact-confirmation.contact-success {
-padding: 75px 20px 22px;
-}
+  #contact-confirmation.contact-success {
+    padding: 75px 20px 22px;
+  }
 
-
-#contact-confirmation.contact-success::before {
+  #contact-confirmation.contact-success::before {
     top: 18px;
     left: 20px;
     transform: none;
-  
-
-}
-
-
-}
-/* Gift Guide success message */
-#confirmation.state-success {
-display: block;
-position: relative;
-margin-top: 24px;
-padding: 28px 30px 28px 88px;
-background-color: #F5F1E8;
-color: #4B5D3A;
-border: 1px solid #D6DCCB;
-border-radius: 8px;
-font-family: "Work Sans", sans-serif;
-font-size: 14px;
-line-height: 1.8;
-box-shadow: 0 4px 16px rgba(75, 93, 58, 0.06);
-
-}
-
-#confirmation.state-success::before {
-content: "✓";
-position: absolute;
-left: 25px;
-top: 50%;
-transform: translateY(-50%);
-display: flex;
-align-items: center;
-justify-content: center;
-width: 44px;
-height: 44px;
-border-radius: 50%;
-background-color: #4B5D3A;
-color: #F5F1E8;
-font-size: 24px;
-}
-
-
-@media (max-width: 576px) {
-#confirmation.state-success {
-padding: 75px 20px 22px;
-}
-
-
-#confirmation.state-success::before {
-    top: 18px;
-    left: 20px;
-    transform: none;
-}
-
-
-}
-/* Collections product cards */
-.collection-card {
-padding: 24px;
-background-color: #F5F1E8;
-border: 1px solid #D6DCCB;
-border-radius: 8px;
-transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.collection-card:hover {
-transform: translateY(-4px);
-box-shadow: 0 8px 20px rgba(75, 93, 58, 0.10);
-}
-
-.collection-card-title {
-margin-bottom: 14px;
-color: #4B5D3A;
-font-family: "Cormorant Garamond", serif;
-font-size: 24px;
-}
-
-.collection-card-price {
-margin-bottom: 12px;
-color: #A85C32;
-font-size: 16px;
-font-weight: 600;
-}
-
-.collection-card-stock {
-margin-bottom: 0;
-font-size: 13px;
-}
-
-.collection-card-stock.in-stock {
-color: #4B5D3A;
-}
-
-.collection-card-stock.out-of-stock {
-color: #A85C32;
+  }
 }
