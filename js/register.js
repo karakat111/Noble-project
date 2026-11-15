@@ -18,6 +18,7 @@ $(function () {
         if (!/[A-Z]/.test(value)) missing.push('an uppercase letter (A–Z)');
         if (!/[a-z]/.test(value)) missing.push('a lowercase letter (a–z)');
         if (!/[0-9]/.test(value)) missing.push('a number (0–9)');
+        if (/\s/.test(value)) missing.push('no spaces');
         return missing;
     }
 
@@ -42,7 +43,6 @@ $(function () {
             anchor = field.parent();
         }
         $('<p class="field-error state-error state-hidden small mt-2"></p>').attr('id', id).appendTo(anchor.parent());
-        field.attr('aria-describedby', id + (field.attr('id') === 'register-password' ? ' register-password-help' : ''));
     });
     // Keep required/type/minlength attributes as baseline constraints. Disable only
     // browser popups so submit can report every field error next to its field.
@@ -50,8 +50,7 @@ $(function () {
 
     function validateField(field) {
         const id = field.attr('id');
-        const isPassword = id === 'register-password' || id === 'register-confirm';
-        const value = isPassword ? field.val() : field.val().trim();
+        const value = field.val();
         if (value === '') return 'This field is required.';
         if (value.length > Number(field.attr('maxlength'))) return 'This value is too long.';
         if (id === 'register-email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
