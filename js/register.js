@@ -79,7 +79,6 @@ $(function () {
         }
         anchor.siblings('.field-error').text(text).toggleClass('state-hidden', text === '');
         field.toggleClass('is-invalid', text !== '');
-        field.attr('aria-invalid', text !== '' ? 'true' : 'false');
         return text === '';
     }
 
@@ -98,10 +97,8 @@ $(function () {
         const input = button.closest('.password-field').find('input');
         if (input.attr('type') === 'password') {
             input.attr('type', 'text');
-            button.find('span').text(input.is(confirmation) ? 'Hide password confirmation' : 'Hide password');
         } else {
             input.attr('type', 'password');
-            button.find('span').text(input.is(confirmation) ? 'Show password confirmation' : 'Show password');
         }
     }
 
@@ -109,11 +106,8 @@ $(function () {
         // Clear values, remove error styling, and remove the invalid state in one chain.
         strength.text('');
         fields.val('').removeClass('is-invalid');
-        fields.removeAttr('aria-invalid');
         form.find('.field-error').text('').addClass('state-hidden');
         password.add(confirmation).attr('type', 'password');
-        $('#toggle-password span').text('Show password');
-        $('#toggle-confirmation span').text('Show password confirmation');
     }
 
     function submitForm(event) {
@@ -123,7 +117,7 @@ $(function () {
         let valid = true;
         fields.each(function () {
             const field = $(this);
-            // Preserve password spaces: confirmation must match the exact password.
+            // Trim normal fields, but keep passwords unchanged so spaces are rejected.
             if (field.attr('id') !== 'register-password' && field.attr('id') !== 'register-confirm') {
                 field.val(field.val().trim());
             }

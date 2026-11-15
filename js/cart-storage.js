@@ -11,7 +11,6 @@ const products = [
     { id: 'caviar-dish', name: 'Caviar dish', price: 65000 }
 ];
 
-const cartStorageKey = 'noble-cart-v1';
 const shopStorageKey = 'noble-demo-shop-v1';
 
 function readShopState() {
@@ -23,11 +22,15 @@ function readShopState() {
 }
 
 // Store only known product IDs and valid quantities, never prices from storage.
+//{
+//     orders: [],
+//     cart: [
+//         { id: 'mug', quantity: 2 }
+//     ]
+// }
 function readCart() {
     const state = readShopState();
-    // Keep carts saved by the previous version until their first update.
-    const saved = state.cart === undefined ?
-        JSON.parse(localStorage.getItem(cartStorageKey) || '[]') : state.cart;
+    const saved = state.cart === undefined ? [] : state.cart;
     if (!Array.isArray(saved)) throw new Error('Invalid saved cart');
     const result = [];
     for (const item of saved) {
