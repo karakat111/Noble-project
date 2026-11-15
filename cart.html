@@ -21,7 +21,7 @@
     <!-- Author: Arsen Ibatullin -->
     <!-- container-fluid keeps the shared navigation bar full width. -->
     <header class="container-fluid p-0">
-        <nav class="navbar navbar-expand-lg" aria-label="Main navigation">
+        <nav class="navbar navbar-expand-lg">
             <div class="container profile-navigation">
                 <a class="navbar-brand" href="indexx.html">Noble</a>
                 <!-- Always-visible navigation uses Bootstrap CSS only, including on phones. -->
@@ -37,14 +37,14 @@
                     </ul>
                 </div>
                 <div class="navigation-actions">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#cart-navigation" aria-controls="cart-navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <a class="profile-link active" href="cart.html" aria-label="Shopping cart">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#cart-navigation"><span class="navbar-toggler-icon"></span></button>
+                    <a class="profile-link active" href="cart.html">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                             <path d="M2 3h3l3 12h11l3-9H6"></path>
                             <circle cx="9" cy="20" r="1"></circle><circle cx="18" cy="20" r="1"></circle>
                         </svg>
                     </a>
-                    <a class="profile-link" href="register.html" aria-label="Profile">
+                    <a class="profile-link" href="register.html">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
                         <circle cx="12" cy="8" r="4"></circle>
                         <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
@@ -58,22 +58,22 @@
     <main id="main-content" class="container noble-main">
     <div class="page-intro"><p class="eyebrow">YOUR SELECTION</p><h1>Your cart</h1><p>A few considered pieces for your table.</p></div>
     <div class="cart-layout">
-        <section aria-labelledby="selection-heading">
+        <section>
             <div class="section-heading"><h2 id="selection-heading">Selected pieces</h2><a class="text-link" href="page-1.html">Explore the collection ↗</a></div>
             <div id="cart-items"></div>
             <div id="cart-empty" class="cart-empty">
-                <svg width="56" height="56" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M10 15h28l3 26H7l3-26Z"/><path d="M17 16V11a7 7 0 0 1 14 0v5"/></svg>
+                <svg width="56" height="56" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 15h28l3 26H7l3-26Z"/><path d="M17 16V11a7 7 0 0 1 14 0v5"/></svg>
                 <h3>Your table starts here</h3><p>Choose your favourite pieces from the catalogue.</p>
                 <a class="text-link" href="page-1.html">Browse tableware →</a>
             </div>
-            <p id="checkout-error" class="state-error state-hidden" role="alert">Enter a whole quantity of at least 1.</p>
-            <p id="cart-message" class="feedback" role="status"></p>
+            <p id="checkout-error" class="state-error state-hidden">Enter a whole quantity of at least 1.</p>
+            <p id="cart-message" class="feedback"></p>
         </section>
-        <aside class="order-panel" aria-labelledby="order-heading">
+        <aside class="order-panel">
             <p class="eyebrow">THE DETAILS</p><h2 id="order-heading">Order summary</h2>
             <div class="summary-line"><span>Pieces</span><span id="cart-item-count">0</span></div>
             <div class="summary-line summary-total"><span>Total</span><strong id="cart-total">0 ₸</strong></div>
-            <button type="button" id="place-order" class="btn btn-secondary w-100" disabled>Place order <span aria-hidden="true">→</span></button>
+            <button type="button" id="place-order" class="btn btn-secondary w-100" disabled>Place order <span>→</span></button>
             <p class="fine-print">Your cart and order history are saved on this device. No order or payment is sent to the store.</p>
             <div class="summary-help"><span>Need help choosing?</span><a href="page2.html">Talk to us ↗</a></div>
         </aside>
