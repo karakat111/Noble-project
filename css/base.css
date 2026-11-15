@@ -240,4 +240,9 @@ main h2 {
 
 /* Cart and profile links share the rightmost navigation position. */
 .navigation-actions { display: flex; align-items: center; gap: 8px; }
+.navbar .navbar-toggler { border-color: var(--color-cream); color: var(--color-cream); }
+.navbar .navbar-toggler-icon { filter: invert(1) grayscale(1) brightness(2); }
+@media (max-width: 991.98px) {
+    .profile-navigation .navbar-nav { flex-direction: column !important; align-items: flex-start; padding: 12px 0; }
+}
 .cart-quantity { max-width: 96px; }
