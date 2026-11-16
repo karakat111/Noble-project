@@ -24,17 +24,25 @@
 
 /* Search and filters */
 .catalog-page .catalog-toolbar {
-    padding: 24px 28px;
-    background: var(--color-bg-panel);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 20px 32px;
+    padding: 22px 26px;
+    background: var(--color-cream);
     border: 1px solid var(--color-border);
-    border-radius: 12px;
+    border-radius: 8px;
 }
 .catalog-page #filter-help {
-    color: var(--color-walnut);
+    grid-column: 1 / -1;
+    color: var(--color-sage-dark);
     font-size: 12px;
     font-weight: 500;
-    margin-bottom: 20px;
+    margin: 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--color-border);
 }
+.catalog-page .catalog-toolbar fieldset { min-width: 0; margin: 0 !important; }
+.catalog-page .price-filters { border-left: 1px solid var(--color-border); padding-left: 28px; }
 .catalog-page .catalog-toolbar legend {
     color: var(--color-sage-dark);
     font-family: var(--font-sans);
@@ -44,10 +52,11 @@
     text-transform: uppercase;
 }
 .catalog-page .catalog-toolbar .filter-chip {
-    background: var(--color-cream);
+    background: transparent;
     border-color: var(--color-border);
-    padding: 10px 17px;
-    margin: 0 5px 8px 0;
+    border-radius: 6px;
+    padding: 9px 14px;
+    margin: 0 5px 7px 0;
     transition: background-color .2s, border-color .2s, color .2s;
 }
 .catalog-page .catalog-toolbar .filter-chip:hover {
@@ -62,8 +71,8 @@
     color: var(--color-cream);
 }
 .catalog-page .catalog-toolbar .filter-reset {
-    margin: 0 0 8px 8px;
-    padding: 10px 12px;
+    margin: 0 0 7px 4px;
+    padding: 9px 10px;
     color: var(--color-walnut-dark);
     text-underline-offset: 4px;
 }
@@ -103,7 +112,8 @@
 .catalog-page #catalog-results { flex-basis: 100%; order: 3; }
 .catalog-page #filter-empty { color: var(--color-walnut); }
 @media (max-width: 575.98px) {
-    .catalog-page .catalog-toolbar { padding: 20px 18px; }
+    .catalog-page .catalog-toolbar { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px; }
+    .catalog-page .price-filters { border-left: 0; border-top: 1px solid var(--color-border); padding: 16px 0 0; }
     .catalog-page .catalog-toolbar .filter-chip { padding: 9px 13px; }
     .catalog-page #catalog-search { flex-basis: 100%; }
     .catalog-page #price-table > a[href="cart.html"] { width: 100%; text-align: center; }

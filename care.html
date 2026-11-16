@@ -12,10 +12,9 @@
     <!-- Bootstrap 5.3.3: shared project grid, navbar, spacing, table and responsive behaviour. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css?v=bootstrap-nav1">
-    <link rel="stylesheet" href="css/arsen.css">
+    <link rel="stylesheet" href="css/arsen.css?v=care-panels">
     <!-- jQuery 3.7.1 full build: load before the page script; includes effects. -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
-    <script src="js/care.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 <body class="arsen-page noble-refresh care-page">
@@ -59,34 +58,33 @@
     <!-- container keeps long care instructions comfortably narrow on wide screens. -->
     <main id="main-content" class="container noble-main">
     <section class="care-hero">
-        <div><p class="eyebrow">A LITTLE CARE, EVERY DAY</p><h1 id="care-heading">Made to be<br>looked after.</h1><p>Keep your favourite pieces ready for the next occasion. Always follow the instructions for your particular item.</p><a class="text-link" href="#care-checklist">Your care checklist ↓</a></div>
+        <div><p class="eyebrow">A LITTLE CARE, EVERY DAY</p><h1 id="care-heading">Made to be<br>looked after.</h1><p>Keep your favourite pieces ready for the next occasion. Always follow the instructions for your particular item.</p><a class="text-link" href="#guide-heading">Read the care guide ↓</a></div>
         <img src="images.jpg/noble-tarelka.jpg" alt="Decorated porcelain from the Noble store">
     </section>
     <div class="care-layout">
         <section class="care-guide">
             <p class="eyebrow">KEEPING THINGS BEAUTIFUL</p><h2 id="guide-heading">A guide to everyday care</h2>
-            <details id="before-use" open><summary><span class="guide-number">01</span> Before the first use</summary><div class="guide-content"><p>Read the product label and keep the manufacturer's instructions. Check whether your piece is intended for food or decoration.</p><p>Unsure about cleaning? Ask the store before using appliances or cleaning products.</p></div></details>
-            <details id="other-materials"><summary><span class="guide-number">02</span> Materials &amp; finishes</summary><div class="guide-content"><p>Glass, porcelain and decorative finishes can need different care. Confirm washing and temperature guidance for the exact product, especially pieces with metal decoration.</p></div></details>
-            <details id="storage"><summary><span class="guide-number">03</span> Storing porcelain</summary><div class="guide-content"><p>Avoid tall stacks, use separators between stacked pieces, and avoid putting pressure on handles.</p><a class="text-link" href="https://chefs.bernardaud.com/en/porcelain-maintenance-and-handling-guide">Bernardaud care guidance ↗</a></div></details>
-            <details id="care-questions"><summary><span class="guide-number">04</span> Before you buy</summary><div class="guide-content"><p>Ask which cleaning products to use, whether appliances are suitable, and how to store the piece. Check dimensions before choosing a larger set.</p><a class="text-link" href="page2.html">Ask us a question ↗</a></div></details>
-        </section>
-        <section id="care-checklist" class="checklist-panel">
-            <p class="eyebrow">READY FOR THE FIRST USE?</p><h2 id="checklist-heading">Three small checks</h2>
-            <p id="care-checklist-help">A simple reminder before you begin.</p>
-            <form id="care-checklist-form">
-                <fieldset><legend class="visually-hidden">Before using your item</legend>
-                    <div class="form-check"><input class="form-check-input" type="checkbox" id="care-label" name="care-label"><label for="care-label">I've read the care instructions.</label></div>
-                    <div class="form-check"><input class="form-check-input" type="checkbox" id="care-cleaning" name="care-cleaning"><label for="care-cleaning">I know how to clean this piece.</label></div>
-                    <div class="form-check"><input class="form-check-input" type="checkbox" id="care-storage" name="care-storage"><label for="care-storage">I've checked how to store it.</label></div>
-                </fieldset>
-                <div id="care-progress" class="checklist-progress"></div>
-                <button class="btn btn-outline-secondary" id="care-reset" type="reset">Reset checklist</button>
-            </form>
-            <p id="care-success" class="state-success state-hidden">You're ready. Keep the instructions for next time.</p>
-            <p class="fine-print">Your checks are not saved after leaving this page.</p>
+            <details id="before-use" open><summary>Before the first use</summary><div class="guide-content"><p>Read the product label and keep the manufacturer's instructions. Check whether your piece is intended for food or decoration.</p><p>Unsure about cleaning? Ask the store before using appliances or cleaning products.</p></div></details>
+            <details id="other-materials"><summary>Materials &amp; finishes</summary><div class="guide-content"><p>Glass, porcelain and decorative finishes can need different care. Confirm washing and temperature guidance for the exact product, especially pieces with metal decoration.</p></div></details>
+            <details id="storage"><summary>Storing porcelain</summary><div class="guide-content"><p>Avoid tall stacks, use separators between stacked pieces, and avoid putting pressure on handles.</p><a class="text-link" href="https://chefs.bernardaud.com/en/porcelain-maintenance-and-handling-guide">Bernardaud care guidance ↗</a></div></details>
+            <details id="care-questions"><summary>Before you buy</summary><div class="guide-content"><p>Ask which cleaning products to use, whether appliances are suitable, and how to store the piece. Check dimensions before choosing a larger set.</p><a class="text-link" href="page2.html">Ask us a question ↗</a></div></details>
         </section>
     </div>
-    <div class="care-contact"><div><h2>A question about your piece?</h2><p>We're here to help you find the right care information.</p></div><a class="btn btn-outline-secondary" href="page2.html">Contact Noble ↗</a></div>
+    <section class="care-guide care-faq">
+        <p class="eyebrow">GOOD TO KNOW</p>
+        <h2>Frequently asked questions</h2>
+        <details><summary>Can I put my porcelain in the dishwasher?</summary><div class="guide-content"><p>Check the manufacturer's instructions for your exact piece. Decorations and metal details may need special care.</p></div></details>
+        <details><summary>Can I use my tableware in the microwave?</summary><div class="guide-content"><p>Only use it in the microwave if the manufacturer says it is suitable. Pay particular attention to pieces with metal decoration.</p></div></details>
+        <details><summary>How should I store plates and cups?</summary><div class="guide-content"><p>Avoid tall stacks, use separators between stacked pieces, and avoid putting pressure on cup handles.</p></div></details>
+        <details><summary>What if my item has no care instructions?</summary><div class="guide-content"><p>Ask the store or manufacturer about the exact item before choosing a cleaning method or using an appliance.</p></div></details>
+    </section>
+    <div class="care-contact">
+        <div>
+            <h2>A question about your piece?</h2>
+            <p>We're here to help you find the right care information.</p>
+        </div>
+        <a class="btn btn-outline-secondary" href="page2.html">Contact Noble ↗</a>
+    </div>
 </main>
 
     <footer class="noble-site-footer">

@@ -270,8 +270,15 @@ Keep it unchanged unless all image paths are updated as well.
    cd Noble-project
    ```
 
-2. Open `indexx.html` directly in a browser.
-3. Use the navigation menu to explore the site.
+2. Start the local static server from the project folder:
+
+   ```powershell
+   node server.js
+   ```
+
+3. Open `http://localhost:8000` in a browser and use the navigation menu to explore the pages. Keep the terminal open; press Ctrl+C to stop the server.
+
+Use the same address and port each time: browser storage is separate for `localhost`, `127.0.0.1`, and different ports. This server only serves files; it does not process forms or orders.
 
 No package installation, build step, database, or backend is required.
 Live Server in Visual Studio Code is an optional way to preview the pages.

@@ -33,7 +33,7 @@ $(function () {
 
   function getTopicHint(value) {
     const topic = findTopic(value);
-    return topic ? 'Estimated reply: ' + topic.estimatedReplyDays + ' day(s).' : '';
+    return topic ? 'Selected topic: ' + topic.label + '.' : '';
   }
 
   $form.on('submit', function (event) {
@@ -46,12 +46,15 @@ $(function () {
 
     const name = $('#name').val();
     const phone = $phone.val();
+    const message = $('#message').val();
     const method = $form.find('input[name="contact-method"]:checked').val();
     const topic = findTopic($topic.val());
     const phoneRequired = method === 'phone' || Boolean(topic && topic.requiresPhone);
 
     if (!AppUtils.isRequired(name)) {
       AppUtils.showError($('#name'), 'Please enter your name.');
+    } else if (name.length < 2) {
+      AppUtils.showError($('#name'), 'Enter at least 2 characters.');
     }
     if (!AppUtils.isEmail($email.val())) {
       AppUtils.showError($email, 'Please enter a valid email address.');
@@ -61,8 +64,11 @@ $(function () {
     }
     if (phoneRequired && !AppUtils.isRequired(phone)) {
       AppUtils.showError($phone, 'Phone is required for this topic or contact method.');
-    } else if (phone !== '' && !AppUtils.isPhone(phone)) {
-      AppUtils.showError($phone, 'Phone format looks incorrect (10-18 characters).');
+    } else if (phone !== '' && !/^\+[0-9]{7,15}$/.test(phone)) {
+      AppUtils.showError($phone, 'Use + followed by 7–15 digits, for example +77001234567.');
+    }
+    if (!AppUtils.isRequired(message)) {
+      AppUtils.showError($('#message'), 'Please enter your message.');
     }
 
     if ($form.find('.state-error').length > 0) {
@@ -101,6 +107,10 @@ $(function () {
 
   $form.on('input change', 'input:not(#email), select, textarea', function () {
     AppUtils.clearError($(this));
+  });
+
+  $form.on('input change', 'input, select, textarea', function () {
+    $confirmation.stop(true, true).addClass('state-hidden').removeClass('contact-success').removeAttr('style').text('');
   });
 
   $form.on('reset', function () {

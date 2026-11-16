@@ -139,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const heading = createElement('div', 'order-card-heading');
         const title = createElement('div', 'order-heading-copy');
         const details = createElement('div', 'order-details');
+        details.hidden = true;
         const items = createElement('ul', 'order-items');
         title.append(createElement('span', 'order-label', 'YOUR ORDER'),
             createElement('h2', 'order-number', 'Order #' + number));
@@ -157,9 +158,9 @@ document.addEventListener('DOMContentLoaded', function () {
             createElement('p', 'order-total', `Total: ${money(summary.price)}`),
             createElement('p', 'order-note', 'Saved on this device.')
         );
-        const toggle = createElement('button', 'order-toggle btn btn-outline-secondary btn-sm mb-3', 'Hide order details');
+        const toggle = createElement('button', 'order-toggle btn btn-outline-secondary btn-sm mb-3', 'Show order details');
         toggle.type = 'button';
-        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-expanded', 'false');
         heading.append(toggle);
         card.append(heading, details);
         return card;
